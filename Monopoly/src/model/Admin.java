@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Admin {
 	
 	private String ID;
@@ -10,9 +12,24 @@ public class Admin {
 		this.password=pass;
 	}
 	
-	//public boolean AddQuestionToGame(int idQu,String que,String ans, int GameId);
+	/**
+	 * Add Question to database 
+	 * @param id,Question,possible answers, correct answer 
+	 * @return if successful - true, else false*/
 	
-	//public boolean RemoveQuestionFromGame(int idQu,int GameId);
+	public boolean AddQuestion(int idQu,String que,String ans, ArrayList<String> poss,QuestionTypes level) {
+		Question q = new Question(idQu,que,poss,ans,level);
+		return SysData.AddQuestion(q);
+	}
+	
+	/**
+	 * Remove Question from database 
+	 * @param id
+	 * @return if successful - true, else false*/
+	
+	public boolean RemoveQuestion(int idQu) {
+		return SysData.RemoveQuestion(idQu);
+	}
 	
 	public String getID() {
 		return ID;

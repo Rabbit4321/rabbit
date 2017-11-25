@@ -1,20 +1,30 @@
 package model;
 
+import java.util.Random;
+
 public class Dice {
 	private static final int[] numbers={1,2,3,4,5,6};
-	private String status; //rolling or not
+	private int status; //rolling = 1 or not = 0
 	
-	//public int Roll();
+	Dice(){
+		this.status=0;
+	}
+	public int Roll() {
+		setStatus(1);
+		int rnd = new Random().nextInt(numbers.length);
+		setStatus(0);
+	    return numbers[rnd]; 
+	}
 
 	public static int[] getNumbers() {
 		return numbers;
 	}
 
-	public String getStatus() {
+	public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 
