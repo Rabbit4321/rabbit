@@ -15,6 +15,16 @@ public class Question {
 		this.CorrectAnswer=ansCorr;
 		this.setLevel(level);
 	}
+	public boolean replacePossibleAnswer(String newAnswer, String existAnswer)
+	{
+		if(!possibleAnswers.contains(newAnswer))
+		{
+			this.possibleAnswers.remove(existAnswer);
+			this.possibleAnswers.add(newAnswer);
+			return true;
+		}
+		return false;
+	}
 	public int getNumQue() {
 		return numQue;
 	}
