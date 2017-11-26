@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-public class Admin {
+public class Admin implements Actions{
 	
 	private String ID;
 	private String password;
@@ -17,9 +17,10 @@ public class Admin {
 	 * @param id,Question,possible answers, correct answer 
 	 * @return if successful - true, else false*/
 	
-	public boolean AddQuestion(int idQu,String que,String ans, ArrayList<String> poss,QuestionTypes level) {
+	public void AddQuestion(int idQu,String que,String ans, ArrayList<String> poss,QuestionTypes level) {
 		Question q = new Question(idQu,que,poss,ans,level);
-		return SysData.AddQuestion(q);
+		AddQuestion(q);
+		
 	}
 	
 	/**
@@ -42,6 +43,11 @@ public class Admin {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Override
+	public boolean AddQuestion(Question q) {
+		return SysData.AddQuestion(q);
 	}
 
 }

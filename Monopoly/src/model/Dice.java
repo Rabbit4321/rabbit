@@ -9,6 +9,12 @@ public class Dice {
 	Dice(){
 		this.status=0;
 	}
+	
+	/**
+	 * Randomly pick a number between 1-6
+	 *@return number betweeen 1-6
+	 * */
+	
 	public int Roll() {
 		setStatus(1);
 		int rnd = new Random().nextInt(numbers.length);

@@ -7,11 +7,18 @@ public class LuckyCard extends Square{
 	private int HighestAmountForTwoQuestions = 250000;
 	
 	LuckyCard(){
+		super();
 		
 	}
 	public boolean IsPlayerAnswerIsCorrect() {
 		return false;
 	}
+	
+	/**
+	 * Use this function if the player answers correct in both questions
+	 * @return money reward
+	 * */
+	
 	public int AmountForTwoQuestions() {
 		Random rand = new Random();
 		return rand.nextInt(getHighestAmountForTwoQuestions()) + getLowestAmountForTwoQuestions();
