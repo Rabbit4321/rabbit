@@ -1,9 +1,11 @@
 package model;
 
+
 public class Square {
 	private int num;
 	private int NextSquare;
 	private int preSquare;
+	private TypeSquares type = null;
 
 	public int getNum() {
 		return num;
@@ -27,6 +29,14 @@ public class Square {
 
 	public void setPreSquare(int preSquare) {
 		this.preSquare = preSquare;
+	}
+
+	public TypeSquares getType() {
+		return type;
+	}
+
+	public void setType(TypeSquares type) {
+		this.type = type;
 	}
 
 }

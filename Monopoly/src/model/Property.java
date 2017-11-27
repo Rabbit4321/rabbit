@@ -45,7 +45,7 @@ public class Property extends Square{
 	public void setPropertyCost(double propertyCost) {
 		this.propertyCost = propertyCost;
 	}
-	public PropertyTypes getType() {
+	public PropertyTypes getPropertyType() {
 		return type;
 	}
 	public void setType(PropertyTypes type) {
