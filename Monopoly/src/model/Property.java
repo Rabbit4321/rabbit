@@ -4,23 +4,48 @@ public class Property extends Square{
 	private String propertyName;
 	private double propertyCost;
 	private double lastPropertyCost; // מחיר קניה אחרון
-	private PropertyTypes type;
-	// יבשות או  איזורים בארץ???
-	
 	private Player propertyOwner;
+	private PropertyTypes ProType;
 	
-	public Property(String propertyName, double propertyCost, PropertyTypes type) {
+	
+	
+	
+	public Property(String propertyName, double propertyCost) {
 		super();
 		this.propertyName = propertyName;
 		this.propertyCost = propertyCost;
 		this.lastPropertyCost=propertyCost; 
-		this.type = type;
 		this.propertyOwner = null;
+		setType();
 	}
 	
 	
+	public void setType()
+	{
+		if(this.propertyCost >= 50000 && this.propertyCost<250000)
+		{
+			this.ProType = PropertyTypes.Low_cost;
+		}
+		if(this.propertyCost >= 250000 && this.propertyCost<2000000)
+		{
+			this.ProType = PropertyTypes.Average;
+		}
+		if(this.propertyCost >= 2000000)
+		{
+			this.ProType = PropertyTypes.Expensive;
+		}
+	}
 	
 	
+	public double getLastPropertyCost()
+	{
+		return lastPropertyCost;
+	}
+
+
+	public void setLastPropertyCost(double lastPropertyCost) {
+		this.lastPropertyCost = lastPropertyCost;
+	}
 	public Player getPropertyOwner() {
 		return propertyOwner;
 	}
@@ -45,11 +70,11 @@ public class Property extends Square{
 	public void setPropertyCost(double propertyCost) {
 		this.propertyCost = propertyCost;
 	}
-	public PropertyTypes getPropertyType() {
-		return type;
+	public PropertyTypes getProType() {
+		return ProType;
 	}
-	public void setType(PropertyTypes type) {
-		this.type = type;
+	public void setProType(PropertyTypes type) {
+		this.ProType = type;
 	}
 	
 

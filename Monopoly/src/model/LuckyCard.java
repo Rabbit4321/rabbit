@@ -5,16 +5,15 @@ import java.util.Random;
 public class LuckyCard extends Square{
 	private int LowestAmountForTwoQuestions = 10000;
 	private int HighestAmountForTwoQuestions = 250000;
-	//שאלות
+	private Question [] questions= new Question[GeneralVariables.getNumQuestionsInLuckyCard()];
 	
-	LuckyCard(){
+	LuckyCard(Question[] qu){
 		super();
-		
+		this.setQuestions(qu);
 	}
 	public boolean IsPlayerAnswerIsCorrect() {
 		return false;
 	}
-	
 	/**
 	 * Use this function if the player answers correct in both questions
 	 * @return money reward
@@ -35,6 +34,12 @@ public class LuckyCard extends Square{
 	}
 	public void setLowestAmountForTwoQuestions(int lowestAmountForTwoQuestions) {
 		LowestAmountForTwoQuestions = lowestAmountForTwoQuestions;
+	}
+	public Question [] getQuestions() {
+		return questions;
+	}
+	public void setQuestions(Question [] questions) {
+		this.questions = questions;
 	}
 
 }
