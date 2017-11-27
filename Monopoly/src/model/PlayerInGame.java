@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-public class PlayerInGame {
+public class PlayerInGame extends Player{
 	private int playerNum;
 	private int currentMoney;
 	private int numOfDisqualifications;
@@ -96,8 +96,10 @@ public class PlayerInGame {
 		this.numOfDisqualifications--;
 	}
 	
+	/**
+	 * */
 	
-	public boolean bankruptcy()
+	public boolean BankRuptcy()
 	{
 		if(this.properties.isEmpty())
 		{

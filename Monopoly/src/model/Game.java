@@ -18,7 +18,8 @@ public class Game implements RunningGame{
 	/**
 	 * Constructor 1
 	 * */
-	Game(int n,Board b,Queue<PlayerInGame> pg){
+	
+	Game(int n,Board b,Queue<PlayerInGame> pg){// מספר שחקנים
 		this.setGameNum(n);
 		this.board=b;
 		this.players=pg;
@@ -30,7 +31,7 @@ public class Game implements RunningGame{
 		super();
 	}
 	public void OneRound() {
-		int DiceResult = 0;
+		int DiceResult = 0;//הכנסה רנדומלית של שחקנים לשחק לפי התור
 		PlayerInGame currentPlayer = this.players.poll();
 		for(int i=0; i<dices.length;i++) {
 			DiceResult += dices[i].Roll();

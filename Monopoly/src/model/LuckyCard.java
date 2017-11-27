@@ -5,6 +5,7 @@ import java.util.Random;
 public class LuckyCard extends Square{
 	private int LowestAmountForTwoQuestions = 10000;
 	private int HighestAmountForTwoQuestions = 250000;
+	//שאלות
 	
 	LuckyCard(){
 		super();
