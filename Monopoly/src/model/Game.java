@@ -9,6 +9,8 @@ import java.util.Queue;
 import java.util.Random;
 import java.util.Stack;
 
+import javax.swing.JOptionPane;
+
 import control.RunningGame;
 
 public class Game implements RunningGame{
@@ -46,15 +48,33 @@ public class Game implements RunningGame{
 	 * One Round of all players
 	 * */
 	
-	public void OneRound() {//הצגת סדר השחקנים לאחר קביעת הסדר
-		int DiceResult = 0;//הכנסה רנדומלית של שחקנים לשחק לפי התור
-		PlayerInGame currentPlayer = this.players.poll();
-		for(int i=0; i<dices.length;i++) {
-			DiceResult += dices[i].Roll();
+	public void OneRound() {
+		int DiceResult = 0; 
+		boolean PlayerFinished =false;
+		for(PlayerInGame p : this.players) {
+			PlayerInGame currentPlayer = this.players.poll();// pull the player from queue
+			PlayerFinished =false;
+			if(!currentPlayer.InJail) {
+				for(int i=0; i<dices.length;i++) {// roll dice
+					DiceResult += dices[i].Roll();
+				}
+				System.out.println(DiceResult); //check
+				int NumNewDice = (DiceResult + currentPlayer.getCurrentSquare()) % GeneralVariables.getNumSquaresInGame(); // number of dice for the player
+				System.out.println(NumNewDice);// check
+				currentPlayer.ChangeSqure(NumNewDice); // update dice to player
+				if(!(currentPlayer.getCurrentSquare().getType().equals(TypeSquares.JAIL)) && 
+						!(currentPlayer.getCurrentSquare().getType().equals(TypeSquares.START))) {
+					if(currentPlayer.getCurrentSquare() instanceof Property) {
+							Property pr = (Property)currentPlayer.getCurrentSquare();
+							 currentPlayer.propertySquare(pr);
+					}
+				}
+
+			}
+			this.players.add(currentPlayer); //add to the end of the queue
+			
 		}
-		while(DiceResult != 0) {
-			//currentPlayer.getCurrentSquare().
-		}
+		
 		
 	}
 	
@@ -64,6 +84,7 @@ public class Game implements RunningGame{
 	
 	public void PlayGame() {
 		Board.RestartBoard(); //restart board
+		UpdateAllPlayersToStart(); // restart players money
 		while( (0.75 * this.NumOfPlayersInGame) != this.NumPlayersThatBankruptcy && this.TurnsLeft != 0) {
 			OneRound();
 			this.TurnsLeft--;

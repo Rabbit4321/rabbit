@@ -1,20 +1,31 @@
 package model;
-
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ArrayList;
 
 public class Question {
-	private int numQue;
-	private String Question;
-	private ArrayList<String> possibleAnswers= new ArrayList<String>(3);
-	private String CorrectAnswer;
-	private QuestionTypes level;
-	Question(int num, String q, ArrayList<String> ans,String ansCorr, QuestionTypes level){
-		this.numQue=num;
-		this.Question=q;
-		this.possibleAnswers=ans;
-		this.CorrectAnswer=ansCorr;
-		this.setLevel(level);
+	private int id;
+	private String team;
+	public String text;
+	private int difficulty;
+	private boolean isMultipleChoice;
+	//private HashMap<String, Boolean> answers = new HashMap<String, Boolean>();
+	private ArrayList<Object> answers = new ArrayList<Object>();
+	private ArrayList<Subjects> tags = new ArrayList<Subjects>();
+
+	
+	Question(int id, String team, String text, int diff, boolean isMulti, 
+			ArrayList<Object> answers, ArrayList<Subjects> tags){
+		this.id=id;
+		this.team=team;
+		this.text=text;
+		this.difficulty=diff;
+		this.isMultipleChoice=isMulti;
+		this.answers=answers;
+		this.tags=tags;
 	}
+	
+	/*
 	public boolean replacePossibleAnswer(String newAnswer, String existAnswer)
 	{
 		if(!possibleAnswers.contains(newAnswer))
@@ -25,35 +36,84 @@ public class Question {
 		}
 		return false;
 	}
-	public int getNumQue() {
-		return numQue;
-	}
-	public void setNumQue(int numQue) {
-		this.numQue = numQue;
-	}
-	public String getQuestion() {
-		return Question;
-	}
-	public void setQuestion(String question) {
-		Question = question;
-	}
-	public ArrayList<String> getPossibleAnswers() {
-		return possibleAnswers;
-	}
-	public void setPossibleAnswers(ArrayList<String> possibleAnswers) {
-		this.possibleAnswers = possibleAnswers;
-	}
-	public String getCorrectAnswer() {
-		return CorrectAnswer;
-	}
-	public void setCorrectAnswer(String correctAnswer) {
-		CorrectAnswer = correctAnswer;
-	}
-	public QuestionTypes getLevel() {
-		return level;
-	}
-	public void setLevel(QuestionTypes level) {
-		this.level = level;
+*/
+
+	public int getId() {
+		return id;
 	}
 
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public String getTeam() {
+		return team;
+	}
+
+
+	public void setTeam(String team) {
+		this.team = team;
+	}
+
+
+	public String getText() {
+		return text;
+	}
+
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+
+	public int getDifficulty() {
+		return difficulty;
+	}
+
+
+	public void setDifficulty(int difficulty) {
+		this.difficulty = difficulty;
+	}
+
+
+	public ArrayList<Object> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(ArrayList<Object> answers) {
+		this.answers = answers;
+	}
+
+	public boolean isMultipleChoice() {
+		return isMultipleChoice;
+	}
+
+
+	public void setMultipleChoice(boolean isMultipleChoice) {
+		this.isMultipleChoice = isMultipleChoice;
+	}
+
+
+
+
+	public ArrayList<Subjects> getTags() {
+		return tags;
+	}
+
+
+	public void setTags(ArrayList<Subjects> tags) {
+		this.tags = tags;
+	}
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
 }

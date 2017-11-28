@@ -7,23 +7,24 @@ import javax.swing.JOptionPane;
 
 public class PlayerInGame extends Player{
 	
+	
+	
+	
 	private double currentMoney;
 	private int numOfDisqualifications;
 	private int currentSquare;
+	
 	public boolean InJail;
 	
 	
 	private ArrayList<Property> properties;
 	
-	public double getCurrentMoney() {
-		return this.currentMoney;
-	}
 	public PlayerInGame(int playerNum, String nickname, Square currentSquare) {
 		super(playerNum, nickname);
 		
 		this.currentMoney = 0;//לפני שהבנק מביא כסף
 		this.numOfDisqualifications = 0;
-		this.setCurrentSquare(0);//משבצת התחלה
+		this.currentSquare = 0;//משבצת התחלה
 		this.InJail=false;
 		
 		this.properties = new ArrayList<Property>();
@@ -44,7 +45,7 @@ public class PlayerInGame extends Player{
 			s-=GeneralVariables.getNumSquaresInGame();
 		}
 		
-		this.setCurrentSquare(s);
+		this.currentSquare=s;
 		
 	}
 	
@@ -140,7 +141,7 @@ public class PlayerInGame extends Player{
 		if(n == JOptionPane.YES_OPTION)
 		{
 			
-				if(Bank.ChargeMoneyFromPlayer(this, 100000.0))
+				if(Bank.ChargeMoneyFromPlayer(this, 100000))
 					return true;
 		}
 		
@@ -312,12 +313,44 @@ public class PlayerInGame extends Player{
 		return value;
 	}
 
+	public double getCurrentMoney() {
+		return currentMoney;
+	}
+
+	public void setCurrentMoney(double currentMoney) {
+		this.currentMoney = currentMoney;
+	}
+
+	public int getNumOfDisqualifications() {
+		return numOfDisqualifications;
+	}
+
+	public void setNumOfDisqualifications(int numOfDisqualifications) {
+		this.numOfDisqualifications = numOfDisqualifications;
+	}
+
 	public int getCurrentSquare() {
 		return currentSquare;
 	}
 
 	public void setCurrentSquare(int currentSquare) {
 		this.currentSquare = currentSquare;
+	}
+
+	public boolean isInJail() {
+		return InJail;
+	}
+
+	public void setInJail(boolean inJail) {
+		InJail = inJail;
+	}
+
+	public ArrayList<Property> getProperties() {
+		return properties;
+	}
+
+	public void setProperties(ArrayList<Property> properties) {
+		this.properties = properties;
 	}
 	
 	
