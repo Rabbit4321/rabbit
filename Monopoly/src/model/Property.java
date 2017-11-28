@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Property extends Square{
 	private String propertyName;
 	private double propertyCost;
@@ -47,6 +49,19 @@ public class Property extends Square{
 			this.ProType = PropertyTypes.Expensive;
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	public double getLastPropertyCost()

@@ -1,7 +1,7 @@
 package model;
 
 import java.io.BufferedReader;
-
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -15,21 +15,44 @@ import org.json.simple.parser.JSONParser;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
-
+import java.io.Serializable;
 
 import org.json.simple.JSONArray;
 
 
 
 
-public class SysData {
+public class SysData implements Serializable{
+	
+	//private static final long serialVersionUID
+	
 	private static ArrayList<Question> AllQuestions= new ArrayList<Question>();
 	private static ArrayList<Player> players= new ArrayList<Player>();
 	private static ArrayList<Game> games = new ArrayList<Game>();
 	private static ArrayList<Property> properties = new ArrayList<Property>();
 
+	private static SysData instance;
+	
+	
+	/**
+	 * singelton
+	 */
+	public static SysData getInstance()
+	{
+		if (instance == null)
+			instance = new SysData();
+		return instance;
+	}
+	
+	
+	
 
+	
+	/**
+	 * all the questions that their level is like the property type
+	 * @param type of the property
+	 * @return arraylist of questions
+	 */
 	public ArrayList<Question> questionsAcordingToType(PropertyTypes type)
 	{
 		int queType = 0;
@@ -45,10 +68,10 @@ public class SysData {
 		ArrayList<Question> questions= new ArrayList<Question>();
 		
 		
-			for(int i=0; i<AllQuestions.size(); i++)
+			for(int i=0; i<SysData.getInstance().getAllQuestions().size(); i++)
 			{
-				if(AllQuestions.get(i).getDifficulty()==queType)
-					questions.add(AllQuestions.get(i));
+				if(SysData.getInstance().getAllQuestions().get(i).getDifficulty()==queType)
+					questions.add(SysData.getInstance().getAllQuestions().get(i));
 			}
 		
 		
@@ -56,6 +79,12 @@ public class SysData {
 	}
 	
 	
+	
+	/**
+	 * all the questions that contains the Subject 
+	 * @param Subjects sub
+	 * @return arraylist of questions
+	 */
 	public ArrayList<Question> questionsAcordingToSubject(Subjects sub)
 	{
 	
@@ -63,10 +92,10 @@ public class SysData {
 		ArrayList<Question> questions= new ArrayList<Question>();
 		
 		
-			for(int i=0; i<AllQuestions.size(); i++)
+			for(int i=0; i<SysData.getInstance().getAllQuestions().size(); i++)
 			{
-				if(AllQuestions.get(i).getTags().contains(sub))
-					questions.add(AllQuestions.get(i));
+				if(SysData.getInstance().getAllQuestions().get(i).getTags().contains(sub))
+					questions.add(SysData.getInstance().getAllQuestions().get(i));
 			}
 		
 		
@@ -87,6 +116,7 @@ public class SysData {
 	}
 	
 	
+	
 	public Question questionCardQuestion(Subjects sub)
 	{
 		ArrayList<Question> questions=questionsAcordingToSubject(sub);
@@ -98,9 +128,6 @@ public class SysData {
 	}
 
 	
-	//הוספת נכסים מגייסון
-	//הגרלת שאלות
-	// הוספת משחק
 	
 	
 	
@@ -112,21 +139,23 @@ public class SysData {
 	private void initProperties(){
 
 		
-		try (InputStream is = getClass().getResourceAsStream("/properties.json");
-				BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
-			Iterator<JSONObject> outerIterator = 
-					((JSONArray) new JSONParser().parse(reader)).iterator();
-			while (outerIterator.hasNext())
+		JSONParser parser = new JSONParser();
+
+        try {
+        	Object obj = parser.parse(new FileReader("properties.json"));
+        	JSONArray fileContent = (JSONArray) obj;
+			Iterator<JSONObject> fileIterator = fileContent.iterator();
+			while (fileIterator.hasNext())
 			{
-				JSONObject obj = (JSONObject) outerIterator.next();
+            JSONObject jsonObject = (JSONObject) fileIterator.next();
 				
 				
-				String name = (String)obj.get("name");
-				double cost = (double)obj.get("cost");
-				
+				String name = (String)jsonObject.get("name");
+				double cost = (double)jsonObject.get("cost");
+				Cities city = (Cities)jsonObject.get("city");
 			
 			
-				properties.add(new Property(name, cost, null));
+				properties.add(new Property(name, cost, city));
 				
 			}
 	
@@ -150,23 +179,23 @@ public class SysData {
 	private void initQuestions(){
 
 		
-		
-		
-		try (InputStream is = getClass().getResourceAsStream("/questions.json");
-				BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
-			Iterator<JSONObject> outerIterator = 
-					((JSONArray) new JSONParser().parse(reader)).iterator();
-			while (outerIterator.hasNext())
+		JSONParser parser = new JSONParser();
+
+        try {
+        	Object obj = parser.parse(new FileReader("questions.json"));
+        	JSONArray fileContent = (JSONArray) obj;
+			Iterator<JSONObject> fileIterator = fileContent.iterator();
+			while (fileIterator.hasNext())
 			{
-				JSONObject obj = (JSONObject) outerIterator.next();
+            JSONObject jsonObject = (JSONObject) fileIterator.next();
 				
-				int id= (int)obj.get("id");
-				String team = (String)obj.get("team");
-				String text = (String)obj.get("text");
-				int difficulty= (int)obj.get("difficulty");
-				boolean isMultipleChoice=(boolean)obj.get("isMultipleChoice");
+				int id= (int)jsonObject.get("id");
+				String team = (String)jsonObject.get("team");
+				String text = (String)jsonObject.get("text");
+				int difficulty= (int)jsonObject.get("difficulty");
+				boolean isMultipleChoice=(boolean)jsonObject.get("isMultipleChoice");
 				
-				JSONArray answers= (JSONArray)obj.get("answers");
+				JSONArray answers= (JSONArray)jsonObject.get("answers");
 				ArrayList<String> a= new ArrayList<String>();
 				Iterator<String> iterator1 = answers.iterator();
 				while (iterator1.hasNext()) 
@@ -177,7 +206,7 @@ public class SysData {
 					
 				}
 				
-				JSONArray tags= (JSONArray)obj.get("tags");
+				JSONArray tags= (JSONArray)jsonObject.get("tags");
 				ArrayList<String> t= new ArrayList<String>();
 				Iterator<String> iterator2 = tags.iterator();
 				while (iterator2.hasNext()) 

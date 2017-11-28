@@ -12,8 +12,8 @@ public class PlayerInGame extends Player{
 	
 	private double currentMoney;
 	private int numOfDisqualifications;
-	private int currentSquare;
-//	private Square currentSquare;
+	//private int currentSquare;
+	private Square currentSquare;
 	public boolean InJail;
 	
 	
@@ -24,13 +24,13 @@ public class PlayerInGame extends Player{
 		
 		this.currentMoney = 0;//לפני שהבנק מביא כסף
 		this.numOfDisqualifications = 0;
-		this.currentSquare = 0;//משבצת התחלה
+		this.currentSquare = null;//משבצת התחלה
 		this.InJail=false;
 		
 		this.properties = new ArrayList<Property>();
 	}
 	
-	public void ChangeSqure(int squreNum)
+	public int ChangeSqure(int squreNum)
 	{
 		int s;
 		s = squreNum;
@@ -45,11 +45,14 @@ public class PlayerInGame extends Player{
 			s-=GeneralVariables.getNumSquaresInGame();
 		}
 		
-		this.currentSquare=s;
+		 return s;
 		
 	}
 	
-	
+	/**
+	 * arriving to property square
+	 * @param Property p
+	 */
 	public void propertySquare(Property p)
 	{
 		if(currentMoney-p.getPropertyCost()>=0)
@@ -64,7 +67,9 @@ public class PlayerInGame extends Player{
 			            JOptionPane.YES_NO_OPTION);
 			if(n == JOptionPane.YES_OPTION)
 			{
-				//question
+				
+				Question q = SysData.getInstance().propertyQuestion(p);
+				
 				//right
 				
 				double price=0;
@@ -129,7 +134,7 @@ public class PlayerInGame extends Player{
 	
 	
 	/**
-	 * player comes to jail square
+	 * player comes to gotojail square
 	 * @return player goes out from jail - true, player goes to jail and waits - false*/
 	public boolean goToJailSquare()
 	{
@@ -149,12 +154,14 @@ public class PlayerInGame extends Player{
 	}
 	
 	
+
+	
 	public void luckyCardSquare(LuckyCard l)
 	{
 		boolean check1=false;
 		boolean check2=false;
 		
-		
+	
 		
 		//first que
 		
@@ -329,11 +336,11 @@ public class PlayerInGame extends Player{
 		this.numOfDisqualifications = numOfDisqualifications;
 	}
 
-	public int getCurrentSquare() {
+	public Square getCurrentSquare() {
 		return currentSquare;
 	}
 
-	public void setCurrentSquare(int currentSquare) {
+	public void setCurrentSquare(Square currentSquare) {
 		this.currentSquare = currentSquare;
 	}
 

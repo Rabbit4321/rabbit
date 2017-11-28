@@ -1,6 +1,7 @@
 package model;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.ArrayList;
 
 public class Question {
@@ -38,6 +39,18 @@ public class Question {
 	}
 */
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public int getId() {
 		return id;
 	}
