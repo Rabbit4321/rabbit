@@ -26,7 +26,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="819.0" layoutX="2.0" layoutY="8.0" stroke="BLACK" strokeType="OUTSIDE" width="926.0" />
       <ImageView fitHeight="815.0" fitWidth="921.0" layoutX="6.0" layoutY="9.0">
          <image>
-            <Image url="@../../../../../../Desktop/Limodim/שנה%20ג/הנדסת%20תוכנה%20ואבטחת%20איכות/מסכים%20של%20הסין%20בילדר/לוח%20המשחק%20הכי%20מעודכן%20שיש!!!!.PNG" />
+            <Image url="@../../img/לוח%20המשחק%20הכי%20מעודכן%20שיש!!!!.PNG" />
          </image>
       </ImageView>
       <Button defaultButton="true" ellipsisString="" layoutX="1032.0" layoutY="355.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="88.0" stylesheets="@../../../../Desktop/Limodim/שנה%20ג/הנדסת%20תוכנה%20ואבטחת%20איכות/עיצוב%20המסכים/MnopolyDesign.css" text="Roll">
@@ -47,7 +47,7 @@
       </TextArea>
       <ImageView fitHeight="116.0" fitWidth="200.0" layoutX="1043.0" layoutY="261.0">
          <image>
-            <Image url="@../../../../../../Desktop/Limodim/שנה%20ג/הנדסת%20תוכנה%20ואבטחת%20איכות/קוביות%20גזור.png" />
+            <Image url="@../../img/קוביות%20גזור.png" />
          </image>
          <effect>
             <DropShadow />
