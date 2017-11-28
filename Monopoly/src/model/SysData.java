@@ -126,7 +126,7 @@ public class SysData {
 				
 			
 			
-				properties.add(new Property(name, cost));
+				properties.add(new Property(name, cost, null));
 				
 			}
 	
