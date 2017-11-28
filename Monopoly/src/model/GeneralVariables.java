@@ -15,6 +15,8 @@ public class GeneralVariables {
 	private static int NumOfQuestionCard = 7;
 	
 	private static int numQuestionsInLuckyCard =2 ;
+	
+	private static int MinimumPlayerInGame = 2;
 
 	public static int getNumSquaresInGame() {
 		return NumSquaresInGame;
@@ -70,6 +72,14 @@ public class GeneralVariables {
 
 	public static void setNumQuestionsInLuckyCard(int numQuestionsInLuckyCard) {
 		GeneralVariables.numQuestionsInLuckyCard = numQuestionsInLuckyCard;
+	}
+
+	public static int getMinimumPlayerInGame() {
+		return MinimumPlayerInGame;
+	}
+
+	public static void setMinimumPlayerInGame(int minimumPlayerInGame) {
+		MinimumPlayerInGame = minimumPlayerInGame;
 	}
 
 }

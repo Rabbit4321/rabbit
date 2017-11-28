@@ -17,11 +17,12 @@ public class Game implements RunningGame{
 	private int GameNum;
 	private Queue<PlayerInGame> players; // 2-4
 	private Dice[] dices= new Dice[GeneralVariables.getNumDiceInGame()]; // 2 dices in game
-	private HashMap<PlayerInGame,Integer> playersInJail;
-	private int NumPlayersThatBankruptcy = 0;
-	private int NumOfPlayersInGame=0;
-	private static int Counter=0;
-	private int TurnsLeft;
+	private HashMap<PlayerInGame,Integer> playersInJail; //players in jail
+	private int NumPlayersThatBankruptcy = 0; // players who bankruptcy
+	private int NumOfPlayersInGame=0; // number defined by user of players
+	private static int Counter=0; // automatic count for games
+	private int TurnsLeft; // turns
+//	private HashMap<PlayerInGame,boolean> WhoIsAnActivePlayer
 	
 	/**
 	 * Constructor 1
@@ -68,8 +69,29 @@ public class Game implements RunningGame{
 							Property pr = (Property)currentPlayer.getCurrentSquare();
 							 currentPlayer.propertySquare(pr);
 					}
-				}
+					else if(currentPlayer.getCurrentSquare() instanceof LuckyCard) {
+					        LuckyCard lc = (LuckyCard)currentPlayer.getCurrentSquare();
+					        currentPlayer.luckyCardSquare(lc);
+					}
+					else if(currentPlayer.getCurrentSquare() instanceof QuestionCard) {
+						QuestionCard lc = (QuestionCard)currentPlayer.getCurrentSquare();
+				        currentPlayer.questionCardSquare(lc);
+					}
+					else if(currentPlayer.getCurrentSquare().getType().equals(TypeSquares.GO_TO_JAIL)) {
+						currentPlayer.goToJailSquare();
+						this.playersInJail.put(currentPlayer, 0); // insert to jail with 0 turns
+					}
+	
+					
+				  } 
 
+			}
+			else {
+				this.playersInJail.replace(currentPlayer, this.playersInJail.get(currentPlayer)+1);
+			}
+			if(currentPlayer.howManyDisq()) {
+				currentPlayer.goToJailSquare();
+				this.playersInJail.put(currentPlayer, 0); // insert to jail with 0 turns
 			}
 			this.players.add(currentPlayer); //add to the end of the queue
 			
@@ -79,29 +101,86 @@ public class Game implements RunningGame{
 	}
 	
 	/**
-	 * play Game
+	 * play Game - running all 50 turns
 	 * */
 	
 	public void PlayGame() {
 		Board.RestartBoard(); //restart board
 		UpdateAllPlayersToStart(); // restart players money
-		while( (0.75 * this.NumOfPlayersInGame) != this.NumPlayersThatBankruptcy && this.TurnsLeft != 0) {
+		while( (0.75 * this.NumOfPlayersInGame) != this.NumPlayersThatBankruptcy && this.TurnsLeft != 0 && this.players.size() > GeneralVariables.getMinimumPlayerInGame()) { //while 0.75 not bankruptcy and still have turns
 			OneRound();
+			PlayersInJailValidation();
 			this.TurnsLeft--;
 			if(this.NumOfPlayersInGame == this.playersInJail.size()) {
-				
+				UpdateAllPlayersToStart();
 			}
 		}
+		EndGame();
 		
 	}
+	
+	/**
+	 * update all players to start square
+	 * */
+	
 	public void UpdateAllPlayersToStart() {
 		for(PlayerInGame p : this.players) {
 			p.ChangeSqure(Board.getInstance().getStart().getNum());
 		}
 	}
-/*	public boolean PutPlayerInJail(PlayerInGame p) {
-
-	}*/
+	
+	/**
+	 * check if player can get out of jail
+	 * @param player
+	 * @return player if true, else null
+	 * */
+	
+	public PlayerInGame CheckIfPlayerCanBeOutOfJail(PlayerInGame p) {
+		if(this.playersInJail.get(p) == 3)
+			return p;
+		return null;
+	}
+	
+	/**
+	 * update players back to game if they can go out of jail
+	 * 
+	 * */
+	
+	public void PlayersInJailValidation() {
+		for(PlayerInGame p: this.playersInJail.keySet()) {
+			if(CheckIfPlayerCanBeOutOfJail(p) != null) {
+				p.setInJail(false);
+				this.playersInJail.remove(p);
+			}
+		}
+	}
+	
+	/**
+	 * for player who wants to exit the game
+	 * */
+	
+	public void playerExit(PlayerInGame p){
+		this.players.remove(p);
+		if(this.players.size() < GeneralVariables.getMinimumPlayerInGame()) {
+			EndGame();
+		}
+	}
+	
+	/**
+	 * exit the game and announce the winner
+	 * */
+	
+	public void EndGame() {
+		PlayerInGame winner = null;
+		for (PlayerInGame p: this.players) {
+			if(winner == null)
+				winner = p;
+			if(winner.playerValue() < p.playerValue())
+				winner = p;
+		}
+	System.out.println("The Winner Is :" + winner.getNickname() + "With score:" + winner.playerValue());
+		
+	}
 	
 	public Queue<PlayerInGame> getPlayers() {
 		return players;
