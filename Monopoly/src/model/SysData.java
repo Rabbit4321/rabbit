@@ -56,9 +56,40 @@ public class SysData {
 	}
 	
 	
+	public ArrayList<Question> questionsAcordingToSubject(Subjects sub)
+	{
+	
+		
+		ArrayList<Question> questions= new ArrayList<Question>();
+		
+		
+			for(int i=0; i<AllQuestions.size(); i++)
+			{
+				if(AllQuestions.get(i).getTags().contains(sub))
+					questions.add(AllQuestions.get(i));
+			}
+		
+		
+		return questions;
+	}
+	
+	
+	
+	
 	public Question propertyQuestion(Property p)
 	{
 		ArrayList<Question> questions=questionsAcordingToType(p.getProType());
+		
+		Random rand = new Random();
+		int  n = rand.nextInt(questions.size());
+		
+		return questions.get(n);
+	}
+	
+	
+	public Question questionCardQuestion(Subjects sub)
+	{
+		ArrayList<Question> questions=questionsAcordingToSubject(sub);
 		
 		Random rand = new Random();
 		int  n = rand.nextInt(questions.size());

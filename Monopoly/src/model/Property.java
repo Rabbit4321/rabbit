@@ -6,20 +6,32 @@ public class Property extends Square{
 	private double lastPropertyCost; // מחיר קניה אחרון
 	private Player propertyOwner;
 	private PropertyTypes ProType;
+	private Cities city;
 	
 	
 	
 	
-	public Property(String propertyName, double propertyCost) {
+	public Property(String propertyName, double propertyCost, Cities city) {
 		super();
 		this.propertyName = propertyName;
 		this.propertyCost = propertyCost;
 		this.lastPropertyCost=propertyCost; 
 		this.propertyOwner = null;
 		setType();
+		this.city=city;
 	}
 	
 	
+	public Cities getCity() {
+		return city;
+	}
+
+
+	public void setCity(Cities city) {
+		this.city = city;
+	}
+
+
 	public void setType()
 	{
 		if(this.propertyCost >= 50000 && this.propertyCost<250000)

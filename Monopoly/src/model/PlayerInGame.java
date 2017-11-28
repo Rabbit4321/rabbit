@@ -13,7 +13,7 @@ public class PlayerInGame extends Player{
 	private double currentMoney;
 	private int numOfDisqualifications;
 	private int currentSquare;
-	
+//	private Square currentSquare;
 	public boolean InJail;
 	
 	
