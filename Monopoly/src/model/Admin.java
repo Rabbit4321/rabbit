@@ -17,8 +17,8 @@ public class Admin implements Actions{
 	 * @param id,Question,possible answers, correct answer 
 	 * @return if successful - true, else false*/
 	
-	public void AddQuestion(int idQu,String que,String ans, ArrayList<String> poss,QuestionTypes level) {
-		Question q = new Question(idQu,que,poss,ans,level);
+	public void AddQuestion(int idQu,String que,String ans, ArrayList<String> poss,boolean ismulti,QuestionTypes level) {
+		Question q = new Question(idQu,que,poss,ans,level,ismulti);
 		AddQuestion(q);
 		
 	}
