@@ -86,6 +86,7 @@ public class SysData {
 		return questions.get(n);
 	}
 	
+	
 	public Question questionCardQuestion(Subjects sub)
 	{
 		ArrayList<Question> questions=questionsAcordingToSubject(sub);
@@ -96,7 +97,6 @@ public class SysData {
 		return questions.get(n);
 	}
 
-	
 	
 	//הוספת נכסים מגייסון
 	//הגרלת שאלות
