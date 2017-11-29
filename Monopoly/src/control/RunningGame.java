@@ -1,15 +1,15 @@
 package control;
 
 import model.PlayerInGame;
+
+import java.util.ArrayList;
+
 import model.Game;
 
 public interface RunningGame {
 	
-	public void startGame(Game g);
-	
-	public int NumberOfplayersToGame();
-	
-	public PlayerInGame getPlayer();
+	public void startGame(int num,ArrayList<PlayerInGame> players);
+
 	
 
 }

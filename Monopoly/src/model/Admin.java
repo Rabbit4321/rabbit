@@ -7,9 +7,9 @@ public class Admin implements Actions{
 	private String ID;
 	private String password;
 	
-	Admin(String id,String pass){
-		this.ID=id;
-		this.password=pass;
+	public Admin(){
+		this.ID="1";
+		this.password="1";
 	}
 	
 	/**
