@@ -228,11 +228,11 @@ public class SysData implements Serializable{
 			{
             JSONObject jsonObject = (JSONObject) fileIterator.next();
 				
-				int id= (int)jsonObject.get("id");
+				int id= Integer.parseInt((String) jsonObject.get("id"));
 				String team = (String)jsonObject.get("team");
 				String text = (String)jsonObject.get("text");
-				int difficulty= (int)jsonObject.get("difficulty");
-				boolean isMultipleChoice=(boolean)jsonObject.get("isMultipleChoice");
+				int difficulty= Integer.parseInt((String) jsonObject.get("difficulty"));
+				boolean isMultipleChoice=Boolean.parseBoolean((String) jsonObject.get("isMultipleChoice"));
 				
 				JSONArray answers= (JSONArray)jsonObject.get("answers");
 				ArrayList<Answer> a= new ArrayList<Answer>();

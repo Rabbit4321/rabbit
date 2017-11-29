@@ -114,7 +114,7 @@ public class Game{
 	
 	public void PlayGame() {
 		board.RestartBoard(); //restart board
-		UpdateAllPlayersToStart(); // restart players money
+		UpdateAllPlayersToStart(); // restart players money and position on board
 		while( (0.75 * this.NumOfPlayersInGame) != this.NumPlayersThatBankruptcy && this.TurnsLeft != 0 && this.players.size() > GeneralVariables.getMinimumPlayerInGame()) { //while 0.75 not bankruptcy and still have turns
 			OneRound();
 			PlayersInJailValidation();

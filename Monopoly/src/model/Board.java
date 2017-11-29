@@ -50,10 +50,13 @@ public class Board {
 		Squares[(OptionsForEdgesBoard[rnd] + 10) % GeneralVariables.getNumSquaresInGame()] = new Square();
 		Squares[(OptionsForEdgesBoard[rnd] + 10) % GeneralVariables.getNumSquaresInGame()].setNum((OptionsForEdgesBoard[rnd] + 10) % GeneralVariables.getNumSquaresInGame());
 		Squares[(OptionsForEdgesBoard[rnd] + 10) % GeneralVariables.getNumSquaresInGame()].setType(TypeSquares.GO_TO_JAIL);
-		Squares[(OptionsForEdgesBoard[rnd] + 20) % GeneralVariables.getNumSquaresInGame()] = new Square();
-		Squares[(OptionsForEdgesBoard[rnd] + 20) % GeneralVariables.getNumSquaresInGame()].setNum((OptionsForEdgesBoard[rnd] + 20) % GeneralVariables.getNumSquaresInGame());
-		Squares[(OptionsForEdgesBoard[rnd] + 20) % GeneralVariables.getNumSquaresInGame()].setType(TypeSquares.JAIL);
-		Jail = Squares[(OptionsForEdgesBoard[rnd] + 20) % GeneralVariables.getNumSquaresInGame()];
+		int posGo= (OptionsForEdgesBoard[rnd] + 10) % GeneralVariables.getNumSquaresInGame();
+		System.out.println(posGo);
+		System.out.println((posGo + 20) % GeneralVariables.getNumSquaresInGame());
+		Squares[(posGo + 20) % GeneralVariables.getNumSquaresInGame()] = new Square();
+		Squares[(posGo + 20) % GeneralVariables.getNumSquaresInGame()].setNum((posGo + 20) % GeneralVariables.getNumSquaresInGame());
+		Squares[(posGo+ 20) % GeneralVariables.getNumSquaresInGame()].setType(TypeSquares.JAIL);
+		Jail = Squares[(posGo + 20) % GeneralVariables.getNumSquaresInGame()];
 
 	
 		//initialize board without random for now
@@ -214,13 +217,6 @@ public class Board {
 				System.out.println("Square: "+s.getNum()+ " type is null" );
 			}
 		}
-	}
-	public static void main(String[] args) {
-		Board b =new Board();
-		b.RestartBoard();
-		System.out.println(b);
-		b.printAllSquares();
-	
 	}
 
 	public Square getJail() {
