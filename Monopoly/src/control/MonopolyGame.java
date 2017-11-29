@@ -29,8 +29,8 @@ public class MonopolyGame implements RunningGame{
 	 * */
 	public void InitializeData() {
 		this.admin= new Admin();
-		SysData.getInstance().initQuestions();
-		SysData.getInstance().initProperties();
+		//SysData.getInstance().initQuestions();
+		//SysData.getInstance().initProperties();
 	}
 	
 	
