@@ -156,7 +156,7 @@ public class PlayerInGame extends Player{
 	            JOptionPane.YES_NO_OPTION);
 		if(n == JOptionPane.YES_OPTION)
 		{
-			
+				setInJail(false);
 				if(Bank.ChargeMoneyFromPlayer(this, 100000))
 				{
 					

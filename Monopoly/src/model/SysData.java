@@ -171,7 +171,7 @@ public class SysData implements Serializable{
 	
 	
 	
-	private void initProperties(){
+	public void initProperties(){
 
 		
 		JSONParser parser = new JSONParser();
@@ -211,7 +211,7 @@ public class SysData implements Serializable{
 	
 	
 	
-	private void initQuestions(){
+	public void initQuestions(){
 
 		
 		JSONParser parser = new JSONParser();
