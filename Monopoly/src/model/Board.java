@@ -5,30 +5,28 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Properties;
 import java.util.Random;
 
 public class Board {
-	private static ArrayList<Square> AllSquares;
-	private static Board instance = null;
-	private static Square Start = new Square();
+	private ArrayList<Square> AllSquares;
+	private Square Start = null;
+	private Square Jail = null;
 	
-	  protected Board() {
-	      // Exists only to defeat instantiation.
-	   }
-	 public static Board getInstance() {
-	      if(instance == null) {
-	         instance = new Board();
-	      }
-	      return instance;
-	   }
+    public Board() {
+    	super();
+    }
 
 	/**
 	 * restart the board and locate any square in her place (notice: 'Go to jail','Free parking','Jail','Start' are already defined in specific place
 	 * @param list of squares*/
 	
-	public static void RestartBoard() {
+	public void RestartBoard() {
 	/**TODO*/
 		AllSquares = new ArrayList<Square>(GeneralVariables.getNumSquaresInGame());
+		for(Square s : AllSquares) { // initialize squares
+			s = new Square();
+		}
 		Square[] Squares = new Square[GeneralVariables.getNumSquaresInGame()+1];
 		int [] OptionsForEdgesBoard= {1,11,21,31};
 		ArrayList<Property> properties = new ArrayList<Property>();
@@ -46,6 +44,7 @@ public class Board {
 		
 		int rnd = new Random().nextInt(OptionsForEdgesBoard.length);
 		Squares[OptionsForEdgesBoard[rnd]] = new Square();
+		Squares[OptionsForEdgesBoard[rnd]].setNum(OptionsForEdgesBoard[rnd]);
 		Squares[OptionsForEdgesBoard[rnd]].setType(TypeSquares.START);
 		Start = Squares[OptionsForEdgesBoard[rnd]];
 		
@@ -57,9 +56,12 @@ public class Board {
 		
 		
 		Squares[(OptionsForEdgesBoard[rnd] + 10) % GeneralVariables.getNumSquaresInGame()] = new Square();
+		Squares[(OptionsForEdgesBoard[rnd] + 10) % GeneralVariables.getNumSquaresInGame()].setNum((OptionsForEdgesBoard[rnd] + 10) % GeneralVariables.getNumSquaresInGame());
 		Squares[(OptionsForEdgesBoard[rnd] + 10) % GeneralVariables.getNumSquaresInGame()].setType(TypeSquares.GO_TO_JAIL);
 		Squares[(OptionsForEdgesBoard[rnd] + 20) % GeneralVariables.getNumSquaresInGame()] = new Square();
+		Squares[(OptionsForEdgesBoard[rnd] + 20) % GeneralVariables.getNumSquaresInGame()].setNum((OptionsForEdgesBoard[rnd] + 20) % GeneralVariables.getNumSquaresInGame());
 		Squares[(OptionsForEdgesBoard[rnd] + 20) % GeneralVariables.getNumSquaresInGame()].setType(TypeSquares.JAIL);
+		Jail = Squares[(OptionsForEdgesBoard[rnd] + 20) % GeneralVariables.getNumSquaresInGame()];
 
 		/*for( int i=1; i<Squares.length; i++) {
 			if(Squares[i] == null) {
@@ -70,7 +72,7 @@ public class Board {
 		}*/
 		//initialize board without random for now
 		//organize properties by cities
-		
+		if(!properties.isEmpty()) {
 		for(Property pr: properties) {
 			if(pr.getCity().equals(Cities.Haifa)) {
 				pr.setNum(2);
@@ -151,6 +153,7 @@ public class Board {
 				Squares[40] = pr;
 			}
 		}
+		}
 		//order Lucky & Question cards
 		Squares[4]= new LuckyCard();
 		Squares[4].setNum(4);
@@ -179,7 +182,9 @@ public class Board {
 		Squares[39]= new QuestionCard();
 		Squares[39].setNum(39);
 		
-		AllSquares = (ArrayList)Arrays.asList(Squares);
+		for(int i =1; i< Squares.length ; i++) {
+			AllSquares.add(Squares[i]);
+		}
 		
 	}
 	
@@ -205,19 +210,38 @@ public class Board {
 	public void setAllSquares(ArrayList<Square> allSqures) {
 		AllSquares = allSqures;
 	}
-	public static void main(String[] args) {
-		//Board b= new Board();
-		new Board();
-		RestartBoard();
-		//check for 
-		int i=39;
-		int j=2;
-		int newPosition = (i + j) % GeneralVariables.getNumSquaresInGame();
-		int t=2;
-		double g=0.75;
-		int div=(int) (g * t);
-		System.out.println(newPosition+"  "+ div);
 	
+
+
+	@Override
+	public String toString() {
+		return "Board [AllSquares=" + AllSquares.size() + ", Start=" + Start.getNum() + ", Jail=" + Jail.getNum() + "]";
+	}
+
+	public void printAllSquares() {
+		for(Square s : AllSquares) {
+			if(s != null) {
+			if(s.getType() != null)
+				System.out.println("Square: "+s.getNum()+ " type " +s.getType().toString());
+			else
+				System.out.println("Square: "+s.getNum()+ " type is null" );
+			}
+		}
+	}
+	public static void main(String[] args) {
+		Board b =new Board();
+		b.RestartBoard();
+		System.out.println(b);
+		b.printAllSquares();
+	
+	}
+
+	public Square getJail() {
+		return Jail;
+	}
+
+	public void setJail(Square jail) {
+		Jail = jail;
 	}
 
 }

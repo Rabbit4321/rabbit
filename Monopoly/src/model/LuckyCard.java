@@ -9,7 +9,7 @@ public class LuckyCard extends Square{
 	
 	LuckyCard(){
 		super();
-		setQuestions(SysData.getInstance().luckyCardQuestions()); 
+	//	setQuestions(SysData.getInstance().luckyCardQuestions()); 
 	}
 	public boolean IsPlayerAnswerIsCorrect() {
 		return false;
