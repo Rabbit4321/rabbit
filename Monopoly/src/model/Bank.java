@@ -25,7 +25,7 @@ public class Bank {
 	 * @return if player has money - true, else false*/
 	
 	public static boolean ChargeMoneyFromPlayer(PlayerInGame p,double amount) {
-		if(p.getCurrentMoney() > -10000) {
+		if((p.getCurrentMoney()-amount) > -10000) {
 			p.payToPlayerAndBank(amount);
 			Money += amount;
 			return true;

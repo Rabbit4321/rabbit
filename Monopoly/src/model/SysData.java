@@ -80,6 +80,24 @@ public class SysData implements Serializable{
 	}
 	
 	
+	public ArrayList<Question> questionsAcordingToLevel(int level)
+	{
+		
+		
+		ArrayList<Question> questions= new ArrayList<Question>();
+		
+		
+			for(int i=0; i<SysData.getInstance().getAllQuestions().size(); i++)
+			{
+				if(SysData.getInstance().getAllQuestions().get(i).getDifficulty()==level)
+					questions.add(SysData.getInstance().getAllQuestions().get(i));
+			}
+		
+		
+		return questions;
+	}
+	
+	
 	
 	/**
 	 * all the questions that contains the Subject 
@@ -118,7 +136,7 @@ public class SysData implements Serializable{
 	
 	
 	
-	public Question questionCardQuestion(Subjects sub)
+	public Question CardQuestionQuestion(Subjects sub)
 	{
 		ArrayList<Question> questions=questionsAcordingToSubject(sub);
 		
@@ -128,7 +146,23 @@ public class SysData implements Serializable{
 		return questions.get(n);
 	}
 
-	
+	public Question [] luckyCardQuestions()
+	{
+		Question[] questions = new Question[2];
+		
+		ArrayList<Question> questions1 = questionsAcordingToLevel(1); //בינוני
+		ArrayList<Question> questions2 = questionsAcordingToLevel(2); //קשה
+		
+		
+		Random rand = new Random();
+		int  n1 = rand.nextInt(questions1.size());
+		int  n2 = rand.nextInt(questions2.size());
+		
+		questions[0] = questions1.get(n1);
+		questions[1] = questions1.get(n2);
+		
+		return questions;
+	}
 	
 	
 	
@@ -238,7 +272,17 @@ public class SysData implements Serializable{
 	
 	
 	
-	
+	/**
+	 * checks validation according to json orders
+	 * @param id
+	 * @param team
+	 * @param text
+	 * @param diff
+	 * @param isMulti
+	 * @param answers
+	 * @param tags
+	 * @return
+	 */
 	public static boolean validQuestion(int id, String team, String text, int diff, boolean isMulti, 
 			ArrayList<Object> answers, ArrayList<Subjects> tags)
 	{
@@ -317,7 +361,7 @@ public class SysData implements Serializable{
 		if(AllQuestions.contains(q))
 		{
 			AllQuestions.remove(q);
-			//remove from json
+			//remove from json ??
 			return true;
 		}
 		

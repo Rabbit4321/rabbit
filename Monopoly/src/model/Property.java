@@ -6,7 +6,7 @@ public class Property extends Square{
 	private String propertyName;
 	private double propertyCost;
 	private double lastPropertyCost; // מחיר קניה אחרון
-	private Player propertyOwner;
+	private PlayerInGame propertyOwner;
 	private PropertyTypes ProType;
 	private Cities city;
 	
@@ -73,17 +73,12 @@ public class Property extends Square{
 	public void setLastPropertyCost(double lastPropertyCost) {
 		this.lastPropertyCost = lastPropertyCost;
 	}
-	public Player getPropertyOwner() {
+	public PlayerInGame getPropertyOwner() {
 		return propertyOwner;
 	}
-	public void setPropertyOwner(Player propertyOwner) {
+	public void setPropertyOwner(PlayerInGame propertyOwner) {
 		this.propertyOwner = propertyOwner;
 	}
-
-
-
-
-
 
 	public String getPropertyName() {
 		return propertyName;

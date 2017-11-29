@@ -7,9 +7,9 @@ public class LuckyCard extends Square{
 	private int HighestAmountForTwoQuestions = 250000;
 	private Question [] questions= new Question[GeneralVariables.getNumQuestionsInLuckyCard()];
 	
-	LuckyCard(Question[] qu){
+	LuckyCard(){
 		super();
-		this.setQuestions(qu);
+		setQuestions(SysData.getInstance().luckyCardQuestions()); 
 	}
 	public boolean IsPlayerAnswerIsCorrect() {
 		return false;

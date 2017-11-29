@@ -12,7 +12,7 @@ public class PlayerInGame extends Player{
 	
 	private double currentMoney;
 	private int numOfDisqualifications;
-	//private int currentSquare;
+	
 	private Square currentSquare;
 	public boolean InJail;
 	
@@ -70,6 +70,8 @@ public class PlayerInGame extends Player{
 				
 				Question q = SysData.getInstance().propertyQuestion(p);
 				
+				if(answerResult(q))
+				{
 				//right
 				
 				double price=0;
@@ -77,7 +79,7 @@ public class PlayerInGame extends Player{
 				{
 					price=currentMoney * 0.95;
 					Bank.ChargeMoneyFromPlayer(this, price);
-				//	currentMoney-=price;
+			
 					p.setPropertyOwner(this);
 					p.setLastPropertyCost(price);
 					this.properties.add(p);
@@ -86,7 +88,7 @@ public class PlayerInGame extends Player{
 				{
 					price=currentMoney * 0.85;
 					Bank.ChargeMoneyFromPlayer(this, price);
-					//currentMoney-=price;
+				
 					p.setPropertyOwner(this);
 					p.setLastPropertyCost(price);
 					this.properties.add(p);
@@ -95,19 +97,22 @@ public class PlayerInGame extends Player{
 				{
 					price=currentMoney * 0.75;
 					Bank.ChargeMoneyFromPlayer(this, price);
-				//	currentMoney-=price;
+				
 					p.setPropertyOwner(this);
 					p.setLastPropertyCost(price);
 					this.properties.add(p);
 				}
-				
+				}
+				else
+				{
 				//wrong
 				Bank.ChargeMoneyFromPlayer(this, p.getPropertyCost());
-				//currentMoney-=p.getPropertyCost();
+				
 				p.setPropertyOwner(this);
 				p.setLastPropertyCost(p.getPropertyCost());
 				this.properties.add(p);
 				plusDisq();
+				}
 			}
 		}
 		else //נכס תפוס
@@ -120,13 +125,13 @@ public class PlayerInGame extends Player{
 			if(n == JOptionPane.YES_OPTION)
 			{
 				
-			
+				transwerMoneyFromPlayerToPlayer(p.getPropertyOwner(), p.getLastPropertyCost()*0.85);
 			
 			
 			}
 			else
 			{
-				
+				buyPropertyFromPlayer(p, p.getPropertyOwner(), p.getLastPropertyCost()*1.5);
 			}
 		}
 		}
@@ -158,23 +163,23 @@ public class PlayerInGame extends Player{
 	
 	public void luckyCardSquare(LuckyCard l)
 	{
-		boolean check1=false;
-		boolean check2=false;
+		boolean check1 = false;
+		boolean check2 = false;
 		
-	
+		
 		
 		//first que
-		
+		check1= answerResult(l.getQuestions()[0]); //תוצאת מענה על שאלה בינונית
 		
 		//second que
-		
+		check2= answerResult(l.getQuestions()[1]); //תוצאת מענה על שאלה קשה
 		
 		
 		
 		if(check1 && check2)
 		{
 			Bank.GiveMoneyToPlayer(this, l.AmountForTwoQuestions());
-			//this.currentMoney+=l.AmountForTwoQuestions();
+			
 		}
 		if(!check1)
 		{
@@ -193,10 +198,25 @@ public class PlayerInGame extends Player{
 	
 	public void questionCardSquare(QuestionCard q)
 	{
+		Subjects sub = null; //נושא שהשחקן בוחר
+		double knas = 0;
+		double price = 0;
 		
+		Question que = SysData.getInstance().CardQuestionQuestion(sub); //שאלה לפי התחום הנבחר
+	
+		if(answerResult(que))
+		{
+			Bank.GiveMoneyToPlayer(this, price);
+		}
+		else
+		{
+			Bank.ChargeMoneyFromPlayer(this, knas);
+			plusDisq();
+		}
+	
+	
 	}
 	
-	//הגעתי ללך לכלא
 	
 	public boolean exitGame()
 	{
@@ -213,10 +233,6 @@ public class PlayerInGame extends Player{
 		return false;
 	}
 	
-	
-	//יציאה מהמשחק
-	
-	//גלגול קוביות
 	
 	
 	public void payToPlayerAndBank(double paymant)
@@ -244,6 +260,24 @@ public class PlayerInGame extends Player{
 		
 		return false;
 	}*/
+	
+	public boolean buyPropertyFromPlayer(Property pro, PlayerInGame pla, double amount)
+	{
+		if(transwerMoneyFromPlayerToPlayer(pla, amount))
+		{
+			pla.getProperties().remove(pro);
+			this.getProperties().add(pro);
+			pro.setPropertyOwner(this);
+			
+			return true;
+		}
+		
+		
+		
+		return false;
+	}
+	
+	
 	
 	public void plusDisq()
 	{
@@ -305,7 +339,7 @@ public class PlayerInGame extends Player{
 			this.properties.get(i).setPropertyOwner(null);
 		}
 	}
-//מתודת שחרור נכסים בעת פשיטת רגל 
+ 
 	
 	
 	public double playerValue()
@@ -320,6 +354,35 @@ public class PlayerInGame extends Player{
 		return value;
 	}
 
+	/**
+	 * 
+	 * @param q
+	 * @return true if player answerd correct , false - other
+	 */
+	public boolean answerResult(Question q)
+	{
+		return false;
+	}
+	
+	
+	public boolean transwerMoneyFromPlayerToPlayer(PlayerInGame p, double amount)
+	{
+		if((p.getCurrentMoney()-amount) > -100000) {
+			p.payToPlayerAndBank(amount);
+			p.receivingMoney(amount);
+			return true;
+		}
+		return false;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public double getCurrentMoney() {
 		return currentMoney;
 	}
@@ -361,5 +424,6 @@ public class PlayerInGame extends Player{
 	}
 	
 	
-	//ערך כללי של רכוש
+	
+	
 }
