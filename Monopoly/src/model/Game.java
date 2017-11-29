@@ -15,6 +15,7 @@ import control.RunningGame;
 
 public class Game implements RunningGame{
 	private int GameNum;
+	private Board board;
 	private Queue<PlayerInGame> players; // 2-4
 	private Dice[] dices= new Dice[GeneralVariables.getNumDiceInGame()]; // 2 dices in game
 	private HashMap<PlayerInGame,Integer> playersInJail; //players in jail
@@ -30,6 +31,7 @@ public class Game implements RunningGame{
 	
 	public Game(int numPlayers,ArrayList<PlayerInGame> pg){// מספר שחקנים
 		this.setGameNum(getCounter());
+		this.board= new Board();
 		this.NumOfPlayersInGame=numPlayers;
 		this.players= new PriorityQueue<PlayerInGame>(this.NumOfPlayersInGame);
 		Collections.shuffle(pg);
@@ -78,19 +80,16 @@ public class Game implements RunningGame{
 				        currentPlayer.questionCardSquare(lc);
 					}
 					else if(currentPlayer.getCurrentSquare().getType().equals(TypeSquares.GO_TO_JAIL)) {
-						currentPlayer.goToJailSquare();
-						this.playersInJail.put(currentPlayer, 0); // insert to jail with 0 turns
+						if(!currentPlayer.goToJailSquare())
+							this.playersInJail.put(currentPlayer, 0); // insert to jail with 0 turns
 					}
-	
-					
-				  } 
-
+				 } 
 			}
 			else if(this.playersInJail.containsKey(currentPlayer)) {
 				this.playersInJail.replace(currentPlayer, this.playersInJail.get(currentPlayer)+1);
 			}
 			if(currentPlayer.howManyDisq()) {
-				currentPlayer.goToJailSquare();
+				currentPlayer.setInJail(true);
 				this.playersInJail.put(currentPlayer, 0); // insert to jail with 0 turns
 			}
 			this.players.add(currentPlayer); //add to the end of the queue
@@ -104,7 +103,7 @@ public class Game implements RunningGame{
 	 * */
 	
 	public void PlayGame() {
-		Board.RestartBoard(); //restart board
+		board.RestartBoard(); //restart board
 		UpdateAllPlayersToStart(); // restart players money
 		while( (0.75 * this.NumOfPlayersInGame) != this.NumPlayersThatBankruptcy && this.TurnsLeft != 0 && this.players.size() > GeneralVariables.getMinimumPlayerInGame()) { //while 0.75 not bankruptcy and still have turns
 			OneRound();
@@ -124,7 +123,7 @@ public class Game implements RunningGame{
 	
 	public void UpdateAllPlayersToStart() {
 		for(PlayerInGame p : this.players) {
-			p.ChangeSqure(Board.getInstance().getStart().getNum());
+			p.ChangeSqure(board.getStart().getNum());
 		}
 	}
 	

@@ -21,7 +21,6 @@ import org.json.simple.JSONArray;
 
 
 
-
 public class SysData implements Serializable{
 	
 	//private static final long serialVersionUID
@@ -32,6 +31,17 @@ public class SysData implements Serializable{
 
 	private static ArrayList<Property> properties = new ArrayList<Property>();
 
+	public static ArrayList<Property> getProperties() {
+		return properties;
+	}
+
+
+
+
+
+	public static void setProperties(ArrayList<Property> properties) {
+		SysData.properties = properties;
+	}
 	private static SysData instance;
 	
 	
