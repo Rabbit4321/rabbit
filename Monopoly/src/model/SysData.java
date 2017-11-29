@@ -359,6 +359,12 @@ public class SysData implements Serializable{
 	}
 	
 	
+	public ArrayList<Property> getProperties()
+	{
+		return this.properties;
+	}
+	
+	
 	
 	public static boolean RemoveQuestion(Question q) {
 		if(AllQuestions.contains(q))
