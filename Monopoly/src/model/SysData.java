@@ -31,7 +31,6 @@ public class SysData implements Serializable{
 	private static ArrayList<Game> games = new ArrayList<Game>();
 
 	private static ArrayList<Property> properties = new ArrayList<Property>();
-
 	private static SysData instance;
 	
 	
