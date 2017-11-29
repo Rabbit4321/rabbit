@@ -2,9 +2,14 @@ package control;
 
 import model.PlayerInGame;
 
+import java.util.ArrayList;
+
+import model.Game;
+
 public interface RunningGame {
-	public boolean IsInJail(PlayerInGame p);
-	public boolean AddPlayerToGame(PlayerInGame p);
+	
+	public void startGame(int num,ArrayList<PlayerInGame> players);
+
 	
 
 }

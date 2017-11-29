@@ -35,26 +35,18 @@ public class Board {
 		
 		//Initialize all the data from SysData (json files)
 		
-		properties = SysData.getProperties();
+		properties = SysData.getInstance().getProperties(); 
 	//	luckycards = SysData.getLuckycards();
 	//	quesCards = SysData.getQuestionCards();
 		
 		
-		//Initialize start,jail and go to jail squares
+		//Randomly determine the edges-Initialize start,jail and go to jail squares
 		
 		int rnd = new Random().nextInt(OptionsForEdgesBoard.length);
 		Squares[OptionsForEdgesBoard[rnd]] = new Square();
 		Squares[OptionsForEdgesBoard[rnd]].setNum(OptionsForEdgesBoard[rnd]);
 		Squares[OptionsForEdgesBoard[rnd]].setType(TypeSquares.START);
 		Start = Squares[OptionsForEdgesBoard[rnd]];
-		
-	/*checks	
-	 * System.out.println(OptionsForEdgesBoard[rnd]);
-		System.out.println((OptionsForEdgesBoard[rnd] + 10) % GeneralVariables.getNumSquaresInGame());
-		System.out.println((OptionsForEdgesBoard[rnd] + 20) % GeneralVariables.getNumSquaresInGame());
-		}*/
-		
-		
 		Squares[(OptionsForEdgesBoard[rnd] + 10) % GeneralVariables.getNumSquaresInGame()] = new Square();
 		Squares[(OptionsForEdgesBoard[rnd] + 10) % GeneralVariables.getNumSquaresInGame()].setNum((OptionsForEdgesBoard[rnd] + 10) % GeneralVariables.getNumSquaresInGame());
 		Squares[(OptionsForEdgesBoard[rnd] + 10) % GeneralVariables.getNumSquaresInGame()].setType(TypeSquares.GO_TO_JAIL);
@@ -63,18 +55,13 @@ public class Board {
 		Squares[(OptionsForEdgesBoard[rnd] + 20) % GeneralVariables.getNumSquaresInGame()].setType(TypeSquares.JAIL);
 		Jail = Squares[(OptionsForEdgesBoard[rnd] + 20) % GeneralVariables.getNumSquaresInGame()];
 
-		/*for( int i=1; i<Squares.length; i++) {
-			if(Squares[i] == null) {
-				Squares[i]= new Square();
-				
-				
-			}
-		}*/
+	
 		//initialize board without random for now
 		//organize properties by cities
+		
 		if(!properties.isEmpty()) {
 		for(Property pr: properties) {
-			if(pr.getCity().equals(Cities.Haifa)) {
+			if(pr.getCity().equals(Cities.Tebrias)) {
 				pr.setNum(2);
 				Squares[2] = pr;
 				pr.setNum(3);
@@ -82,7 +69,7 @@ public class Board {
 				pr.setNum(5);
 				Squares[5] = pr;
 			}
-			if(pr.getCity().equals(Cities.Afula)) {
+			if(pr.getCity().equals(Cities.KiryatShmona)) {
 				pr.setNum(7);
 				Squares[7] = pr;
 				pr.setNum(9);
@@ -90,7 +77,7 @@ public class Board {
 				pr.setNum(10);
 				Squares[10] = pr;
 			}
-			if(pr.getCity().equals(Cities.BetShean)) {
+			if(pr.getCity().equals(Cities.Haifa)) {
 				pr.setNum(12);
 				Squares[12] = pr;
 				pr.setNum(14);
@@ -98,7 +85,7 @@ public class Board {
 				pr.setNum(15);
 				Squares[15] = pr;
 			}
-			if(pr.getCity().equals(Cities.Hadera)) {
+			if(pr.getCity().equals(Cities.Netanya)) {
 				pr.setNum(17);
 				Squares[17] = pr;
 				pr.setNum(18);
@@ -144,7 +131,7 @@ public class Board {
 				pr.setNum(35);
 				Squares[35] = pr;
 			}
-			if(pr.getCity().equals(Cities.RishonLezion)) {
+			if(pr.getCity().equals(Cities.Herzelia)) {
 				pr.setNum(37);
 				Squares[37] = pr;
 				pr.setNum(38);
