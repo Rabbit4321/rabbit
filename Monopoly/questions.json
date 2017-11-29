@@ -1,5 +1,4 @@
-{
-	"questions": [
+ [
 		{
 			"id": 1,
 			"text": "what is JSON?",
@@ -45,4 +44,3 @@
 			"tags": ["TDD", "Requirements"]
 		}
 	]
-}

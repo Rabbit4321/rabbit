@@ -1,18 +1,26 @@
-{
-"properties":[
-  {
-	"name": "Hadar",
- 	"cost": "50,000", 
-	"city": "Haifa"
-	},
- 	 {
-	"name": "Carmel", 
-	"cost": "900,000", 
-	"city": "Haifa"
-	},
- 	 {
-	"name": "Denia", 
-	"cost": "5,500,000", 
-	"city": "Haifa"
-	}
-	]}
+{"property":[
+  {"name":"Hadar", "cost":"50,000", "city":"Haifa"},
+  {"name":"Carmel", "cost":"900,000", "city":"Haifa"},
+  {"name":"Denia", "cost":"5,500,000", "city":"Haifa"},
+  {"name":"Hatikva", "cost":"100,000", "city":"Tel-Aviv"},
+  {"name":"Allenby", "cost":"1,000,300", "city":"Tel-Aviv"},
+  {"name":"Dizengoff", "cost":"6,000,000", "city":"Tel-Aviv"},
+  {"name":"Sheshet Hayamim", "cost":"150,000", "city":"Eilat"},
+  {"name":"Hadekel", "cost":"900,000", "city":"Eilat"},
+  {"name":"Hatmarim", "cost":"5,000,000", "city":"Eilat"},
+  {"name":"Hagalil", "cost":"200,000", "city":"Tiberias"},
+  {"name":"Hashomer", "cost":"1,500,000", "city":"Tiberias"},
+  {"name":"Golani", "cost":"3,400,000", "city":"Tiberias"},
+  {"name":"Kadesh Alley", "cost":"240,000", "city":"Be'er-Sheva"},
+  {"name":"Ben Yehuda", "cost":"1,000,000", "city":"Be'er-Sheva"},
+  {"name":"Ramot", "cost":"4,000,000", "city":"Be'er-Sheva"},
+  {"name":"Shprinzak", "cost":"80,000", "city":"Kiryat Shmona"},
+  {"name":"Manahem Begin", "cost":"500,000", "city":"Kiryat Shmona"},
+  {"name":"Eshcol", "cost":"4,530,500", "city":"Kiryat Shmona"},
+  {"name":"Klauzner", "cost":"180,000", "city":"Netania"},
+  {"name":"Herzel", "cost":"300,000", "city":"Netania"},
+  {"name":"Poleg", "cost":"3,500,000", "city":"Netania"},
+  {"name":"Haatzmaut", "cost":"210,000", "city":"Herzliya"},
+  {"name":"Ben Gurion", "cost":"260,000", "city":"Herzliya"},
+  {"name":"Hanasi", "cost":"3,000,000", "city":"Herzliya"}
+]}
