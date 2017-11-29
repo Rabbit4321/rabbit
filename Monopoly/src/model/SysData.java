@@ -21,6 +21,7 @@ import org.json.simple.JSONArray;
 
 
 
+
 public class SysData implements Serializable{
 	
 	//private static final long serialVersionUID
