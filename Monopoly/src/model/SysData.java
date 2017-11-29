@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+import javax.swing.plaf.synth.SynthSliderUI;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -18,13 +20,14 @@ import org.json.simple.parser.ParseException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.security.GeneralSecurityException;
 
 import org.json.simple.JSONArray;
 
 import static java.lang.Math.toIntExact;
 
 
-public class SysData implements Serializable{
+public final class SysData implements Serializable{
 	
 	//private static final long serialVersionUID
 	
@@ -175,19 +178,24 @@ public class SysData implements Serializable{
 	
 	@SuppressWarnings("unchecked")
 	public void initProperties(){
-
-	
 		
 		
 		//fgfhdhg
 		JSONParser parser = new JSONParser();
 
         try {
-        	Object obj = parser.parse(new FileReader("properties.json"));
+        	Object obj = parser.parse(new FileReader("questions.json"));
         	JSONArray fileContent  = new JSONArray();
-        	fileContent.add(obj);
+        	//fileContent.add(obj);
+        	JSONObject jsonObject = (JSONObject)obj;
+        	System.out.println(jsonObject);
+            Long age = (Long) jsonObject.get("id");
+            System.out.println(age);
+        	String name = (String) jsonObject.get("team");
+        	System.out.println(name);
+
     		
-			@SuppressWarnings("unchecked")
+/*			@SuppressWarnings("unchecked")
 			Iterator<JSONObject> fileIterator = fileContent.iterator();
 			while (fileIterator.hasNext())
 			{
@@ -203,7 +211,7 @@ public class SysData implements Serializable{
 			
 				properties.add(new Property(name, Double.parseDouble(cost), Cities.valueOf(city)));
 				
-			}
+			}*/
 	
 		}
 		catch(IOException e)
@@ -222,13 +230,12 @@ public class SysData implements Serializable{
 	
 	
 	
-	public void initQuestions(){
+	public static void initQuestions(){
 
 		
 		JSONParser parser = new JSONParser();
 
         try {
-        	
         	
         	Object obj = parser.parse(new FileReader("questions.json"));
         	JSONArray fileContent =  new JSONArray();
@@ -433,12 +440,15 @@ public class SysData implements Serializable{
 	public static void setGames(ArrayList<Game> games) {
 		SysData.games = games;
 	}
-	
-	
+
 	public static void main(String[] args) {
 		
-		SysData.getInstance();
-		getInstance().initQuestions();
+	SysData.getInstance();
+	getInstance().initQuestions();
+	SysData.getInstance();
+
+
+
 	
 	
 	}
