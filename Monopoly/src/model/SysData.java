@@ -424,12 +424,7 @@ public class SysData implements Serializable{
 	}
 	
 	
-	public static void main(String[] args) {
-		
-		SysData.getInstance();
-		getInstance().initProperties();
 	
-	}
 	
 
 }
