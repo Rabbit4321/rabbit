@@ -1,12 +1,27 @@
 package control;
 
+import com.oracle.webservices.internal.api.message.PropertySet.Property;
+
+import model.PlayerInGame;
+import model.Question;
+
 public class PlayerControl {
 
-/*	public boolean RollDice()
+	public static  boolean RollDice(){ // still not finished
+	return false;
+	}
+
 	
-	public String Answer(<T> q)
+	public  static String Answer(Question q){// still not finished
+		return null;
+	}
 	
-	public void PuchaseProperty(Property p)*/
+	public static void PurchaseProperty(Property p){// still not finished
+		
+	}
 	
+	public static boolean payRent(Property p , PlayerInGame payer){// still not finished
+		return false;
+	}
 	
 }

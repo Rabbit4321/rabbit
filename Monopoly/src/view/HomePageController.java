@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import model.Game;
 
 public class HomePageController {
 	
@@ -42,6 +43,7 @@ public void hundleBtnNewGame(ActionEvent event) throws IOException{
     app_stage.setScene(home_page_scene);
     app_stage.setTitle("Monopoly game by Rabbit team");
     app_stage.show();
+
 
 }
 

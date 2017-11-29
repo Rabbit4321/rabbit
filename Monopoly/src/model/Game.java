@@ -22,7 +22,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.omg.CORBA.portable.InputStream;
 
-import control.RunningGame;
+
 
 public class Game{
 	private int GameNum;

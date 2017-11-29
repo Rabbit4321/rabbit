@@ -1,6 +1,6 @@
 
 .button{
-    -fx-font: 25px fantasy;
+    -fx-font: 35px fantasy;
     -fx-effect: dropshadow(one-pass-box,red,14,0.0,6,0);
     -fx-background-radius: 8;
     -fx-background-color: transparent; 
@@ -8,9 +8,19 @@
 
 }
 
+.btn{
+	-fx-font: 25px fantasy;
+    -fx-effect: dropshadow(one-pass-box,red,14,0.0,6,0);
+    -fx-background-radius: 8;
+    -fx-background-color: transparent; 
+    -fx-text-fill: black;
+	
+	
+}
+
 
 .button1 {
-    -fx-background-color: dodgerBlue; /* Green */
+    -fx-background-color: dodgerBlue; 
     -fx-border: none;
     -fx-color: white;
     -fx-padding: 20px;
@@ -53,7 +63,7 @@
 
 }
 .label2{
-    -fx-font: 20px fantasy;
+    -fx-font: 25px fantasy;
     -fx-text-fill: black;
     -fx-effect: dropshadow(one-pass-box,blue,15,0.0,5,0);
 }

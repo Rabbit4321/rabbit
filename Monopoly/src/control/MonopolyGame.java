@@ -7,14 +7,23 @@ import model.Game;
 import model.PlayerInGame;
 import model.SysData;
 
-public class MonopolyGame implements RunningGame{
+public class MonopolyGame{
 	
-	private ArrayList<Game> games =new ArrayList<Game>();
-	private ArrayList<PlayerInGame> playersForOneGame =new ArrayList<PlayerInGame>();
+	private static MonopolyGame instance;
+	
+	
+	private ArrayList<Game> games = new ArrayList<Game>();
 	private Admin admin;
 
+	
+	public static MonopolyGame getInstance()
+	{
+		if (instance == null)
+			instance = new MonopolyGame();
+		return instance;
+	}
+	
 
-	@Override
 	public void startGame(int num,ArrayList<PlayerInGame> players) {
 		for(PlayerInGame p : players) {
 			SysData.AddPlayer(p);
@@ -22,7 +31,10 @@ public class MonopolyGame implements RunningGame{
 		Game g = new Game(num, players);
 		g.PlayGame();
 		SysData.AddGame(g);
+		
 	}
+	
+
 
 	/**
 	 * Initialize Data
