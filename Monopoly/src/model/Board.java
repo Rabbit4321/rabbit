@@ -1,10 +1,14 @@
 package model;
 
+import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Random;
 
 public class Board {
-	private ArrayList<Square> AllSquares=new ArrayList<Square>(GeneralVariables.getNumSquaresInGame());
+	private static ArrayList<Square> AllSquares;
 	private static Board instance = null;
 	private static Square Start = new Square();
 	
@@ -24,6 +28,7 @@ public class Board {
 	
 	public static void RestartBoard() {
 	/**TODO*/
+		AllSquares = new ArrayList<Square>(GeneralVariables.getNumSquaresInGame());
 		Square[] Squares = new Square[GeneralVariables.getNumSquaresInGame()+1];
 		int [] OptionsForEdgesBoard= {1,11,21,31};
 		ArrayList<Property> properties = new ArrayList<Property>();
@@ -32,7 +37,7 @@ public class Board {
 		
 		//Initialize all the data from SysData (json files)
 		
-	//	properties = SysData.getProperties();
+		properties = SysData.getProperties();
 	//	luckycards = SysData.getLuckycards();
 	//	quesCards = SysData.getQuestionCards();
 		
@@ -63,22 +68,7 @@ public class Board {
 				
 			}
 		}
-			
-			
-
-
-			/*if(i == 0){
-				squares[i] = new GoSquare("GO");
-			}else if(i == 9){
-				squares[i] = new JailSquare("Jail");
-			}else if(i == 19){
-				squares[i] = new VacationSquare("Vacation");
-			}else if(i == 29){
-				squares[i] = new GoToJailSquare("Go to Jail");
-			}else{
-				squares[i] = new HouseSquare(names[rand.nextInt(names.length)] + " " + names[rand.nextInt(names.length)], 400 + rand.nextInt(300));
-			}
-		}**/
+		AllSquares = Arrays.asList(Squares);
 		
 	}
 	
