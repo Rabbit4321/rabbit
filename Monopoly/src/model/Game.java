@@ -52,7 +52,7 @@ public class Game implements RunningGame{
 	public void OneRound() {
 		int DiceResult = 0; 
 		boolean PlayerFinished =false;
-		for(PlayerInGame p : this.players) {
+		while(!this.players.isEmpty()) {
 			PlayerInGame currentPlayer = this.players.poll();// pull the player from queue
 			PlayerFinished =false;
 			if(!currentPlayer.InJail) {
@@ -60,7 +60,7 @@ public class Game implements RunningGame{
 					DiceResult += dices[i].Roll();
 				}
 				System.out.println(DiceResult); //check
-				int NumNewDice = (DiceResult + currentPlayer.getCurrentSquare()) % GeneralVariables.getNumSquaresInGame(); // number of dice for the player
+				int NumNewDice = (DiceResult + currentPlayer.getCurrentSquare().getNum()) % GeneralVariables.getNumSquaresInGame(); // number of dice for the player
 				System.out.println(NumNewDice);// check
 				currentPlayer.ChangeSqure(NumNewDice); // update dice to player
 				if(!(currentPlayer.getCurrentSquare().getType().equals(TypeSquares.JAIL)) && 
@@ -86,7 +86,7 @@ public class Game implements RunningGame{
 				  } 
 
 			}
-			else {
+			else if(this.playersInJail.containsKey(currentPlayer)) {
 				this.playersInJail.replace(currentPlayer, this.playersInJail.get(currentPlayer)+1);
 			}
 			if(currentPlayer.howManyDisq()) {
@@ -94,7 +94,6 @@ public class Game implements RunningGame{
 				this.playersInJail.put(currentPlayer, 0); // insert to jail with 0 turns
 			}
 			this.players.add(currentPlayer); //add to the end of the queue
-			
 		}
 		
 		
