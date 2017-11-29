@@ -10,13 +10,13 @@ public class Question {
 	public String text;
 	private int difficulty;
 	private boolean isMultipleChoice;
-	//private HashMap<String, Boolean> answers = new HashMap<String, Boolean>();
-	private ArrayList<Object> answers = new ArrayList<Object>();
+	
+	private ArrayList<Answer> answers = new ArrayList<Answer>();
 	private ArrayList<Subjects> tags = new ArrayList<Subjects>();
 
 	
 	Question(int id, String team, String text, int diff, boolean isMulti, 
-			ArrayList<Object> answers, ArrayList<Subjects> tags){
+			ArrayList<Answer> answers, ArrayList<Subjects> tags){
 		this.id=id;
 		this.team=team;
 		this.text=text;
@@ -91,11 +91,11 @@ public class Question {
 	}
 
 
-	public ArrayList<Object> getAnswers() {
+	public ArrayList<Answer> getAnswers() {
 		return answers;
 	}
 
-	public void setAnswers(ArrayList<Object> answers) {
+	public void setAnswers(ArrayList<Answer> answers) {
 		this.answers = answers;
 	}
 

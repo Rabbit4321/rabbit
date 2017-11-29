@@ -231,27 +231,30 @@ public class SysData implements Serializable{
 				boolean isMultipleChoice=(boolean)jsonObject.get("isMultipleChoice");
 				
 				JSONArray answers= (JSONArray)jsonObject.get("answers");
-				ArrayList<String> a= new ArrayList<String>();
+				ArrayList<Answer> a= new ArrayList<Answer>();
 				Iterator<String> iterator1 = answers.iterator();
 				while (iterator1.hasNext()) 
 				{
-					
-					a.add(iterator1.next());
+
+					Answer ans = new Answer(iterator1.next(), Boolean.parseBoolean(iterator1.next()));
+					a.add(ans);
 					
 					
 				}
 				
 				JSONArray tags= (JSONArray)jsonObject.get("tags");
-				ArrayList<String> t= new ArrayList<String>();
+				ArrayList<Subjects> t= new ArrayList<Subjects>();
 				Iterator<String> iterator2 = tags.iterator();
 				while (iterator2.hasNext()) 
 				{
-					t.add(iterator2.next());
+					t.add(Subjects.valueOf(iterator2.next()));
 					
 				}
 			
 			
-				if(validQuestion(id, team, text, difficulty, isMultipleChoice, (ArrayList<Object>)answers, (ArrayList<Subjects>)tags))
+				
+				
+				if(validQuestion(id, team, text, difficulty, isMultipleChoice, answers, tags))
 				{
 					AllQuestions.add(new Question(id, team, text, difficulty, isMultipleChoice, answers, tags));
 				}
@@ -284,7 +287,7 @@ public class SysData implements Serializable{
 	 * @return
 	 */
 	public static boolean validQuestion(int id, String team, String text, int diff, boolean isMulti, 
-			ArrayList<Object> answers, ArrayList<Subjects> tags)
+			ArrayList<Answer> answers, ArrayList<Subjects> tags)
 	{
 		return false;
 		//todo
