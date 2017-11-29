@@ -16,17 +16,21 @@ public class MonopolyGame implements RunningGame{
 
 	@Override
 	public void startGame(int num,ArrayList<PlayerInGame> players) {
+		for(PlayerInGame p : players) {
+			SysData.AddPlayer(p);
+		}
 		Game g = new Game(num, players);
 		g.PlayGame();
+		SysData.AddGame(g);
 	}
 
-	public int NumberOfplayersToGame() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	/**
+	 * Initialize Data
+	 * */
 	public void InitializeData() {
 		this.admin= new Admin();
-		
+		SysData.getInstance().initQuestions();
+		SysData.getInstance().initProperties();
 	}
 	
 	

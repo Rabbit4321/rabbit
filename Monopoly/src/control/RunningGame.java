@@ -9,6 +9,8 @@ import model.Game;
 public interface RunningGame {
 	
 	public void startGame(int num,ArrayList<PlayerInGame> players);
+	
+	public void InitializeData();
 
 	
 
