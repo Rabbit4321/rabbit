@@ -173,7 +173,7 @@ public class SysData implements Serializable{
 	
 	public void initProperties(){
 
-		
+		//fgfhdhg
 		JSONParser parser = new JSONParser();
 
         try {
