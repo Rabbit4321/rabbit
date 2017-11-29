@@ -143,6 +143,12 @@ public class PlayerInGame extends Player{
 	 * @return player goes out from jail - true, player goes to jail and waits - false*/
 	public boolean goToJailSquare()
 	{
+		setInJail(true);
+		
+		if(this.getNumOfDisqualifications()==3)
+			threeDisq();
+		
+		
 		int n = JOptionPane.showConfirmDialog(
 	            null,
 	            "pay 100000 - yes OR wait - no",
@@ -152,7 +158,10 @@ public class PlayerInGame extends Player{
 		{
 			
 				if(Bank.ChargeMoneyFromPlayer(this, 100000))
+				{
+					
 					return true;
+				}
 		}
 		
 		return false;
@@ -278,27 +287,25 @@ public class PlayerInGame extends Player{
 	}
 	
 	
-	
-	public void plusDisq()
-	{
-		this.numOfDisqualifications++;
-		
-	}
-	
-	
 	/**
 	 * cheking if there is 3 Disqualifications
 	 * @return player need to go to jail - true*/
-	public boolean howManyDisq()
+	public void plusDisq()
 	{
+		this.numOfDisqualifications++;
 		if(this.numOfDisqualifications==3)
 		{
-			//go to jail
-			
-			this.numOfDisqualifications=0;
-			return true;
+			goToJailSquare();
 		}
-		return false;
+	}
+	
+	
+	
+	public void threeDisq()
+	{
+		
+			this.numOfDisqualifications=0;
+	
 	}
 	
 	public void minusDisq()

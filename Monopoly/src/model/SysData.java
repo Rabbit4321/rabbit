@@ -361,7 +361,7 @@ public class SysData implements Serializable{
 		if(AllQuestions.contains(q))
 		{
 			AllQuestions.remove(q);
-			//remove from json ??
+			//remove from json 
 			return true;
 		}
 		
