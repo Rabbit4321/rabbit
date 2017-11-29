@@ -1,0 +1,18 @@
+{
+"properties":[
+  {
+	"name": "Hadar",
+ 	"cost": "50,000", 
+	"city": "Haifa"
+	},
+ 	 {
+	"name": "Carmel", 
+	"cost": "900,000", 
+	"city": "Haifa"
+	},
+ 	 {
+	"name": "Denia", 
+	"cost": "5,500,000", 
+	"city": "Haifa"
+	}
+	]}

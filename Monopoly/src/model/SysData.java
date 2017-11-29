@@ -1,6 +1,7 @@
 package model;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.util.Random;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -19,7 +21,7 @@ import java.io.Serializable;
 
 import org.json.simple.JSONArray;
 
-
+import static java.lang.Math.toIntExact;
 
 
 public class SysData implements Serializable{
@@ -171,26 +173,35 @@ public class SysData implements Serializable{
 	
 	
 	
+	@SuppressWarnings("unchecked")
 	public void initProperties(){
 
+	
+		
+		
 		//fgfhdhg
 		JSONParser parser = new JSONParser();
 
         try {
         	Object obj = parser.parse(new FileReader("properties.json"));
-        	JSONArray fileContent = (JSONArray) obj;
+        	JSONArray fileContent  = new JSONArray();
+        	fileContent.add(obj);
+    		
+			@SuppressWarnings("unchecked")
 			Iterator<JSONObject> fileIterator = fileContent.iterator();
 			while (fileIterator.hasNext())
 			{
             JSONObject jsonObject = (JSONObject) fileIterator.next();
+            System.out.println(jsonObject);
 				
 				
+				String cost = (String) jsonObject.get("cost");
+				String city = (String)jsonObject.get("city");
 				String name = (String)jsonObject.get("name");
-				double cost = (double)jsonObject.get("cost");
-				Cities city = (Cities)jsonObject.get("city");
+				
+				System.out.println(cost);
 			
-			
-				properties.add(new Property(name, cost, city));
+				properties.add(new Property(name, Double.parseDouble(cost), Cities.valueOf(city)));
 				
 			}
 	
@@ -217,13 +228,18 @@ public class SysData implements Serializable{
 		JSONParser parser = new JSONParser();
 
         try {
+        	
+        	
         	Object obj = parser.parse(new FileReader("questions.json"));
-        	JSONArray fileContent = (JSONArray) obj;
+        	JSONArray fileContent =  new JSONArray();
+        	fileContent.add(obj);
 			Iterator<JSONObject> fileIterator = fileContent.iterator();
 			while (fileIterator.hasNext())
 			{
             JSONObject jsonObject = (JSONObject) fileIterator.next();
+            System.out.println(jsonObject);
 				
+          
 				int id= (int)jsonObject.get("id");
 				String team = (String)jsonObject.get("team");
 				String text = (String)jsonObject.get("text");
@@ -254,23 +270,22 @@ public class SysData implements Serializable{
 			
 				
 				
-				if(validQuestion(id, team, text, difficulty, isMultipleChoice, answers, tags))
-				{
-					AllQuestions.add(new Question(id, team, text, difficulty, isMultipleChoice, answers, tags));
-				}
+		//		if(validQuestion(id, team, text, difficulty, isMultipleChoice, answers, tags))
+		//		{
+					//AllQuestions.add(new Question(id, team, text, difficulty, isMultipleChoice, answers, tags));
+			//	}
 				
 				
 			}
 	
 		}
-		catch(IOException e)
-		{
-			e.printStackTrace();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 	}
 	
 	
@@ -417,6 +432,15 @@ public class SysData implements Serializable{
 	}
 	public static void setGames(ArrayList<Game> games) {
 		SysData.games = games;
+	}
+	
+	
+	public static void main(String[] args) {
+		
+		SysData.getInstance();
+		getInstance().initQuestions();
+	
+	
 	}
 	
 
