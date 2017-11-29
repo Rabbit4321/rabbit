@@ -1,5 +1,5 @@
 package model;
 
 public enum Cities {
-	Hadera, BetShean, Afula, TelAviv, RishonLezion, Haifa, BeerSheva, Eilat
+	Herzelia, Tebrias, Netanya, TelAviv, KiryatShmona, Haifa, BeerSheva, Eilat
 }

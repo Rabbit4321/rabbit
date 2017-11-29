@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 import control.RunningGame;
 
-public class Game implements RunningGame{
+public class Game{
 	private int GameNum;
 	private Board board;
 	private Queue<PlayerInGame> players; // 2-4
@@ -23,7 +23,6 @@ public class Game implements RunningGame{
 	private int NumOfPlayersInGame=0; // number defined by user of players
 	private static int Counter=0; // automatic count for games
 	private int TurnsLeft; // turns
-//	private HashMap<PlayerInGame,boolean> WhoIsAnActivePlayer
 	
 	/**
 	 * Constructor 1
@@ -53,11 +52,9 @@ public class Game implements RunningGame{
 	
 	public void OneRound() {
 		int DiceResult = 0; 
-		boolean PlayerFinished =false;
 		while(!this.players.isEmpty()) {
 			PlayerInGame currentPlayer = this.players.poll();// pull the player from queue
-			PlayerFinished =false;
-			if(!currentPlayer.InJail) {
+			if(!currentPlayer.isInJail()) {
 				for(int i=0; i<dices.length;i++) {// roll dice
 					DiceResult += dices[i].Roll();
 				}
@@ -80,17 +77,19 @@ public class Game implements RunningGame{
 				        currentPlayer.questionCardSquare(lc);
 					}
 					else if(currentPlayer.getCurrentSquare().getType().equals(TypeSquares.GO_TO_JAIL)) {
-						if(!currentPlayer.goToJailSquare())
+						Square s = currentPlayer.getCurrentSquare();
+						currentPlayer.setCurrentSquare(board.getJail());
+						if(!currentPlayer.goToJailSquare()) {
 							this.playersInJail.put(currentPlayer, 0); // insert to jail with 0 turns
+						}
+						else {
+							currentPlayer.setCurrentSquare(s);
+						}
 					}
 				 } 
 			}
 			else if(this.playersInJail.containsKey(currentPlayer)) {
 				this.playersInJail.replace(currentPlayer, this.playersInJail.get(currentPlayer)+1);
-			}
-			if(currentPlayer.howManyDisq()) {
-				currentPlayer.setInJail(true);
-				this.playersInJail.put(currentPlayer, 0); // insert to jail with 0 turns
 			}
 			this.players.add(currentPlayer); //add to the end of the queue
 		}
@@ -134,7 +133,7 @@ public class Game implements RunningGame{
 	 * */
 	
 	public PlayerInGame CheckIfPlayerCanBeOutOfJail(PlayerInGame p) {
-		if(this.playersInJail.get(p) == 3)
+		if(this.playersInJail.get(p) == 1)
 			return p;
 		return null;
 	}
@@ -198,20 +197,7 @@ public class Game implements RunningGame{
 	public void setGameNum(int gameNum) {
 		GameNum = gameNum;
 	}
-	@Override
-	public boolean IsInJail(PlayerInGame p) {
-	/**	if(!playersInJail.contains(p)) {
-			if(p.getNumOfDisqualifications() == GeneralVariables.getNumDisqualificationsForJail() ) { //Disqualifications number is 3 then
-				return true;
-			}
-		}*/
-		return false;
-	}
-	@Override
-	public boolean AddPlayerToGame(PlayerInGame p) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
 	public static int getCounter() {
 		return Counter;
 	}
@@ -219,10 +205,4 @@ public class Game implements RunningGame{
 		Counter++;
 	}
 	
-	/**
-	 * 		for(PlayerInGame p: pg) {
-			Random rand = new Random();
-			int i= rand.nextInt(4) + 2;
-			this.players.add(i,p);
-		}*/
 }

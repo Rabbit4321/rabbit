@@ -1,10 +1,15 @@
 package control;
 
 import model.PlayerInGame;
+import model.Game;
 
 public interface RunningGame {
-	public boolean IsInJail(PlayerInGame p);
-	public boolean AddPlayerToGame(PlayerInGame p);
+	
+	public void startGame(Game g);
+	
+	public int NumberOfplayersToGame();
+	
+	public PlayerInGame getPlayer();
 	
 
 }

@@ -16,9 +16,9 @@ public class Admin implements Actions{
 	 * Add Question to database 
 	 * @param id,Question,possible answers, correct answer 
 	 * @return if successful - true, else false*/
-	
-	public void AddQuestion(int idQu,String que,String ans, ArrayList<String> poss,boolean ismulti,QuestionTypes level) {
-		Question q = new Question(idQu,que,poss,ans,level,ismulti);
+	//int id, String team, String text, int diff, boolean isMulti,ArrayList<Answer> answers, ArrayList<Subjects> tags
+	public void AddQuestion(int idQu,String que,String team, ArrayList<Answer> poss,int diff,boolean ismulti, ArrayList<Subjects> tags) {
+		Question q = new Question(idQu,team,que,diff,ismulti,poss,tags);
 		AddQuestion(q);
 		
 	}
@@ -28,8 +28,8 @@ public class Admin implements Actions{
 	 * @param id
 	 * @return if successful - true, else false*/
 	
-	public boolean RemoveQuestion(int idQu) {
-		return SysData.RemoveQuestion(idQu);
+	public boolean RemoveQuestion(Question q) {
+		return SysData.RemoveQuestion(q);
 	}
 	
 	public String getID() {
