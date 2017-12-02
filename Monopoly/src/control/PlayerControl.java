@@ -1,7 +1,8 @@
 package control;
 
-import com.oracle.webservices.internal.api.message.PropertySet.Property;
 
+
+import javafx.beans.property.Property;
 import model.PlayerInGame;
 import model.Question;
 
