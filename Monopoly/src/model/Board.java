@@ -29,20 +29,18 @@ public class Board {
 		}
 		Square[] Squares = new Square[GeneralVariables.getNumSquaresInGame()+1];
 		int [] OptionsForEdgesBoard= {1,11,21,31};
-		ArrayList<Property> properties = new ArrayList<Property>();
-		ArrayList<LuckyCard> luckycards = new ArrayList<LuckyCard>();
-		ArrayList<QuestionCard> quesCards = new ArrayList<QuestionCard>();
+		ArrayList<Property> properties = SysData.getInstance().getProperties();
 		
 		//Initialize all the data from SysData (json files)
 		
-		properties = SysData.getInstance().getProperties(); 
-	//	luckycards = SysData.getLuckycards();
-	//	quesCards = SysData.getQuestionCards();
+		
+		
+
 		
 		
 		//Randomly determine the edges-Initialize start,jail and go to jail squares
 		
-		int rnd = new Random().nextInt(OptionsForEdgesBoard.length);
+	/*	int rnd = new Random().nextInt(OptionsForEdgesBoard.length);
 		Squares[OptionsForEdgesBoard[rnd]] = new Square();
 		Squares[OptionsForEdgesBoard[rnd]].setNum(OptionsForEdgesBoard[rnd]);
 		Squares[OptionsForEdgesBoard[rnd]].setType(TypeSquares.START);
@@ -56,15 +54,30 @@ public class Board {
 		Squares[(posGo + 20) % GeneralVariables.getNumSquaresInGame()] = new Square();
 		Squares[(posGo + 20) % GeneralVariables.getNumSquaresInGame()].setNum((posGo + 20) % GeneralVariables.getNumSquaresInGame());
 		Squares[(posGo+ 20) % GeneralVariables.getNumSquaresInGame()].setType(TypeSquares.JAIL);
-		Jail = Squares[(posGo + 20) % GeneralVariables.getNumSquaresInGame()];
+		Jail = Squares[(posGo + 20) % GeneralVariables.getNumSquaresInGame()];*/
 
+		Start = Squares[1];
+		Squares[1] = new Square();
+		Squares[1].setNum(1);
+		Squares[1].setType(TypeSquares.START);
+		Squares[11]= new Square();
+		Squares[11].setNum(11);
+		Squares[11].setType(TypeSquares.GO_TO_JAIL);
+		Squares[31]= new Square();
+		Squares[31].setNum(31);
+		Squares[31].setType(TypeSquares.JAIL);
+		Jail = Squares[31];
+						
+		for(Property p: properties) {
+			System.out.println(p);
+		}
 	
 		//initialize board without random for now
 		//organize properties by cities
 		
 		if(!properties.isEmpty()) {
 		for(Property pr: properties) {
-			if(pr.getCity().equals(Cities.Tebrias)) {
+			if(pr.getCity().equals(Cities.Haifa)) {
 				pr.setNum(2);
 				Squares[2] = pr;
 				pr.setNum(3);
@@ -79,14 +92,6 @@ public class Board {
 				Squares[9] = pr;
 				pr.setNum(10);
 				Squares[10] = pr;
-			}
-			if(pr.getCity().equals(Cities.Haifa)) {
-				pr.setNum(12);
-				Squares[12] = pr;
-				pr.setNum(14);
-				Squares[14] = pr;
-				pr.setNum(15);
-				Squares[15] = pr;
 			}
 			if(pr.getCity().equals(Cities.Netanya)) {
 				pr.setNum(17);
@@ -151,8 +156,8 @@ public class Board {
 		Squares[8].setNum(8);
 		Squares[16]= new LuckyCard();
 		Squares[16].setNum(16);
-		Squares[24]= new LuckyCard();
-		Squares[24].setNum(24);
+		Squares[23]= new LuckyCard();
+		Squares[23].setNum(24);
 		Squares[28]= new LuckyCard();
 		Squares[28].setNum(28);
 		Squares[36]= new LuckyCard();
@@ -163,8 +168,8 @@ public class Board {
 		Squares[13].setNum(13);
 		Squares[19]= new QuestionCard();
 		Squares[19].setNum(19);
-		Squares[26]= new QuestionCard();
-		Squares[26].setNum(26);
+		Squares[25]= new QuestionCard();
+		Squares[25].setNum(26);
 		Squares[30]= new QuestionCard();
 		Squares[30].setNum(30);
 		Squares[34]= new QuestionCard();
@@ -210,12 +215,10 @@ public class Board {
 
 	public void printAllSquares() {
 		for(Square s : AllSquares) {
-			if(s != null) {
 			if(s.getType() != null)
 				System.out.println("Square: "+s.getNum()+ " type " +s.getType().toString());
 			else
-				System.out.println("Square: "+s.getNum()+ " type is null" );
-			}
+				System.out.println("Square: "+s.getNum()+ " "+ s.toString() );
 		}
 	}
 
@@ -227,4 +230,12 @@ public class Board {
 		Jail = jail;
 	}
 
+	public static void main(String[] args) {
+		SysData.getInstance().initProperties();
+		SysData.getInstance().initQuestions();
+		Board b = new Board();
+		b.RestartBoard();
+		b.printAllSquares();
+	
+	}
 }

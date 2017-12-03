@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class Property extends Square{
+
 	private String propertyName;
 	private double propertyCost;
 	private double lastPropertyCost; // מחיר קניה אחרון
@@ -99,5 +100,10 @@ public class Property extends Square{
 		this.ProType = type;
 	}
 	
-
+	@Override
+	public String toString() {
+		return "Property [propertyName=" + propertyName + ", propertyCost=" + propertyCost + ", lastPropertyCost="
+				+ lastPropertyCost + ", propertyOwner=" + propertyOwner + ", ProType=" + ProType + ", city=" + city
+				+ "]";
+	}
 }

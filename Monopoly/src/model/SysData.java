@@ -517,6 +517,7 @@ public class SysData implements Serializable{
 		SysData.getInstance();
 		getInstance().initProperties();
 		getInstance().initQuestions();
+		System.out.println(getInstance().getProperties().get(0));
 	
 	}
 	
