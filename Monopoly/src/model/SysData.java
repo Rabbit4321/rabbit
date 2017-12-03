@@ -18,7 +18,8 @@ import java.io.InputStreamReader;
 import java.io.Serializable;
 
 import org.json.simple.JSONArray;
-
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 
 
@@ -31,6 +32,7 @@ public class SysData implements Serializable{
 	private static ArrayList<Game> games = new ArrayList<Game>();
 
 	private static ArrayList<Property> properties = new ArrayList<Property>();
+
 	private static SysData instance;
 	
 	
@@ -177,27 +179,43 @@ public class SysData implements Serializable{
 		JSONParser parser = new JSONParser();
 
         try {
-        	Object obj = parser.parse(new FileReader("properties.json"));
-        	JSONArray fileContent =  new JSONArray();
-        	fileContent.add(obj);
+        	
+        	
+        	
+        	
+        	Object obj = parser.parse(new FileReader("Data/properties.json"));
+        	JSONObject jsonObject = (JSONObject) obj;
+        	JSONArray fileContent = (JSONArray) jsonObject.get("property");
 			Iterator<JSONObject> fileIterator = fileContent.iterator();
 			while (fileIterator.hasNext())
 			{
-            JSONObject jsonObject = (JSONObject) fileIterator.next();
-				System.out.println(jsonObject);
 				
-				String name = (String)jsonObject.get("name");
+				
+				
+				
+            JSONObject jsonObj = (JSONObject) fileIterator.next();
+				System.out.println(jsonObj);
+				
+				String name = (String)jsonObj.get("name");
 				System.out.println(name);
-				double cost = (double)jsonObject.get("cost");
-				Cities city = Cities.valueOf((String)jsonObject.get("city"));
 				
+				
+				String d = (String)jsonObj.get("cost");
+				
+				double cost = Double.parseDouble(d);
+
+				System.out.println(cost);
+				Cities city = Cities.valueOf((String)jsonObj.get("city"));
+				System.out.println(city);
 			
 			
 				properties.add(new Property(name, cost, city));
 				
 			}
+			
 	
 		}
+      
 		catch(IOException e)
 		{
 			e.printStackTrace();
@@ -206,6 +224,7 @@ public class SysData implements Serializable{
 		{
 			e.printStackTrace();
 		}
+        
 	}
 	
 	
@@ -220,18 +239,89 @@ public class SysData implements Serializable{
 		JSONParser parser = new JSONParser();
 
         try {
-        	Object obj = parser.parse(new FileReader("questions.json"));
-        	JSONArray fileContent = (JSONArray) obj;
+        	
+
+        	Object obj = parser.parse(new FileReader("Data/questions.json"));
+        	JSONObject jsonObject = (JSONObject) obj;
+        	JSONArray fileContent = (JSONArray) jsonObject.get("questions");
 			Iterator<JSONObject> fileIterator = fileContent.iterator();
 			while (fileIterator.hasNext())
 			{
-            JSONObject jsonObject = (JSONObject) fileIterator.next();
 				
-				int id= Integer.parseInt((String) jsonObject.get("id"));
+				
+				
+				
+            JSONObject jsonObj = (JSONObject) fileIterator.next();
+				System.out.println(jsonObj);
+				
+				
+				
+				long id=(long) jsonObj.get("id");
+				System.out.println(id);
+				
+				String team = (String)jsonObj.get("team");
+				System.out.println(team);
+				
+				String text = (String)jsonObj.get("text");
+				System.out.println(text);
+				
+				long difficulty= (long)jsonObj.get("difficulty");
+				System.out.println(difficulty);
+				
+				boolean isMultipleChoice=(boolean) jsonObj.get("isMultipleChoice");
+				System.out.println(isMultipleChoice);
+				
+				
+				JSONArray answers= (JSONArray)jsonObj.get("answers");
+				ArrayList<Answer> a= new ArrayList<Answer>();
+				Iterator<JSONObject> iterator1 = answers.iterator();
+				while (iterator1.hasNext()) 
+				{
+					
+					JSONObject jsonObj1 = (JSONObject) iterator1.next();
+					
+					String text1 = (String)jsonObj1.get("text");
+					System.out.println(text1);
+					
+					boolean isCorrect=(boolean)jsonObj1.get("isCorrect");
+					System.out.println(isCorrect);
+					
+					Answer ans = new Answer(text1,isCorrect);
+					a.add(ans);
+					
+					
+				}
+	
+				JSONArray tags= (JSONArray)jsonObj.get("tags");
+				ArrayList<Subjects> t= new ArrayList<Subjects>();
+				Iterator<String> iterator2 = tags.iterator();
+				while (iterator2.hasNext()) 
+				{
+					Subjects s=Subjects.valueOf((String)iterator2.next());
+					System.out.println(s);
+					t.add(s);
+				
+					
+				
+				
+				
+					
+				}
+				
+				
+				
+			}
+        	
+        	
+        	
+        	/*
+        	
+				
+				int id= (int)jsonObject.get("id");
 				String team = (String)jsonObject.get("team");
 				String text = (String)jsonObject.get("text");
-				int difficulty= Integer.parseInt((String) jsonObject.get("difficulty"));
-				boolean isMultipleChoice=Boolean.parseBoolean((String) jsonObject.get("isMultipleChoice"));
+				int difficulty= (int)jsonObject.get("difficulty");
+				boolean isMultipleChoice=(boolean)jsonObject.get("isMultipleChoice");
 				
 				JSONArray answers= (JSONArray)jsonObject.get("answers");
 				ArrayList<Answer> a= new ArrayList<Answer>();
@@ -263,7 +353,7 @@ public class SysData implements Serializable{
 				}
 				
 				
-			}
+			*/
 	
 		}
 		catch(IOException e)
@@ -423,7 +513,12 @@ public class SysData implements Serializable{
 	}
 	
 	
+	public static void main(String[] args) {
+		SysData.getInstance();
+		getInstance().initProperties();
+		getInstance().initQuestions();
 	
+	}
 	
 
 }

@@ -9,7 +9,7 @@ public class Property extends Square{
 	private PlayerInGame propertyOwner;
 	private PropertyTypes ProType;
 	private Cities city;
-	
+	//ss
 	
 	
 	
