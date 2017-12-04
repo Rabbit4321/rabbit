@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+import javax.security.auth.Subject;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -510,6 +512,14 @@ public class SysData implements Serializable{
 	}
 	public static void setGames(ArrayList<Game> games) {
 		SysData.games = games;
+	}
+	/**
+	 * return all subjects
+	 * @return subjects array*/
+	
+	public Subject[] getSubjects() {
+		Subject[] possibleValues = Subject.class.getEnumConstants();
+		return possibleValues;
 	}
 	
 	/*

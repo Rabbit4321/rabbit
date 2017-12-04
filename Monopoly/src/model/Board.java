@@ -267,7 +267,7 @@ public class Board {
 	public void setJail(Square jail) {
 		Jail = jail;
 	}
-/* test print 
+/*
 	public static void main(String[] args) {
 		SysData.getInstance().initProperties();
 		SysData.getInstance().initQuestions();
@@ -277,4 +277,5 @@ public class Board {
 	
 	}
 	*/
+	
 }
