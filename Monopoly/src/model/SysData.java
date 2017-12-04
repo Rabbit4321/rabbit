@@ -512,14 +512,13 @@ public class SysData implements Serializable{
 		SysData.games = games;
 	}
 	
-	
+	/*
 	public static void main(String[] args) {
 		SysData.getInstance();
 		getInstance().initProperties();
 		getInstance().initQuestions();
-		System.out.println(getInstance().getProperties().get(0));
 	
-	}
+	}*/
 	
 
 }

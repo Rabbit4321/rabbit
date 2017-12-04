@@ -67,10 +67,6 @@ public class Board {
 		Squares[31].setNum(31);
 		Squares[31].setType(TypeSquares.JAIL);
 		Jail = Squares[31];
-						
-		for(Property p: properties) {
-			System.out.println(p);
-		}
 	
 		//initialize board without random for now
 		//organize properties by cities
@@ -78,74 +74,116 @@ public class Board {
 		if(!properties.isEmpty()) {
 		for(Property pr: properties) {
 			if(pr.getCity().equals(Cities.Haifa)) {
-				pr.setNum(2);
-				Squares[2] = pr;
-				pr.setNum(3);
-				Squares[3] = pr;
-				pr.setNum(5);
-				Squares[5] = pr;
+				if(pr.getPropertyName().compareTo("Hadar") == 0) {
+					pr.setNum(2);
+					Squares[2] = pr;
+				}
+				if(pr.getPropertyName().compareTo("Carmel") == 0) {
+					pr.setNum(3);
+					Squares[3] = pr;
+				}
+				if(pr.getPropertyName().compareTo("Denia") == 0) {
+					pr.setNum(5);
+					Squares[5] = pr;
+				}
 			}
-			if(pr.getCity().equals(Cities.KiryatShmona)) {
+			if(pr.getCity().equals(Cities.Tebrias)) {
+				if(pr.getPropertyName().compareTo("Hagalil") == 0) {
 				pr.setNum(7);
 				Squares[7] = pr;
+				}
+				if(pr.getPropertyName().compareTo("Hashomer") == 0) {
 				pr.setNum(9);
 				Squares[9] = pr;
+				}
+				if(pr.getPropertyName().compareTo("Golani") == 0) {
 				pr.setNum(10);
 				Squares[10] = pr;
+				}
+			}
+			if(pr.getCity().equals(Cities.KiryatShmona)) {
+				if(pr.getPropertyName().compareTo("Shprinzak") == 0) {
+				pr.setNum(12);
+				Squares[12] = pr;
+				}
+				if(pr.getPropertyName().compareTo("Manahem Begin") == 0) {
+				pr.setNum(14);
+				Squares[14] = pr;
+				}
+				if(pr.getPropertyName().compareTo("Eshcol") == 0) {
+				pr.setNum(15);
+				Squares[15] = pr;
+				}
 			}
 			if(pr.getCity().equals(Cities.Netanya)) {
+				if(pr.getPropertyName().compareTo("Klauzner") == 0) {
 				pr.setNum(17);
 				Squares[17] = pr;
+				}
+				if(pr.getPropertyName().compareTo("Herzel") == 0) {
 				pr.setNum(18);
 				Squares[18] = pr;
+				}
+				if(pr.getPropertyName().compareTo("Poleg") == 0) {
 				pr.setNum(20);
 				Squares[20] = pr;
+				}
 			}
-			if(pr.getCity().equals(Cities.TelAviv)) {
+			if(pr.getCity().equals(Cities.Herzelia)) {
+				if(pr.getPropertyName().compareTo("Haatzmaut") == 0) {
+				pr.setNum(21);
+				Squares[21] = pr;
+				}
+				if(pr.getPropertyName().compareTo("Ben Gurion") == 0) {
 				pr.setNum(22);
 				Squares[22] = pr;
-				pr.setNum(23);
-				Squares[23] = pr;
-				pr.setNum(25);
-				Squares[25] = pr;
+				}
+				if(pr.getPropertyName().compareTo("Hanasi") == 0) {
+				pr.setNum(24);
+				Squares[24] = pr;
+				}
 			}
-			if(pr.getCity().equals(Cities.BeerSheva)) {
+			if(pr.getCity().equals(Cities.TelAviv)) {
+				if(pr.getPropertyName().compareTo("Hatikva") == 0) {
+				pr.setNum(26);
+				Squares[26] = pr;
+				}
+				if(pr.getPropertyName().compareTo("Allenby") == 0) {
 				pr.setNum(27);
 				Squares[27] = pr;
+				}
+				if(pr.getPropertyName().compareTo("Dizengoff") == 0) {
 				pr.setNum(29);
 				Squares[29] = pr;
-				if(Squares[31] == null) {
-					pr.setNum(31);
-					Squares[31] = pr;
 				}
-				else if(Squares[21] == null) {
-					pr.setNum(21);
-					Squares[21] = pr;
+			}
+			if(pr.getCity().equals(Cities.BeerSheva)) {
+				if(pr.getPropertyName().compareTo("Kadesh Alley") == 0) {
+				pr.setNum(32);
+				Squares[32] = pr;
 				}
-				else if(Squares[11] == null) {
-					pr.setNum(11);
-					Squares[11] = pr;
+				if(pr.getPropertyName().compareTo("Ben Yehuda") == 0) {
+				pr.setNum(33);
+				Squares[33] = pr;
 				}
-				else if(Squares[1] == null) {
-					pr.setNum(1);
-					Squares[1] = pr;
+				if(pr.getPropertyName().compareTo("Ramot") == 0) {
+				pr.setNum(35);
+				Squares[35] = pr;
 				}
 			}
 			if(pr.getCity().equals(Cities.Eilat)) {
-				pr.setNum(32);
-				Squares[32] = pr;
-				pr.setNum(33);
-				Squares[33] = pr;
-				pr.setNum(35);
-				Squares[35] = pr;
-			}
-			if(pr.getCity().equals(Cities.Herzelia)) {
+				if(pr.getPropertyName().compareTo("Sheshet Hayamim") == 0) {
 				pr.setNum(37);
 				Squares[37] = pr;
+				}
+				if(pr.getPropertyName().compareTo("Hadekel") == 0) {
 				pr.setNum(38);
 				Squares[38] = pr;
+				}
+				if(pr.getPropertyName().compareTo("Hatmarim") == 0) {
 				pr.setNum(40);
 				Squares[40] = pr;
+				}
 			}
 		}
 		}
@@ -157,7 +195,7 @@ public class Board {
 		Squares[16]= new LuckyCard();
 		Squares[16].setNum(16);
 		Squares[23]= new LuckyCard();
-		Squares[23].setNum(24);
+		Squares[23].setNum(23);
 		Squares[28]= new LuckyCard();
 		Squares[28].setNum(28);
 		Squares[36]= new LuckyCard();
@@ -169,7 +207,7 @@ public class Board {
 		Squares[19]= new QuestionCard();
 		Squares[19].setNum(19);
 		Squares[25]= new QuestionCard();
-		Squares[25].setNum(26);
+		Squares[25].setNum(25);
 		Squares[30]= new QuestionCard();
 		Squares[30].setNum(30);
 		Squares[34]= new QuestionCard();
@@ -229,7 +267,7 @@ public class Board {
 	public void setJail(Square jail) {
 		Jail = jail;
 	}
-
+/* test print 
 	public static void main(String[] args) {
 		SysData.getInstance().initProperties();
 		SysData.getInstance().initQuestions();
@@ -238,4 +276,5 @@ public class Board {
 		b.printAllSquares();
 	
 	}
+	*/
 }
