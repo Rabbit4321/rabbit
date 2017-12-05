@@ -15,6 +15,8 @@ import javax.security.auth.Subject;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import control.AdminControl;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
@@ -517,18 +519,19 @@ public class SysData implements Serializable{
 	 * return all subjects
 	 * @return subjects array*/
 	
-	public Subject[] getSubjects() {
-		Subject[] possibleValues = Subject.class.getEnumConstants();
+	public Subjects[] getSubjects() {
+		Subjects[] possibleValues = Subjects.values();
 		return possibleValues;
 	}
 	
-	/*
+	
 	public static void main(String[] args) {
 		SysData.getInstance();
-		getInstance().initProperties();
-		getInstance().initQuestions();
+		for (int i =0; i<SysData.getInstance().getSubjects().length;i++) {
+			System.out.println(SysData.getInstance().getSubjects()[i].toString());
+		}
 	
-	}*/
+	}
 	
 
 }

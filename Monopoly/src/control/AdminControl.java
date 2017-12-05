@@ -1,9 +1,10 @@
 package control;
 
-import javax.security.auth.Subject;
+
 
 import model.Question;
 import model.SysData;
+import model.Subjects;
 
 public class AdminControl {
 
@@ -20,7 +21,12 @@ public class AdminControl {
 	 * get all subjects for questions 
 	 * */
 	
-	public static Subject[] getSubjects() {
+	public static Subjects[] getSubjects() {
 		return SysData.getInstance().getSubjects();	
+	}
+	public static void main(String[] args) {
+		for (int i =0; i<AdminControl.getSubjects().length;i++) {
+			System.out.println(AdminControl.getSubjects()[i].toString());
+		}
 	}
 }
