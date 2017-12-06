@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -29,12 +32,12 @@
             <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-      <Label layoutX="154.0" layoutY="212.0" text="Subjects">
+      <Label layoutX="154.0" layoutY="199.0" text="Subjects">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-      <Pane fx:id="AnsPane" layoutX="154.0" layoutY="292.0">
+      <Pane fx:id="AnsPane" layoutX="154.0" layoutY="313.0" prefHeight="133.0" prefWidth="462.0">
          <children>
             <Label layoutX="107.0" layoutY="73.0" text="3">
                <font>
@@ -65,21 +68,45 @@
                   <Font name="System Bold" size="19.0" />
                </font>
             </Label>
+            <RadioButton fx:id="ans1" layoutX="416.0" layoutY="7.0" mnemonicParsing="false" visible="false">
+               <toggleGroup>
+                  <ToggleGroup fx:id="group" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="ans2" layoutX="416.0" layoutY="42.0" mnemonicParsing="false" visible="false" />
+            <RadioButton fx:id="ans3" layoutX="416.0" layoutY="73.0" mnemonicParsing="false" visible="false" />
+            <RadioButton fx:id="ans4" layoutX="416.0" layoutY="110.0" mnemonicParsing="false" visible="false" />
          </children>
       </Pane>
       <ComboBox fx:id="level" layoutX="254.0" layoutY="161.0" prefWidth="150.0" />
-      <ComboBox fx:id="subjects" layoutX="254.0" layoutY="214.0" prefWidth="150.0" />
-      <CheckBox fx:id="IsMultipleChoice" layoutX="266.0" layoutY="254.0" mnemonicParsing="false" onMouseClicked="#hundleMultiple" prefHeight="17.0" prefWidth="150.0" text="Is multiple choice">
+      <ComboBox fx:id="subjects" layoutX="254.0" layoutY="200.0" onAction="#hundleSubjects" prefWidth="150.0" />
+      <CheckBox fx:id="IsMultipleChoice" layoutX="254.0" layoutY="244.0" mnemonicParsing="false" onAction="#hundleMultiple" prefHeight="17.0" prefWidth="150.0" text="Is multiple choice">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </CheckBox>
-      <TextField fx:id="ID" layoutX="255.0" layoutY="70.0" />
+      <TextField fx:id="ID" layoutX="255.0" layoutY="70.0" onAction="#Validate" />
       <TextField fx:id="Question" layoutX="255.0" layoutY="115.0" />
-      <Button fx:id="Add" layoutX="445.0" layoutY="446.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="109.0" text="Add">
+      <Button fx:id="Add" layoutX="447.0" layoutY="462.0" mnemonicParsing="false" onAction="#hundleAdd" prefHeight="36.0" prefWidth="109.0" text="Add">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
+      <Pane fx:id="OneAnswer" layoutX="154.0" layoutY="279.0">
+         <children>
+            <Label text="Answer">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="OneAns" layoutX="101.0" layoutY="1.0" />
+         </children>
+      </Pane>
+      <ListView fx:id="ListSubjects" layoutX="459.0" layoutY="87.0" prefHeight="200.0" prefWidth="97.0" />
+      <Label layoutX="452.0" layoutY="58.0" text="selected subjects">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
