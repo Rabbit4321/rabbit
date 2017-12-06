@@ -14,11 +14,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import model.Game;
+import model.Player;
 import javafx.animation.Animation;
 import javafx.animation.RotateTransition;
 
@@ -56,6 +60,7 @@ public class BoardGameController implements Initializable {
 	        app_stage.setScene(home_page_scene);
 	        app_stage.setTitle("Home Page");
 	        app_stage.show();
+	        app_stage.resizableProperty().setValue(Boolean.FALSE);
 
 	}
 	
@@ -83,13 +88,40 @@ public class BoardGameController implements Initializable {
 	@FXML
 	private void hundleTableView(MouseEvent mouse){
 		
-	/*In this table we will see how much money and disqualification each player have*/
+	/*In this table we will see how much money and disqualification each player has*/
 	}
 	
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-	
+		
+		/////////////////////table//////////////////////
+        TableColumn nickNameCol = new TableColumn("Nick Name");
+        nickNameCol.setMinWidth(100);
+        nickNameCol.setCellValueFactory(
+        		new PropertyValueFactory<>("nickName"));
+
+        TableColumn moneyCol = new TableColumn("Money");
+        moneyCol.setMinWidth(100);
+        moneyCol.setCellValueFactory(
+                new PropertyValueFactory<>("money"));
+
+        TableColumn disquaCol = new TableColumn("Disqualification");
+        disquaCol.setMinWidth(100);
+        disquaCol.setCellValueFactory(
+                new PropertyValueFactory<>("disqualification"));
+        
+        TableColumn turnCol = new TableColumn("Turn");
+        turnCol.setMinWidth(100);
+        turnCol.setCellValueFactory(
+                new PropertyValueFactory<>("turn"));
+
+
+        tv.getColumns().clear();
+        tv.getColumns().addAll(nickNameCol, moneyCol, disquaCol,turnCol);
+    
+        tv.setItems(GameLogic.getInstance().bringAllPlayersInGame(Game.getCounter()));
+//i think we will needed game logic in a singeltone way and his constructor will provide us the table we need
 	}
 	
 }
