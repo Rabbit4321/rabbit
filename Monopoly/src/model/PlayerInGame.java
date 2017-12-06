@@ -9,6 +9,7 @@ public class PlayerInGame extends Player{
 	
 	private double currentMoney;
 	private int numOfDisqualifications;
+	//more field of turn-> true/false
 	
 	private Square currentSquare;
 	public boolean InJail;
@@ -387,4 +388,5 @@ public class PlayerInGame extends Player{
 	public void setProperties(ArrayList<Property> properties) {
 		this.properties = properties;
 	}
+	
 }
