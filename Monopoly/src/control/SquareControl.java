@@ -12,7 +12,7 @@ public class SquareControl {
 	
 	public static boolean  movePlayerFromSquare(Player p, Square s){
 		return false;
-	}//still not finished
+	}//////till not finished
 	
 
 }
