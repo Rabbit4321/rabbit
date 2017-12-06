@@ -7,9 +7,6 @@ import javax.swing.JOptionPane;
 
 public class PlayerInGame extends Player{
 	
-	
-	
-	
 	private double currentMoney;
 	private int numOfDisqualifications;
 	
@@ -44,9 +41,7 @@ public class PlayerInGame extends Player{
 		{
 			s-=GeneralVariables.getNumSquaresInGame();
 		}
-		
 		 return s;
-		
 	}
 	
 	/**
@@ -124,7 +119,6 @@ public class PlayerInGame extends Player{
 		            JOptionPane.YES_NO_OPTION);
 			if(n == JOptionPane.YES_OPTION)
 			{
-				
 				transwerMoneyFromPlayerToPlayer(p.getPropertyOwner(), p.getLastPropertyCost()*0.85);
 			
 			
@@ -137,7 +131,6 @@ public class PlayerInGame extends Player{
 		}
 	}
 	
-	
 	/**
 	 * player comes to gotojail square
 	 * @return player goes out from jail - true, player goes to jail and waits - false*/
@@ -146,9 +139,7 @@ public class PlayerInGame extends Player{
 		setInJail(true);
 		
 		if(this.getNumOfDisqualifications()==3)
-			threeDisq();
-		
-		
+			threeDisq();	
 		int n = JOptionPane.showConfirmDialog(
 	            null,
 	            "pay 100000 - yes OR wait - no",
@@ -166,24 +157,17 @@ public class PlayerInGame extends Player{
 		
 		return false;
 	}
-	
-	
 
-	
 	public void luckyCardSquare(LuckyCard l)
 	{
 		boolean check1 = false;
 		boolean check2 = false;
-		
-		
-		
+				
 		//first que
 		check1= answerResult(l.getQuestions()[0]); //תוצאת מענה על שאלה בינונית
 		
 		//second que
 		check2= answerResult(l.getQuestions()[1]); //תוצאת מענה על שאלה קשה
-		
-		
 		
 		if(check1 && check2)
 		{
@@ -201,9 +185,7 @@ public class PlayerInGame extends Player{
 			Bank.ChargeMoneyFromPlayer(this, 25000);
 		}
 		
-		
 	}
-	
 	
 	public void questionCardSquare(QuestionCard q)
 	{
@@ -222,10 +204,7 @@ public class PlayerInGame extends Player{
 			Bank.ChargeMoneyFromPlayer(this, knas);
 			plusDisq();
 		}
-	
-	
 	}
-	
 	
 	public boolean exitGame()
 	{
@@ -242,8 +221,6 @@ public class PlayerInGame extends Player{
 		return false;
 	}
 	
-	
-	
 	public void payToPlayerAndBank(double paymant)
 	{
 		currentMoney-=paymant;//הוספת בדיקות
@@ -253,8 +230,6 @@ public class PlayerInGame extends Player{
 	{
 		currentMoney+=paymant;//הוספת בדיקות
 	}
-	
-	
 /*	public boolean sellProperty(Property p)
 	{
 		if(this.properties.contains(p))
@@ -280,12 +255,9 @@ public class PlayerInGame extends Player{
 			
 			return true;
 		}
-		
-		
-		
+			
 		return false;
 	}
-	
 	
 	/**
 	 * cheking if there is 3 Disqualifications
@@ -298,9 +270,7 @@ public class PlayerInGame extends Player{
 			goToJailSquare();
 		}
 	}
-	
-	
-	
+
 	public void threeDisq()
 	{
 		
@@ -337,8 +307,6 @@ public class PlayerInGame extends Player{
 		return false;
 	}
 	
-	
-	
 	public void returnProperties()
 	{
 		for(int i=0; i<this.properties.size(); i++)
@@ -347,8 +315,6 @@ public class PlayerInGame extends Player{
 		}
 	}
  
-	
-	
 	public double playerValue()
 	{
 		int value = 0;
@@ -381,15 +347,7 @@ public class PlayerInGame extends Player{
 		}
 		return false;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 	public double getCurrentMoney() {
 		return currentMoney;
 	}
@@ -429,8 +387,4 @@ public class PlayerInGame extends Player{
 	public void setProperties(ArrayList<Property> properties) {
 		this.properties = properties;
 	}
-	
-	
-	
-	
 }

@@ -25,15 +25,15 @@ import org.omg.CORBA.portable.InputStream;
 
 
 public class Game{
-	private int GameNum;
+	private int GameNum;//need to be static gameNum++
 	private Board board;
 	private Queue<PlayerInGame> players; // 2-4
 	private Dice[] dices= new Dice[GeneralVariables.getNumDiceInGame()]; // 2 dices in game
 	private HashMap<PlayerInGame,Integer> playersInJail; //players in jail
 	private int NumPlayersThatBankruptcy = 0; // players who bankruptcy
 	private int NumOfPlayersInGame=0; // number defined by user of players
-	private static int Counter=0; // automatic count for games
-	private int TurnsLeft; // turns
+	private static int Counter=0; // automatic count for games-> dont need it
+	private int TurnsLeft; // turns num of left moves
 	
 	/**
 	 * Constructor 1
@@ -44,10 +44,10 @@ public class Game{
 		this.board= new Board();
 		this.NumOfPlayersInGame=numPlayers;
 		this.players= new PriorityQueue<PlayerInGame>(this.NumOfPlayersInGame);
-		Collections.shuffle(pg);
+		Collections.shuffle(pg);//don't remember this method
 		this.players.addAll(pg);
 		this.playersInJail = new HashMap<PlayerInGame,Integer>(this.NumOfPlayersInGame);
-		this.TurnsLeft = GeneralVariables.getNumOfTurnsInGame();
+		this.TurnsLeft = GeneralVariables.getNumOfTurnsInGame();//why we need it?
 		AddToCounter();
 	}
 	/**
@@ -66,7 +66,7 @@ public class Game{
 		while(!this.players.isEmpty()) {
 			PlayerInGame currentPlayer = this.players.poll();// pull the player from queue
 			if(!currentPlayer.isInJail()) {
-				for(int i=0; i<dices.length;i++) {// roll dice
+				for(int i=0; i<dices.length;i++){
 					DiceResult += dices[i].Roll();
 				}
 				System.out.println(DiceResult); //check

@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Dice {
 	private static final int[] numbers={1,2,3,4,5,6};
-	private int status; //rolling = 1 or not = 0
+	private int status; //rolling = 1 or not = 0 //ask einav whats means the status
 	
 	Dice(){
 		this.status=0;
@@ -17,7 +17,7 @@ public class Dice {
 	
 	public int Roll() {
 		setStatus(1);
-		int rnd = new Random().nextInt(numbers.length);
+		int rnd = new Random().nextInt(numbers.length-1);
 		setStatus(0);
 	    return numbers[rnd]; 
 	}
