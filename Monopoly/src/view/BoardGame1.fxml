@@ -13,17 +13,22 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="828.0" prefWidth="1343.0" stylesheets="@MnopolyDesign.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.oldBoardGameController">
+<AnchorPane prefHeight="828.0" prefWidth="1729.0" stylesheets="@MnopolyDesign.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.BoardGameController">
    <children>
-      <TableView layoutX="946.0" prefHeight="196.0" prefWidth="351.0" stylesheets="@../../../../Desktop/Limodim/שנה%20ג/הנדסת%20תוכנה%20ואבטחת%20איכות/עיצוב%20המסכים/MnopolyDesign.css">
+      <ImageView fitHeight="834.0" fitWidth="1729.0" layoutX="-1.0" layoutY="-7.0">
+         <image>
+            <Image url="@../../img/מסך%20ירוק.PNG" />
+         </image>
+      </ImageView>
+      <TableView layoutX="1324.0" layoutY="1.0" prefHeight="196.0" prefWidth="390.0" stylesheets="@../../../../Desktop/Limodim/שנה%20ג/הנדסת%20תוכנה%20ואבטחת%20איכות/עיצוב%20המסכים/MnopolyDesign.css">
         <columns>
-          <TableColumn prefWidth="80.79998779296875" text="Nick name" />
-          <TableColumn prefWidth="92.7999267578125" text="Moeny" />
-            <TableColumn prefWidth="106.4000244140625" text="disqualification" />
-            <TableColumn prefWidth="67.199951171875" text="Turn" />
+          <TableColumn prefWidth="78.39990234375" text="Nick name" />
+          <TableColumn prefWidth="98.4000244140625" text="Moeny" />
+            <TableColumn prefWidth="112.800048828125" text="disqualification" />
+            <TableColumn prefWidth="90.4000244140625" text="Turn" />
         </columns>
       </TableView>
-      <Button defaultButton="true" ellipsisString="" layoutX="1020.0" layoutY="304.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="108.0" stylesheets="@../../../../Desktop/Limodim/שנה%20ג/הנדסת%20תוכנה%20ואבטחת%20איכות/עיצוב%20המסכים/MnopolyDesign.css" text="Roll">
+      <Button defaultButton="true" ellipsisString="" layoutX="1432.0" layoutY="340.0" mnemonicParsing="false" onAction="#hundleBtnRoll" prefHeight="66.0" prefWidth="108.0" stylesheets="@../../../../Desktop/Limodim/שנה%20ג/הנדסת%20תוכנה%20ואבטחת%20איכות/עיצוב%20המסכים/MnopolyDesign.css" text="Roll">
          <font>
             <Font name="Arial Narrow" size="22.0" />
          </font>
@@ -31,17 +36,17 @@
             <Cursor fx:constant="CLOSED_HAND" />
          </cursor>
       </Button>
-      <Label layoutX="954.0" layoutY="414.0" prefHeight="58.0" prefWidth="173.0" styleClass="label2" stylesheets="@../../../../Desktop/Limodim/שנה%20ג/הנדסת%20תוכנה%20ואבטחת%20איכות/עיצוב%20המסכים/MnopolyDesign.css" text="Current squere:" underline="true">
+      <Label layoutX="1367.0" layoutY="421.0" prefHeight="58.0" prefWidth="173.0" styleClass="label2" stylesheets="@../../../../Desktop/Limodim/שנה%20ג/הנדסת%20תוכנה%20ואבטחת%20איכות/עיצוב%20המסכים/MnopolyDesign.css" text="Current squere:" underline="true">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextArea layoutX="941.0" layoutY="472.0" prefHeight="102.0" prefWidth="360.0" text="Players in this squere:&#10;Rent a property here:&#10;">
+      <TextArea layoutX="1359.0" layoutY="489.0" prefHeight="102.0" prefWidth="265.0" text="Players in this squere:&#10;Rent a property here:&#10;">
          <font>
             <Font size="18.0" />
          </font>
       </TextArea>
-      <ImageView fitHeight="133.0" fitWidth="212.0" layoutX="1097.0" layoutY="237.0">
+      <ImageView fitHeight="133.0" fitWidth="212.0" layoutX="1486.0" layoutY="255.0">
          <image>
             <Image url="@../../img/קוביות%20גזור.png" />
          </image>
@@ -52,7 +57,7 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </ImageView>
-      <Button defaultButton="true" ellipsisString="" layoutX="1221.0" layoutY="733.0" mnemonicParsing="false" onAction="#handleBtnBack" prefHeight="54.0" prefWidth="100.0" styleClass="btn" stylesheets="@../../../../Desktop/Limodim/שנה%20ג/הנדסת%20תוכנה%20ואבטחת%20איכות/עיצוב%20המסכים/MnopolyDesign.css" text="Back">
+      <Button defaultButton="true" ellipsisString="" layoutX="1598.0" layoutY="758.0" mnemonicParsing="false" onAction="#handleBtnBack" prefHeight="54.0" prefWidth="100.0" styleClass="btn" stylesheets="@../../../../Desktop/Limodim/שנה%20ג/הנדסת%20תוכנה%20ואבטחת%20איכות/עיצוב%20המסכים/MnopolyDesign.css" text="Back">
          <font>
             <Font name="Arial Narrow" size="22.0" />
          </font>
@@ -60,16 +65,16 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label layoutX="954.0" layoutY="592.0" prefHeight="58.0" prefWidth="162.0" styleClass="label2" stylesheets="@../../../../Desktop/Limodim/שנה%20ג/הנדסת%20תוכנה%20ואבטחת%20איכות/עיצוב%20המסכים/MnopolyDesign.css" text="Moves left:" underline="true">
+      <Label layoutX="1373.0" layoutY="614.0" prefHeight="58.0" prefWidth="130.0" styleClass="label2" stylesheets="@../../../../Desktop/Limodim/שנה%20ג/הנדסת%20תוכנה%20ואבטחת%20איכות/עיצוב%20המסכים/MnopolyDesign.css" text="Moves left:" underline="true">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField layoutX="1092.0" layoutY="599.0" opacity="0.5" prefHeight="44.0" prefWidth="48.0" text="50">
+      <TextField layoutX="1504.0" layoutY="621.0" opacity="0.5" prefHeight="44.0" prefWidth="48.0" text="50">
          <font>
             <Font name="System Bold" size="20.0" />
          </font></TextField>
-      <Button defaultButton="true" ellipsisString="" layoutX="1081.0" layoutY="733.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="100.0" styleClass="btn" stylesheets="@../../../../Desktop/Limodim/שנה%20ג/הנדסת%20תוכנה%20ואבטחת%20איכות/עיצוב%20המסכים/MnopolyDesign.css" text="Pause">
+      <Button defaultButton="true" ellipsisString="" layoutX="1478.0" layoutY="758.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="100.0" styleClass="btn" stylesheets="@../../../../Desktop/Limodim/שנה%20ג/הנדסת%20תוכנה%20ואבטחת%20איכות/עיצוב%20המסכים/MnopolyDesign.css" text="Pause">
          <font>
             <Font name="Arial Narrow" size="22.0" />
          </font>
@@ -77,7 +82,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button defaultButton="true" ellipsisString="" layoutX="935.0" layoutY="733.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="100.0" styleClass="btn" stylesheets="@../../../../Desktop/Limodim/שנה%20ג/הנדסת%20תוכנה%20ואבטחת%20איכות/עיצוב%20המסכים/MnopolyDesign.css" text="Leave">
+      <Button defaultButton="true" ellipsisString="" layoutX="1346.0" layoutY="758.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="100.0" styleClass="btn" stylesheets="@../../../../Desktop/Limodim/שנה%20ג/הנדסת%20תוכנה%20ואבטחת%20איכות/עיצוב%20המסכים/MnopolyDesign.css" text="Leave">
          <font>
             <Font name="Arial Narrow" size="22.0" />
          </font>
@@ -85,14 +90,19 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField layoutX="1142.0" layoutY="421.0" opacity="0.5" prefHeight="44.0" prefWidth="78.0" text="Start">
+      <TextField layoutX="1553.0" layoutY="428.0" opacity="0.5" prefHeight="44.0" prefWidth="78.0" text="Start">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </TextField>
-      <ImageView fitHeight="788.0" fitWidth="920.0" layoutX="2.0" layoutY="1.0">
+      <ImageView fitHeight="822.0" fitWidth="1313.0" layoutX="2.0" layoutY="1.0" pickOnBounds="true">
          <image>
             <Image url="@../../../../../../Desktop/Limodim/שנה%20ג/הנדסת%20תוכנה%20ואבטחת%20איכות/מסכים%20של%20הסין%20בילדר/לוח%20המשחק%20קבוצת%20ארנבות.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="player" fitHeight="210.0" fitWidth="205.0" layoutX="222.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../img/Bugsbunny2011.png" />
          </image>
       </ImageView>
    </children>

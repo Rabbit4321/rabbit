@@ -14,9 +14,6 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Random;
 import java.util.Stack;
-
-import javax.swing.JOptionPane;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -32,7 +29,7 @@ public class Game{
 	private HashMap<PlayerInGame,Integer> playersInJail; //players in jail
 	private int NumPlayersThatBankruptcy = 0; // players who bankruptcy
 	private int NumOfPlayersInGame=0; // number defined by user of players
-	private static int Counter=0; // automatic count for games-> dont need it
+	private static int Counter=0; // automatic count for games-> don't need it
 	private int TurnsLeft; // turns num of left moves
 	
 	/**
