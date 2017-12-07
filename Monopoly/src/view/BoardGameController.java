@@ -104,7 +104,7 @@ public class BoardGameController implements Initializable {
 //		final KeyFrame kf3 = new KeyFrame(Duration.millis(2500), kv3);
 //		timeline.getKeyFrames().addAll(kf,kf2,kf3);
 //		timeline.play();
-		
+		/////////////////////
 		//change in x
 		final Timeline timeline1 = new Timeline();
 		timeline1.setCycleCount(1/*Timeline.INDEFINITE*/);
