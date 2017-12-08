@@ -31,31 +31,6 @@ public class Board {
 		int [] OptionsForEdgesBoard= {1,11,21,31};
 		ArrayList<Property> properties = SysData.getInstance().getProperties();
 		
-		//Initialize all the data from SysData (json files)
-		
-		
-		
-
-		
-		
-		//Randomly determine the edges-Initialize start,jail and go to jail squares
-		
-	/*	int rnd = new Random().nextInt(OptionsForEdgesBoard.length);
-		Squares[OptionsForEdgesBoard[rnd]] = new Square();
-		Squares[OptionsForEdgesBoard[rnd]].setNum(OptionsForEdgesBoard[rnd]);
-		Squares[OptionsForEdgesBoard[rnd]].setType(TypeSquares.START);
-		Start = Squares[OptionsForEdgesBoard[rnd]];
-		Squares[(OptionsForEdgesBoard[rnd] + 10) % GeneralVariables.getNumSquaresInGame()] = new Square();
-		Squares[(OptionsForEdgesBoard[rnd] + 10) % GeneralVariables.getNumSquaresInGame()].setNum((OptionsForEdgesBoard[rnd] + 10) % GeneralVariables.getNumSquaresInGame());
-		Squares[(OptionsForEdgesBoard[rnd] + 10) % GeneralVariables.getNumSquaresInGame()].setType(TypeSquares.GO_TO_JAIL);
-		int posGo= (OptionsForEdgesBoard[rnd] + 10) % GeneralVariables.getNumSquaresInGame();
-		System.out.println(posGo);
-		System.out.println((posGo + 20) % GeneralVariables.getNumSquaresInGame());
-		Squares[(posGo + 20) % GeneralVariables.getNumSquaresInGame()] = new Square();
-		Squares[(posGo + 20) % GeneralVariables.getNumSquaresInGame()].setNum((posGo + 20) % GeneralVariables.getNumSquaresInGame());
-		Squares[(posGo+ 20) % GeneralVariables.getNumSquaresInGame()].setType(TypeSquares.JAIL);
-		Jail = Squares[(posGo + 20) % GeneralVariables.getNumSquaresInGame()];*/
-
 		Start = Squares[1];
 		Squares[1] = new Square();
 		Squares[1].setNum(1);
@@ -230,6 +205,16 @@ public class Board {
 	public Square MovePlayer(PlayerInGame p,int steps) {
 		return null;
 		
+	}
+	/**
+	 * get type of square on board
+	 * */
+	public String getSquareType(int numSquare) {
+		for(Square s : this.AllSquares) {
+			if(s.getNum() == numSquare)
+				return s.getClass().toString();
+		}
+		return null;
 	}
 	
 	public Square getStart() {
