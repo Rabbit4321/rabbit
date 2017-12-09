@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
-
+import control.GameLogic;
+import control.MonopolyGame;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,14 +23,18 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.Dice;
 import model.Game;
 import model.Player;
+import model.PlayerInGame;
+import model.Square;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.RotateTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
+import javafx.collections.ObservableList;
 
 public class BoardGameController implements Initializable {
 /////////////Buttons///////////////////////////////Fields////////////
@@ -43,7 +47,7 @@ public class BoardGameController implements Initializable {
 	private Button leave_btn;
 	@FXML
 	private Button roll_btn;
-	/*@FXML
+	@FXML
 	private TableView tv;
 	@FXML
 	private TextField current_square;
@@ -52,8 +56,14 @@ public class BoardGameController implements Initializable {
 	@FXML
 	private Image dices;//found an animation on internet -> in the end of the code*/
 	@FXML
-	private ImageView player;
+	private static ImageView player;
 	
+	
+	/////////////////////////////////////////////getters & setters///////////////////////
+	
+	public static ImageView getPlayer(){
+		return player;
+	}
 ///////////HandleButtons//////////////Functions/////////////////////
 	
 	@FXML
@@ -92,43 +102,14 @@ public class BoardGameController implements Initializable {
 	private void hundleBtnRoll(ActionEvent mouse){
 		
 	/*this button is appointed to turn on a method that will do is to activate the dices to roll and bring the results*/
-	
-/**	
- * final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);		//timeline.setAutoReverse(true);
-		final KeyValue kv = new KeyValue(player.xProperty(), 300);
-		final KeyValue kv2 = new KeyValue(player.yProperty(), player.yProperty().get());
-		final KeyValue kv3 = new KeyValue(player.yProperty(), 500);
-		final KeyFrame kf = new KeyFrame(Duration.millis(1500), kv);// means in how much period of time the rabbit will get to the cordinates i define him
-		final KeyFrame kf2 = new KeyFrame(Duration.millis(1500), kv2);
-	final KeyFrame kf3 = new KeyFrame(Duration.millis(2500), kv3);
-		timeline.getKeyFrames().addAll(kf,kf2,kf3);
-		timeline.play();
-		*/
-		//change in x
-		final Timeline timeline1 = new Timeline();
-		timeline1.setCycleCount(1/*Timeline.INDEFINITE*/);
-		BoardView b = new BoardView();
-		b.RestartBoardView();
-		SquareView  s = new SquareView(40,580,380);
-		
-		final KeyValue kv = new KeyValue(player.xProperty(), s.getX() - b.getStart().getX());
-		final KeyFrame kf = new KeyFrame(Duration.millis(1500), kv);// means in how much period of time the rabbit will get to the cordinates i define him
-		timeline1.getKeyFrames().addAll(kf);
-		
-		
-		//change in y
-		final Timeline timeline2 = new Timeline();
-		timeline2.setCycleCount(1/*Timeline.INDEFINITE*/);
-		
-		final KeyValue kv1 = new KeyValue(player.yProperty(), b.getStart().getY() - s.getY());
-		final KeyFrame kf1 = new KeyFrame(Duration.millis(1500), kv1);// means in how much period of time the rabbit will get to the cordinates i define him
+		int result1;
+		int result2;
+		result1 = Dice.Roll();
+		result2 = Dice.Roll();
+		Game game =new Game(MonopolyGame.getCurrentGame()); // get the current game is playing right now
+		PlayerInGame playerInGame = MonopolyGame.getAllPlayersInGame(game).poll();//get the current player is play right now in the current game
+		playerInGame.hundleMovingThePlayer(result1+result2);
 
-		timeline2.getKeyFrames().addAll(kf1);
-		
-		
-		SequentialTransition sequence = new SequentialTransition(timeline1, timeline2);
-		sequence.play();
 	}
 	
 	@FXML
@@ -168,8 +149,7 @@ public class BoardGameController implements Initializable {
 
         tv.getColumns().clear();
         tv.getColumns().addAll(nickNameCol, moneyCol, disquaCol,turnCol);
-    
-        //tv.setItems(GameLogic.getInstance().bringAllPlayersInGame(Game.getCounter()));
+        tv.setItems((ObservableList) GameLogic.bringAllPlayersInGame(Game.getCounter()));
 //i think we will needed game logic in a singeltone way and his constructor will provide us the table we need*/
 	}
 	

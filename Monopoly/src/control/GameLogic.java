@@ -1,6 +1,8 @@
 package control;
 
 import java.util.PriorityQueue;
+import java.util.Queue;
+
 import model.Game;
 import model.Board;
 import model.PlayerInGame;
@@ -17,13 +19,19 @@ public class GameLogic {
 		board.RestartBoard();
 	}
 	
-	public String getTypeSquareByNumber(int Num) {
+	public static String getTypeSquareByNumber(int Num) {
 		return board.getSquareType(Num);
 	}
 	
-	public static PriorityQueue<PlayerInGame> bringAllPlayersInGame(int num){
-		return null;
-		//Game.getCounter();
+	/*
+	 * this method bring all players in a specific game 
+	   from an array of games in the singeltone monopoly
+	 * received number of game
+	 */
+	public static Queue<PlayerInGame> bringAllPlayersInGame(int num){
+		return MonopolyGame.getInstance().getGameFromArray(num).getPlayers();
+		
+		
 		
 	}
 	

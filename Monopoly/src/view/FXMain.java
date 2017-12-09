@@ -32,11 +32,13 @@ public class FXMain extends Application{
     /**
      * @param args the command line arguments
      */
+    /*
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		launch(args);
+		
 
-	}
+	}*/
  }
 
 

@@ -42,9 +42,13 @@ public class Game{
 		this.NumOfPlayersInGame=numPlayers;
 		this.players= new PriorityQueue<PlayerInGame>(this.NumOfPlayersInGame);
 		Collections.shuffle(pg);//don't remember this method
-		this.players.addAll(pg);
+		//A try/Elinor wrote/
+		this.players.add(pg.get(0));
+		this.players.add(pg.get(1));//-> there is an exception here - don't know why
+		//End of try//
+		//this.players.addAll(pg);//ArrayList can't enter to a Queue-> need to convert it to queue somehow
 		this.playersInJail = new HashMap<PlayerInGame,Integer>(this.NumOfPlayersInGame);
-		this.TurnsLeft = GeneralVariables.getNumOfTurnsInGame();//why we need it?
+		this.TurnsLeft = GeneralVariables.getNumOfTurnsInGame();
 		AddToCounter();
 	}
 	/**
@@ -52,6 +56,13 @@ public class Game{
 	 * */
 	public Game(){
 		super();
+	}
+	/**
+	 * Constructor 3
+	 * */
+	public Game(int gameNum){//Elinor wrote this
+		GameNum = gameNum;
+		
 	}
 	
 	/**

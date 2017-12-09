@@ -8,6 +8,13 @@ public class Square {
 	public Square() {
 		super();
 	}
+	/*
+	 * full constructor
+	 */
+	public Square(int num,TypeSquares type){
+		this.num = num;
+		this.type = type;
+	}
 
 	public int getNum() {
 		return num;

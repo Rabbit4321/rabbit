@@ -31,7 +31,7 @@ public class Board {
 		int [] OptionsForEdgesBoard= {1,11,21,31};
 		ArrayList<Property> properties = SysData.getInstance().getProperties();
 		
-		Start = Squares[1];
+		Start = Squares[1];//maybe it should be square[0]
 		Squares[1] = new Square();
 		Squares[1].setNum(1);
 		Squares[1].setType(TypeSquares.START);
@@ -203,7 +203,7 @@ public class Board {
 	 * */
 	
 	public Square MovePlayer(PlayerInGame p,int steps) {
-		return null;
+		return null;//empty method - why? maybe there is a similar method in the code
 		
 	}
 	/**
