@@ -57,6 +57,8 @@ public class BoardGameController implements Initializable {
 	private Image dices;//found an animation on internet -> in the end of the code*/
 	@FXML
 	private static ImageView player;
+	@FXML
+	private TextField numRolled;
 	
 	
 	/////////////////////////////////////////////getters & setters///////////////////////

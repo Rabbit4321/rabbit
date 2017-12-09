@@ -14,6 +14,8 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Random;
 import java.util.Stack;
+import java.util.concurrent.ArrayBlockingQueue;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -40,13 +42,13 @@ public class Game{
 		this.setGameNum(getCounter());
 		this.board= new Board();
 		this.NumOfPlayersInGame=numPlayers;
-		this.players= new PriorityQueue<PlayerInGame>(this.NumOfPlayersInGame);
+		this.players= new ArrayBlockingQueue<PlayerInGame>(this.NumOfPlayersInGame);
 		Collections.shuffle(pg);//don't remember this method
 		//A try/Elinor wrote/
-		this.players.add(pg.get(0));
-		this.players.add(pg.get(1));//-> there is an exception here - don't know why
+//		this.players.add(pg.get(0));
+//		this.players.add(pg.get(1));//-> there is an exception here - don't know why
 		//End of try//
-		//this.players.addAll(pg);//ArrayList can't enter to a Queue-> need to convert it to queue somehow
+		this.players.addAll(pg);//ArrayList can't enter to a Queue-> need to convert it to queue somehow
 		this.playersInJail = new HashMap<PlayerInGame,Integer>(this.NumOfPlayersInGame);
 		this.TurnsLeft = GeneralVariables.getNumOfTurnsInGame();
 		AddToCounter();

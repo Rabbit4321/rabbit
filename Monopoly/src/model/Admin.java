@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 public class Admin implements Actions{
 	
 	private String ID;
@@ -44,10 +46,13 @@ public class Admin implements Actions{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
 	@Override
 	public boolean AddQuestion(Question q) {
-		return SysData.AddQuestion(q);
+		
+		//TODO BOM! fix the call to SysData
+		//return SysData.AddQuestion(q);
+		throw new NotImplementedException();
 	}
 
 }
