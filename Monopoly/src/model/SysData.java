@@ -313,51 +313,14 @@ public class SysData implements Serializable{
 				}
 				
 				
+					AllQuestions.add(new Question((int)id, team, text, (int)difficulty, isMultipleChoice, answers, tags));
+				
 				
 			}
         	
         	
         	
-        	/*
-        	
-				
-				int id= (int)jsonObject.get("id");
-				String team = (String)jsonObject.get("team");
-				String text = (String)jsonObject.get("text");
-				int difficulty= (int)jsonObject.get("difficulty");
-				boolean isMultipleChoice=(boolean)jsonObject.get("isMultipleChoice");
-				
-				JSONArray answers= (JSONArray)jsonObject.get("answers");
-				ArrayList<Answer> a= new ArrayList<Answer>();
-				Iterator<String> iterator1 = answers.iterator();
-				while (iterator1.hasNext()) 
-				{
-
-					Answer ans = new Answer(iterator1.next(), Boolean.parseBoolean(iterator1.next()));
-					a.add(ans);
-					
-					
-				}
-				
-				JSONArray tags= (JSONArray)jsonObject.get("tags");
-				ArrayList<Subjects> t= new ArrayList<Subjects>();
-				Iterator<String> iterator2 = tags.iterator();
-				while (iterator2.hasNext()) 
-				{
-					t.add(Subjects.valueOf(iterator2.next()));
-					
-				}
-			
-			
-				
-				
-				if(validQuestion(id, team, text, difficulty, isMultipleChoice, answers, tags))
-				{
-					AllQuestions.add(new Question(id, team, text, difficulty, isMultipleChoice, answers, tags));
-				}
-				
-				
-			*/
+        
 	
 		}
 		catch(IOException e)
@@ -390,50 +353,85 @@ public class SysData implements Serializable{
 		//todo
 	}
 	
-	
-	public static boolean AddQuestion(Question q) {
+	/*
+	@SuppressWarnings("unchecked")
+	public static boolean AddQuestion(Question que) {
 		
-		if(!AllQuestions.contains(q))
+		if(!AllQuestions.contains(que))
 		{
-			if(validQuestion(q.getId(), q.getTeam(), q.getText(), q.getDifficulty(), q.isMultipleChoice(), q.getAnswers(), q.getTags()))
-			{
+		//	if(validQuestion(que.getId(), que.getTeam(), que.getText(), que.getDifficulty(), que.isMultipleChoice(), que.getAnswers(), que.getTags()))
+		//	{
 				
 			
-			AllQuestions.add(q);
+			AllQuestions.add(que);
 			//write to json
 			
-			JSONObject obj = new JSONObject();
-			obj.put("id", q.getId()+"");
-			obj.put("team", q.getTeam()+"");
-			obj.put("text", q.getText()+"");
-			obj.put("difficulty", q.getDifficulty()+"");
-			obj.put("isMultipleChoice", q.isMultipleChoice()+"");
 			
-			JSONArray list1 = new JSONArray();
+		
 			
-			for(int i=0; i<=q.getAnswers().size(); i++)
+			
+			JSONArray ques = new JSONArray();
+			for (Question q: AllQuestions)
 			{
-				list1.add(q.getAnswers().get(i));
-			}
-			
-			obj.put("answers", list1);
-			
-			
-			JSONArray list2 = new JSONArray();
-			
-			for(int i=0; i<=q.getTags().size(); i++)
-			{
-				list2.add(q.getTags().get(i));
-			}
-			
-			obj.put("tags", list2);
-			
-			try (FileWriter file = new FileWriter("questions.json"))
-			{
+				JSONObject obj = new JSONObject();
+				obj.put("id", q.getId());
+				obj.put("team", q.getTeam());
+				obj.put("text", q.getText());
+				obj.put("difficulty", q.getDifficulty());
+				obj.put("isMultipleChoice", q.isMultipleChoice());
+				
+				JSONArray list1 = new JSONArray();
+				ArrayList<Answer> answers = q.getAnswers();
 				
 				
-				file.write(obj.toString());
+				for(int i=0; i<answers.size(); i++)
+				{
+					JSONObject obj1 = new JSONObject();
+					
+					obj1.put("text", answers.get(i).getText());
+					obj1.put("isCorrect", answers.get(i).isCorrect());
+					list1.add(obj1);
+				}
+				
+				obj.put("answers", list1);
+				
+				
+				JSONArray list2 = new JSONArray();
+				
+				for(int i=0; i<q.getTags().size(); i++)
+				{
+					String t=q.getTags().get(i)+"";
+					list2.add(t);
+				}
+				
+				obj.put("tags", list2);
+				
+				
+				
+				ques.add(obj);
+			}
+			
+		
+			
+		
+			
+			
+			
+			try (FileWriter file = new FileWriter("Data/questions.json"))
+			{
+				JSONObject obj = new JSONObject();
+				obj.put("questions", ques);
+				
+				
+			
+				
+				
+				file.write(obj.toJSONString());
 				file.flush();
+				
+				System.out.println("\nJSON Object: " + ques);
+				
+				
 				return true;
 				
 			}
@@ -445,7 +443,7 @@ public class SysData implements Serializable{
 			{
 				e.printStackTrace();
 			}
-			}
+			//}
 			
 			
 			
@@ -453,7 +451,93 @@ public class SysData implements Serializable{
 		
 		
 		return false;
+	}*/
+	
+public static boolean AddQuestions() {
+		
+		
+			//write to json
+			
+			
+			
+			JSONArray ques = new JSONArray();
+			for (Question q: AllQuestions)
+			{
+				JSONObject obj = new JSONObject();
+				obj.put("id", q.getId());
+				obj.put("team", q.getTeam());
+				obj.put("text", q.getText());
+				obj.put("difficulty", q.getDifficulty());
+				obj.put("isMultipleChoice", q.isMultipleChoice());
+				
+				JSONArray list1 = new JSONArray();
+				ArrayList<Answer> answers = q.getAnswers();
+				
+				
+				for(int i=0; i<answers.size(); i++)
+				{
+					JSONObject obj1 = new JSONObject();
+					
+					obj1.put("text", answers.get(i).getText());
+					obj1.put("isCorrect", answers.get(i).isCorrect());
+					list1.add(obj1);
+				}
+				
+				obj.put("answers", list1);
+				
+				
+				JSONArray list2 = new JSONArray();
+				
+				for(int i=0; i<q.getTags().size(); i++)
+				{
+					String t=q.getTags().get(i)+"";
+					list2.add(t);
+				}
+				
+				obj.put("tags", list2);
+				
+				
+				
+				ques.add(obj);
+			}
+			
+		
+			
+		
+			
+			
+			
+			try (FileWriter file = new FileWriter("Data/questions.json"))
+			{
+				JSONObject obj = new JSONObject();
+				obj.put("questions", ques);
+				
+				
+			
+				
+				
+				file.write(obj.toJSONString());
+				file.flush();
+				
+				System.out.println("\nJSON Object: " + ques);
+				
+				
+				return true;
+				
+			}
+			catch(IOException e)
+			{
+				e.printStackTrace();
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		
+		
+		return false;
 	}
+	
 	
 	
 	public ArrayList<Property> getProperties()
@@ -526,10 +610,16 @@ public class SysData implements Serializable{
 	
 	
 	public static void main(String[] args) {
+		
 		SysData.getInstance();
-		for (int i =0; i<SysData.getInstance().getSubjects().length;i++) {
-			System.out.println(SysData.getInstance().getSubjects()[i].toString());
-		}
+
+		
+		
+		
+		
+	//	for (int i =0; i<SysData.getInstance().getSubjects().length;i++) {
+		//	System.out.println(SysData.getInstance().getSubjects()[i].toString());
+		//}
 	
 	}
 	
