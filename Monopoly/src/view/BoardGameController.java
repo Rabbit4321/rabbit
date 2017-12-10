@@ -81,7 +81,6 @@ public class BoardGameController implements Initializable {
 		p.setY(290);
 		player = p;
 		return player;
-		
 	}
 ///////////HandleButtons//////////////Functions/////////////////////
 	
