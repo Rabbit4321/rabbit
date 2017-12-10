@@ -121,7 +121,7 @@ public class BoardGameController implements Initializable {
 		    Alert alert = new Alert(AlertType.INFORMATION);
 		    alert.setTitle("Information Dialog");
 		    alert.setHeaderText("You are in  PROPERTY SQUARE");
-		    alert.setContentText("The data was entered to database");
+		    alert.setContentText("");
 
 		    alert.showAndWait();
 		      }
@@ -131,7 +131,7 @@ public class BoardGameController implements Initializable {
 		    Alert alert = new Alert(AlertType.INFORMATION);
 		    alert.setTitle("Information Dialog");
 		    alert.setHeaderText("You are in  PROPERTY SQUARE");
-		    alert.setContentText("The data was entered to database");
+		    alert.setContentText("");
 
 		    alert.showAndWait();
 		      }
@@ -140,7 +140,7 @@ public class BoardGameController implements Initializable {
 		    Alert alert = new Alert(AlertType.INFORMATION);
 		    alert.setTitle("Information Dialog");
 		    alert.setHeaderText("You are in  PROPERTY SQUARE");
-		    alert.setContentText("The data was entered to database");
+		    alert.setContentText("");
 
 		    alert.showAndWait();
 		      }
@@ -150,24 +150,24 @@ public class BoardGameController implements Initializable {
 	private void hundleBtnRoll(MouseEvent mouse){
 		
 	/*this button is appointed to turn on a method that will do is to activate the dices to roll and bring the results*/
-<<<<<<< HEAD
-		int result1;
-		int result2;
-		result1 = Dice.Roll();
-		result2 = Dice.Roll();
-		Game game = new Game(MonopolyGame.getCurrentGame()); // get the current game is playing right now
-		PlayerInGame playerInGame = MonopolyGame.getAllPlayersInGame(game).poll();//get the current player is play right now in the current game
-		playerInGame.hundleMovingThePlayer(result1+result2);
-=======
->>>>>>> branch 'Iteration2_EX4_branch' of https://elinorush1234@bitbucket.org/SESQAHAIFAU2018/rabbit-repo.git
+//
+//	int result1;
+//		int result2;
+//		result1 = Dice.Roll();
+//		result2 = Dice.Roll();
+//		Game game = new Game(MonopolyGame.getCurrentGame()); // get the current game is playing right now
+//		PlayerInGame playerInGame = MonopolyGame.getAllPlayersInGame(game).poll();//get the current player is play right now in the current game
+//		playerInGame.hundleMovingThePlayer(result1+result2);
 
 		int result;
 		
 		result = Dice.Roll() + Dice.Roll();
-       int numGame = HomePageController.getInstance().gamenum;
-		Player pv = MonopolyGame.getAllPlayersInGame(MonopolyGame.getGameFromArray(numGame)).poll();
+        int numGame = HomePageController.getInstance().gamenum;
+		Player pv = MonopolyGame.getAllPlayersInGame(MonopolyGame.getGameFromArray(numGame)).poll();//get next player-> bring the next player in the queue
 		pinv.ChangeSquareViews(BoardView.getStart());
-		int Numsquare  = 11;
+		int currentSquare = PlayerInGameControl.MovePlayer(pv.getPlayerNum(), numGame,result);
+		System.out.println( "player number " + pv.getPlayerNum() + " need to go to : " + currentSquare);
+		/*int Numsquare  = 11;
 		SquareView newSquare= BoardView.getSquareByNum(Numsquare) ;
 		if(newSquare != null) {
 			pinv.ChangeSquareViews(newSquare);

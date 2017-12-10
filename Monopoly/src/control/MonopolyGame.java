@@ -47,7 +47,7 @@ public class MonopolyGame{
 	}
 	//return players in a specific game
 	public static Queue<PlayerInGame> getAllPlayersInGame(Game game){
-		return game.getPlayers();
+		return game.getPlayersQueqe();
 	}
 	//return a specific game as an object
 	public static Game getGame(Game game){
