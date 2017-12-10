@@ -72,52 +72,57 @@ public class Game{
 	 * */
 	
 	public void OneRound() {
-		int DiceResult = 0; 
-		while(!this.players.isEmpty()) {
-			PlayerInGame currentPlayer = this.players.poll();// pull the player from queue
-			if(!currentPlayer.isInJail()) {
-				for(int i=0; i<dices.length;i++){
-					DiceResult += dices[i].Roll();
-				}
-				System.out.println(DiceResult); //check
-				int NumNewDice = (DiceResult + currentPlayer.getCurrentSquare().getNum()) % GeneralVariables.getNumSquaresInGame(); // number of dice for the player
-				System.out.println(NumNewDice);// check
-				currentPlayer.ChangeSqure(NumNewDice); // update dice to player
-				if(!(currentPlayer.getCurrentSquare().getType().equals(TypeSquares.JAIL)) && 
-						!(currentPlayer.getCurrentSquare().getType().equals(TypeSquares.START))) {
-					if(currentPlayer.getCurrentSquare() instanceof Property) {
-							Property pr = (Property)currentPlayer.getCurrentSquare();
-							 currentPlayer.propertySquare(pr);
-					}
-					else if(currentPlayer.getCurrentSquare() instanceof LuckyCard) {
-					        LuckyCard lc = (LuckyCard)currentPlayer.getCurrentSquare();
-					        currentPlayer.luckyCardSquare(lc);
-					}
-					else if(currentPlayer.getCurrentSquare() instanceof QuestionCard) {
-						QuestionCard lc = (QuestionCard)currentPlayer.getCurrentSquare();
-				        currentPlayer.questionCardSquare(lc);
-					}
-					else if(currentPlayer.getCurrentSquare().getType().equals(TypeSquares.GO_TO_JAIL)) {
-						Square s = currentPlayer.getCurrentSquare();
-						currentPlayer.setCurrentSquare(board.getJail());
-						if(!currentPlayer.goToJailSquare()) {
-							this.playersInJail.put(currentPlayer, 0); // insert to jail with 0 turns
-						}
-						else {
-							currentPlayer.setCurrentSquare(s);
-						}
-					}
-				 } 
-			}
-			else if(this.playersInJail.containsKey(currentPlayer)) {
-				this.playersInJail.replace(currentPlayer, this.playersInJail.get(currentPlayer)+1);
-			}
-			this.players.add(currentPlayer); //add to the end of the queue
-		}
+ 
+	//	while(!this.players.isEmpty()) {
+			
+	//	}
 		
 		
 	}
 	
+ public void OneTurnForPlayer(PlayerInGame p, int DiceResult) {
+//		//int DiceResult = 0;
+	 PlayerInGame currentPlayer = this.players.poll();// pull the player from queue
+		if(!currentPlayer.isInJail()){
+//			for(int i=0; i<dices.length;i++){
+//		//	DiceResult += dices[i].Roll();
+		//	}
+			System.out.println(DiceResult); //check
+			int NumNewDice = (DiceResult + currentPlayer.getCurrentSquare().getNum()) % GeneralVariables.getNumSquaresInGame(); // number of dice for the player
+			System.out.println(NumNewDice);// check
+			currentPlayer.ChangeSqure(NumNewDice); // update dice to player
+			if(!(currentPlayer.getCurrentSquare().getType().equals(TypeSquares.JAIL)) && 
+					!(currentPlayer.getCurrentSquare().getType().equals(TypeSquares.START))) {
+				
+			/*	if(currentPlayer.getCurrentSquare() instanceof Property) {
+						Property pr = (Property)currentPlayer.getCurrentSquare();
+						 currentPlayer.propertySquare(pr);
+				}
+				else if(currentPlayer.getCurrentSquare() instanceof LuckyCard) {
+				        LuckyCard lc = (LuckyCard)currentPlayer.getCurrentSquare();
+				        currentPlayer.luckyCardSquare(lc);
+				}
+				else if(currentPlayer.getCurrentSquare() instanceof QuestionCard) {
+					QuestionCard lc = (QuestionCard)currentPlayer.getCurrentSquare();
+			        currentPlayer.questionCardSquare(lc);
+				}*/
+				 if(currentPlayer.getCurrentSquare().getType().equals(TypeSquares.GO_TO_JAIL)) {
+					Square s = currentPlayer.getCurrentSquare();
+					currentPlayer.setCurrentSquare(board.getJail());
+					if(!currentPlayer.goToJailSquare()) {
+						this.playersInJail.put(currentPlayer, 0); // insert to jail with 0 turns
+					}
+					else {
+						currentPlayer.setCurrentSquare(s);
+					}
+				}
+			 } 
+		else if(this.playersInJail.containsKey(currentPlayer)) {
+			this.playersInJail.replace(currentPlayer, this.playersInJail.get(currentPlayer)+1);
+		}
+		this.players.add(currentPlayer); //add to the end of the queue
+		}
+ }
 	/**
 	 * play Game - running all 50 turns
 	 * */

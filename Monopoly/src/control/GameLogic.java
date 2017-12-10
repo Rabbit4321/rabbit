@@ -23,6 +23,7 @@ public class GameLogic {
 		return board.getSquareType(Num);
 	}
 	
+	
 	/*
 	 * this method bring all players in a specific game 
 	   from an array of games in the singeltone monopoly

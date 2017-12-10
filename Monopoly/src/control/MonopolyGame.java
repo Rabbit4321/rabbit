@@ -29,13 +29,14 @@ public class MonopolyGame{
 	}
 	
 
-	public void startGame(int num,ArrayList<PlayerInGame> players) {
+	public static int CreateGame(int num,ArrayList<PlayerInGame> players) {
 		for(PlayerInGame p : players) {
 			SysData.AddPlayer(p);
 		}
 		Game g = new Game(num, players);
-		g.PlayGame();
+		games.add(g);
 		SysData.AddGame(g);
+		return g.getGameNum();
 		
 	}
 	//return players in a specific game

@@ -2,10 +2,12 @@ package view;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import control.GameLogic;
 import control.MonopolyGame;
+import control.PlayerInGameControl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +30,7 @@ import model.Game;
 import model.Player;
 import model.PlayerInGame;
 import model.Square;
+import model.TypeSquares;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -104,14 +107,22 @@ public class BoardGameController implements Initializable {
 	private void hundleBtnRoll(ActionEvent mouse){
 		
 	/*this button is appointed to turn on a method that will do is to activate the dices to roll and bring the results*/
+
+		if(playersInGame.add(p1) && playersInGame.add(p2)){
+		//	Game game = new Game(2,playersInGame);
+		//	game.PlayGame();
+		}
 		int result1;
 		int result2;
 		result1 = Dice.Roll();
 		result2 = Dice.Roll();
-		Game game =new Game(MonopolyGame.getCurrentGame()); // get the current game is playing right now
-		PlayerInGame playerInGame = MonopolyGame.getAllPlayersInGame(game).poll();//get the current player is play right now in the current game
-		playerInGame.hundleMovingThePlayer(result1+result2);
-
+	//	Game game =new Game(MonopolyGame.getCurrentGame()); // get the current game is playing right now
+	//	PlayerInGame playerInGame = MonopolyGame.getAllPlayersInGame(game).poll();//get the current player is play right now in the current game
+		int numGame = HomePageController.getInstance().gamenum;
+		Player pv = MonopolyGame.getAllPlayersInGame(MonopolyGame.getGameFromArray(numGame)).poll();
+		int square = PlayerInGameControl.MovePlayer(pv.getPlayerNum(), result1+result2);
+		if(GameLogic.getTypeSquareByNumber(square).compareTo(""))
+		
 	}
 	
 	@FXML
@@ -155,8 +166,18 @@ public class BoardGameController implements Initializable {
 //i think we will needed game logic in a singeltone way and his constructor will provide us the table we need*/
 	}
 	
+
+/*public static void main(String[] args) {
+	// TODO Auto-generated method stub
+	//just an example of an existing players for let the game to play
+	PlayerInGame p1 = new PlayerInGame(1,"Elinor",new Square(1,TypeSquares.START));
+	PlayerInGame p2 = new PlayerInGame(2,"Einav",new Square(1,TypeSquares.START));
+	ArrayList<PlayerInGame> playersInGame = new ArrayList<>();
+	if(playersInGame.add(p1) && playersInGame.add(p2)){
+		Game game = new Game(2,playersInGame);
+		game.PlayGame();
+	}
+
+	}*/
 }
-
-
-
 

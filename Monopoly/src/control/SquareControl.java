@@ -13,6 +13,14 @@ public class SquareControl {
 	public static boolean  movePlayerFromSquare(Player p, Square s){
 		return false;
 	}//////still not finished
-	
+	 public static void HandleProperty(int NumSquare) {
+		 
+	 }
+	 public static void HandleLuckyCard(int NumSquare) {
+		 
+	 }
+	public static void HandleQuestionCard(int NumSquare) {
+	 
+	}
 
 }

@@ -3,8 +3,10 @@ package view;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import control.MonopolyGame;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +16,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import model.Game;
+import model.PlayerInGame;
+import model.Square;
+import model.TypeSquares;
 
 public class HomePageController {
 	
@@ -28,7 +33,17 @@ private Button pscores_btn;
 private Button gameRoles_btn;
 @FXML
 private Button admin_btn;*/
+	public  int gamenum;
 
+	private static HomePageController instance;
+	
+	public static HomePageController getInstance()
+	{
+		if (instance == null)
+			instance = new HomePageController();
+		return instance;
+	}
+	
 
 ///////////HandleButtons//////////////Functions/////////////////////
 
@@ -57,6 +72,11 @@ public void hundleBtnNewGame(ActionEvent event) throws IOException{
 	    app_stage.setScene(home_page_scene);
 	    app_stage.setTitle("Monopoly game by Rabbit team");
 	    app_stage.show();
+	    /** transfer to add players to game controller*/
+		PlayerInGame p1 = new PlayerInGame(1,"Elinor",new Square(1,TypeSquares.START));
+		PlayerInGame p2 = new PlayerInGame(2,"Einav",new Square(1,TypeSquares.START));
+		ArrayList<PlayerInGame> playersInGame = new ArrayList<>();
+		gamenum=MonopolyGame.CreateGame(2,playersInGame);
 
 
 	}

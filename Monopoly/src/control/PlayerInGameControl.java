@@ -6,12 +6,14 @@ import javafx.beans.property.Property;
 import model.PlayerInGame;
 import model.Question;
 
-public class PlayerControl {
+public class PlayerInGameControl {
 
 	public static  boolean RollDice(){ // still not finished
 	return false;
 	}
-
+	public static int MovePlayer(int PlayerNum, int steps){//to marina - this method needs to return the square num accroding to the steps for the player. 
+		return 0;
+	}
 	
 	public  static String Answer(Question q){// still not finished
 		return null;
