@@ -204,10 +204,11 @@ public class Game{
 	System.out.println("The Winner Is :" + winner.getNickname() + "With score:" + winner.playerValue());
 		
 	}
-	
-	public Queue<PlayerInGame> getPlayers() {
-		return players;
+
+	public Queue<PlayerInGame> getPlayersQueqe() {		
+	return players;
 	}
+	
 	public void setPlayers(Queue<PlayerInGame> players) {
 		this.players = players;
 	}

@@ -81,6 +81,8 @@ public void hundleBtnNewGame(ActionEvent event) throws IOException{
 		PlayerInGame p1 = new PlayerInGame(1,"Elinor",new Square(1,TypeSquares.START));
 		PlayerInGame p2 = new PlayerInGame(2,"Einav",new Square(1,TypeSquares.START));
 		ArrayList<PlayerInGame> playersInGame = new ArrayList<>();
+		playersInGame.add(p1);
+		playersInGame.add(p2);
 		gamenum=MonopolyGame.CreateGame(2,playersInGame);
 		
 

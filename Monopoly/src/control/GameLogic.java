@@ -25,8 +25,7 @@ public class GameLogic {
 	 * received number of game
 	 */
 	public static Queue<PlayerInGame> bringAllPlayersInGame(int num){
-		return MonopolyGame.getInstance().getGameFromArray(num).getPlayers();
-		
+		return MonopolyGame.getInstance().getGameFromArray(num).getPlayersQueqe();		
 		
 		
 	}
