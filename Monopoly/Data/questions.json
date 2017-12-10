@@ -1,48 +1,779 @@
-{
-	"questions": [
-		{
-			"id": 1,
-			"text": "what is JSON?",
-			"difficulty": 0,
-			"isMultipleChoice": true,
-			"team": "AQUA",
-			"answers": [
-				{
-					"text": "evil character in movies",
-					"isCorrect": false
-				},
-				{
-					"text": "JavaScript Object Notation",
-					"isCorrect": true
-				},
-				{
-					"text": "a popular means of transferring data between servers and clients",
-					"isCorrect": true
-				},
-				{
-					"text": "Journalistic Stream Of News",
-					"isCorrect": false
-				}
-			],
-			"tags": ["Requirements"]
-		},
-		{
-			"id": 2,
-			"text": "JSON is language independent.",
-			"difficulty": 2,
-			"isMultipleChoice": false,
-			"team": "AQUA",
-			"answers": [
-				{
-					"text": "yes",
-					"isCorrect": true
-				},
-				{
-					"text": "no",
-					"isCorrect": false
-				}
-			],
-			"tags": ["TDD", "Requirements"]
-		}
-	]
+
+{"questions":[
+{  "id": 1,     "text": "Which of the following answers are types of requirements? ",
+    "difficulty": 1,    "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "User requirements, systems requirements",
+      "isCorrect": false   },
+    { "text": "Functional, half functional.",
+      "isCorrect": false   },
+    { "text": "Functional requirements, Non-functional requirements, Domain requirements.",
+      "isCorrect": false   },
+    { "text": "a + b + c are correct.",
+      "isCorrect": true } ],
+  "tags": ["Requirements"]
+},
+
+
+
+{  "id": 2,     "text": "Which of the following answers are types of non-functional requirements",
+      "difficulty": 0,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Operational requirements.",
+      "isCorrect": false   },
+    { "text": "Security requirements.",
+      "isCorrect": true   },
+    { "text": "Data requirements.",
+      "isCorrect": false   },
+    { "text": "Interface requirements.",
+      "isCorrect": false } ],
+  "tags": ["Requirements"]
+},
+
+
+{  "id": 3,     "text": "What are external requirements?   ",
+   "difficulty": 2,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Operational requirements.",
+      "isCorrect": false   },
+    { "text": "Requirements which are a consequence of organisational policies and procedures.",
+      "isCorrect": false   },
+    { "text": "Requirements which arise from factors which are external to the system and its development.",
+      "isCorrect": true   },
+    { "text": "Requirements which specify that the delivered product must behave in a particular way.",
+      "isCorrect": false } ],
+  "tags": ["Requirements"]
+},
+
+
+
+{  "id": 4,     "text": "Which of the following answers are types of non-functional requirements?   ",
+    "difficulty": 0,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Operational requirements.",
+      "isCorrect": false   },
+    { "text": "Security requirements.",
+      "isCorrect": true   },
+    { "text": "Data requirements.",
+      "isCorrect": false   },
+    { "text": "Interface requirements.",
+      "isCorrect": false } ],
+  "tags": ["Requirements"]
+},
+
+
+{  "id": 5,     "text": "what is IaaS?",
+    "difficulty": 2,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "refers to the delivery of computing capacity and infrastructure as a services.",
+      "isCorrect": false   },
+    { "text": "Encompasses all of the physical computing resources that support delivery of applications as a service.",
+      "isCorrect": false   },
+    { "text": "Provides a major cost savings to organizations.",
+      "isCorrect": false   },
+    { "text": "All the answers are correct.",
+      "isCorrect": true } ],
+  "tags": ["Cloud"]
+},
+
+{  "id": 6,     "text": "Which of the following is an example of SaaS?",
+    "difficulty": 0,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Facebook",
+      "isCorrect": false   },
+    { "text": "Phone application.",
+      "isCorrect": true   },
+    { "text": "Google services.",
+      "isCorrect": false   },
+    { "text": "There is no correct answer.",
+      "isCorrect": true } ],
+  "tags": ["Cloud"]
+},
+
+
+
+{  "id": 7,     "text": "What is the percentage of money from the total project amount required in the maintenance stage?",
+      "difficulty": 2,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "About 67% of the total cost of a product accrues during the maintenance phase.",
+      "isCorrect": true   },
+    { "text": "About 87% of the total cost of a product accrues during the maintenance phase.",
+      "isCorrect": false   },
+    { "text": "About 78% of the total cost of a product accrues during the maintenance phase.",
+      "isCorrect": false   },
+    { "text": "About 57% of the total cost of a product accrues during the maintenance phase.",
+      "isCorrect": false } ],
+  "tags": ["Costs and Risks"]
+},
+
+
+{  "id": 8,     "text": "What isn't a risk in the maintenance schedule?",
+     "difficulty": 1,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Delays of external partners may delay the project.",
+      "isCorrect": false   },
+    { "text": "Additional commitments.",
+      "isCorrect": false   },
+    { "text": "Internal constraints",
+      "isCorrect": false   },
+    { "text": "Lack of time.",
+      "isCorrect": true } ],
+  "tags": ["Costs and Risks"]
+},
+
+
+
+{  "id": 9,     "text": "What is not a risk of maintenance?",
+    "difficulty": 0,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Delays of external partners may delay the project",
+      "isCorrect": false   },
+    { "text": "Lack of standardization.",
+      "isCorrect": false   },
+    { "text": "Change of syste's customers",
+      "isCorrect": true   },
+    { "text": "Lack of Documentation.",
+      "isCorrect": false } ],
+  "tags": ["Costs and Risks"]
+},
+
+
+{  "id": 10,     "text": "what is Configuration Management?",
+     "difficulty": 2,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "a framework for organizing and managing work.",
+      "isCorrect": false   },
+    { "text": "approach to program development in which you inter-leave testing and code development.",
+      "isCorrect": false   },
+    { "text": "An engineering and management tool designed to assist both technical / engineering control of the system and in connection with the customer, in computerized systems in general and in large and complex systems in particular.",
+      "isCorrect": true   },
+    { "text": "Each day of the sprint, ideally at the same time, the development team members hold a timeboxed.",
+      "isCorrect": false } ],
+  "tags": ["Configuration Management"]
+},
+
+
+
+{  "id": 11,     "text": "What are the advantages of configuration management",
+     "difficulty": 1,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Clear and defined control over the various work environments and the transition between them.",
+      "isCorrect": true   },
+    { "text": "No regression between different versions.",
+      "isCorrect": false   },
+    { "text": "Management of non-parallel development between different developers and teams.",
+      "isCorrect": false   },
+    { "text": "Failure to monitor the status of the software at any given time.",
+      "isCorrect": false } ],
+  "tags": ["Configuration Management"]
+},
+
+
+
+{  "id": 12,     "text": "Which of the following problem, configuration management does not help solve?",
+    "difficulty": 0,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "The inability to allow two developers to work on the same file at the same time without overwriting each other's work.",
+      "isCorrect": false   },
+    { "text": "Inability to accurately restore back.",
+      "isCorrect": false   },
+    { "text": "Holding different versions, for the same product, with many different customers.",
+      "isCorrect": false   },
+    { "text": "Shows the configuration in a more convenient way to readץ",
+      "isCorrect": true } ],
+  "tags": ["Configuration Management"]
+},
+
+
+
+{  "id": 13,     "text": "Which of the following answers isn’t a skill needed for maintenance include?",
+       "difficulty": 20,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "The ability to determine the cause of failure of a large product.",
+      "isCorrect": false   },
+    { "text": "The ability to function effectively without adequate documentation. ",
+      "isCorrect": false   },
+    { "text": "The ability to be patient and nice.",
+      "isCorrect": true   },
+    { "text": "Journalistic Stream Of News",
+      "isCorrect": false } ],
+  "tags": ["Maintenance"]
+},
+
+
+
+{  "id": 14,     "text": "Maintenance is one of the most difficult aspects of software production because...?",
+    "difficulty": 1,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "It’s the most expensive phase.",
+      "isCorrect": false   },
+    { "text": "Maintenance incorporates aspects of all other phases.",
+      "isCorrect": true   },
+    { "text": "There are a lot of faults.",
+      "isCorrect": false   },
+    { "text": "Because it's the final stage.",
+      "isCorrect": false } ],
+  "tags": ["Maintenance"]
+},
+
+
+{  "id": 15,     "text": "Which of the following is the most expensive?",
+     "difficulty": 0,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Writing requirements.",
+      "isCorrect": false   },
+    { "text": "Code writing.",
+      "isCorrect": false   },
+    { "text": "Maintenance.",
+      "isCorrect": true   },
+    { "text": "Assimilation.",
+      "isCorrect": false } ],
+  "tags": ["Maintenance"]
+},
+
+
+
+{  "id": 16,     "text": "How many principals SOA has?",
+    "difficulty": 2,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "9",
+      "isCorrect": true   },
+    { "text": "10",
+      "isCorrect": false   },
+    { "text": "11",
+      "isCorrect": false   },
+    { "text": "3",
+      "isCorrect": false } ],
+  "tags": ["SOA"]
+},
+
+
+{  "id": 17,     "text": "What is not an advantage of SOA?",
+    "difficulty": 0,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "This helps the company to deal with more than one product across more than one platform.",
+      "isCorrect": false   },
+    { "text": "It helps the company export all its data.",
+      "isCorrect": true   },
+    { "text": "Enable the company to add flexibility to the systems that exist.",
+      "isCorrect": false   },
+    { "text": "Helping lower costs of application development.",
+      "isCorrect": false } ],
+  "tags": ["SOA"]
+},
+
+
+
+{  "id": 18,     "text": "Which of the following is not a characteristic of SOA?",
+   "difficulty": 1,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "System architecture is based on Services.",
+      "isCorrect": false   },
+    { "text": "Services are autonomous.",
+      "isCorrect": false   },
+    { "text": "The internal structure of the service is not visible to the consumer.",
+      "isCorrect": false   },
+    { "text": "All information is exposed and found on an external server.",
+      "isCorrect": true } ],
+  "tags": ["SOA"]
+},
+
+
+
+{  "id": 19,     "text": "Which of the following answers is not a architecture type?",
+     "difficulty": 0,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Microservice architecture.",
+      "isCorrect": false   },
+    { "text": "Event driven architecture.",
+      "isCorrect": false   },
+    { "text": "Space based architecture. ",
+      "isCorrect": true   },
+    { "text": "Design architecture.",
+      "isCorrect": false } ],
+  "tags": ["Software Architecture"]
+},
+
+
+
+{  "id": 20,     "text": "Which of the following architecture types is dealing mainly with transferring requests and returning answers?",
+      "difficulty": 1,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Microservice architecture.",
+      "isCorrect": false   },
+    { "text": "Event driven architecture.",
+      "isCorrect": false   },
+    { "text": "Space based architecture.",
+      "isCorrect": true   },
+    { "text": "Pipeline architecture.",
+      "isCorrect": false } ],
+  "tags": ["Software Architecture"]
+},
+
+
+
+{  "id": 21,     "text": "Which of the following architecture types is referring to one large system that provides various services?",
+      "difficulty": 1,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Microservice architecture.",
+      "isCorrect": true   },
+    { "text": "Event driven architecture.",
+      "isCorrect": false   },
+    { "text": "Space based architecture.",
+      "isCorrect": false   },
+    { "text": "Pipeline architecture.",
+      "isCorrect": false } ],
+  "tags": ["Software Architecture"]
+},
+
+
+{  "id": 22,     "text": "Which of the following answers is an example of microservice architecture?",
+     "difficulty": 2,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Waze.",
+      "isCorrect": false   },
+    { "text": "Facebook.",
+      "isCorrect": false   },
+    { "text": "Google.",
+      "isCorrect": false   },
+    { "text": "Email.",
+      "isCorrect": true } ],
+  "tags": ["Software Architecture"]
+},
+
+
+{  "id": 23,     "text": "Which of the following answers is an example of event driven architecture?",
+       "difficulty": 2,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Waze.",
+      "isCorrect": true   },
+    { "text": "Facebook.",
+      "isCorrect": false   },
+    { "text": "Google.",
+      "isCorrect": false   },
+    { "text": "Email.",
+      "isCorrect": false } ],
+  "tags": ["Software Architecture"]
+},
+
+
+{  "id": 24,     "text": "Which of the following is intended for The View Model is responsible for exposing methods, commands, and other properties that helps to maintain the state of the view, manipulate the model as the result of actions on the view?",
+    "difficulty": 2,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "MVP",
+      "isCorrect": false   },
+    { "text": "MVA",
+      "isCorrect": false   },
+    { "text": "MVC",
+      "isCorrect": false   },
+    { "text": "MVVM",
+      "isCorrect": true } ],
+  "tags": ["Design pattern"]
+},
+
+
+
+{  "id": 25,     "text": "Which of the following is intended for provide instantiation mechanisms, making it easier to create objects in a way that suits the situation?",
+     "difficulty": 2,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Structural.",
+      "isCorrect": false   },
+    { "text": "Creational.",
+      "isCorrect": true   },
+    { "text": "Behavioral.",
+      "isCorrect": false   },
+    { "text": "Verification. ",
+      "isCorrect": false } ],
+  "tags": ["Design pattern"]
+},
+
+
+
+{  "id": 26,     "text": "Why should we use design pattern?",
+      "difficulty": 0,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "It’s the easy way.",
+      "isCorrect": false   },
+    { "text": "It's faster.",
+      "isCorrect": false   },
+    { "text": "It's more efficient because we use proven solutions to our problems.",
+      "isCorrect": true   },
+    { "text": "Keeps the data in the best and most effective way.",
+      "isCorrect": false } ],
+  "tags": ["Design pattern"]
+},
+
+
+
+{  "id": 27,     "text": "Which of the following is not a type of pattern?",
+     "difficulty": 0,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "MVP",
+      "isCorrect": false   },
+    { "text": "MVA",
+      "isCorrect": true   },
+    { "text": "MVC",
+      "isCorrect": false   },
+    { "text": "MVVM",
+      "isCorrect": false } ],
+  "tags": ["Design pattern"]
+},
+
+
+{  "id": 28,     "text": "What types of design pattern there are?",
+      "difficulty": 1,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Operational, architecture.",
+      "isCorrect": false   },
+    { "text": "Structural, Creational, Behavioral. ",
+      "isCorrect": true   },
+    { "text": "Validation, Verification. ",
+      "isCorrect": false   },
+    { "text": "Visibility, Practicality.",
+      "isCorrect": false } ],
+  "tags": ["Design pattern"]
+},
+
+
+
+{  "id": 29,     "text": "Who uses TDD?",
+    "difficulty": 0,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "UX.",
+      "isCorrect": false   },
+    { "text": "Product owner.",
+      "isCorrect": false   },
+    { "text": "Developer.",
+      "isCorrect": true   },
+    { "text": "UI",
+      "isCorrect": false } ],
+  "tags": ["TDD"]
+},
+
+
+{  "id": 30,     "text": "Which of the following is not an advantage of TDD?",
+      "difficulty": 1,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "There is a test for each code segment so there is code coverage.  ",
+      "isCorrect": false   },
+    { "text": "When the test fails, it tells us where the problem will be.",
+      "isCorrect": false   },
+    { "text": "If TDD is used, there is no need to perform additional tests after writing the code.",
+      "isCorrect": true   },
+    { "text": "The tests themselves are a form of documentation that describe what the code should be doing.",
+      "isCorrect": false } ],
+  "tags": ["TDD"]
+},
+
+
+
+
+{  "id": 31,     "text": "What are the initials of TDD",
+      "difficulty": 0,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Test delay development.",
+      "isCorrect": false   },
+    { "text": "Test driven development.",
+      "isCorrect": true   },
+    { "text": "Test delay driven.",
+      "isCorrect": false   },
+    { "text": "Test driven delay.",
+      "isCorrect": false } ],
+  "tags": ["TDD"]
+},
+
+
+
+{  "id": 32,     "text": "TDD process activities are…?",
+     "difficulty": 2,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+   { "text": "Write tests, identify the functionality that is required, check test.",
+      "isCorrect": false   },
+    { "text": "Write a test for this functionality, Run the test, Implement the functionality and rerun the test, move on to implementing the next chunk of functionality.",
+      "isCorrect": false   },
+    { "text": "Identifying the increment of functionality that is required, Write a test for this functionality, Run the test, Implement the functionality and rerun the test, move on to implementing the next chunk of functionality.",
+      "isCorrect": true   },
+    { "text": "Run the test, Write a test for this functionality, Implement the functionality and rerun the test, move on to implementing the next chunk of functionality.",
+      "isCorrect": false } ],
+  "tags": ["TDD"]
+},
+
+
+{  "id": 33,     "text": "TDD is an example of?",
+    "difficulty": 1,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Black-box testing.",
+      "isCorrect": true   },
+    { "text": "white-box testing ",
+      "isCorrect": false   },
+    { "text": "Client's testing.",
+      "isCorrect": false   },
+    { "text": "No correct answer.",
+      "isCorrect": false } ],
+  "tags": ["TDD"]
+},
+
+
+
+{  "id": 34,     "text": "TDD is…?",
+   "difficulty": 0,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Approach to program development in which you inter-leave testing and code development. ",
+      "isCorrect": true   },
+    { "text": "Method to program development in which you inter-leave testing and code development.",
+      "isCorrect": false   },
+    { "text": "Tests are written after code and ‘passing’ the tests is the critical driver of development.",
+      "isCorrect": false   },
+    { "text": "Customer testing.",
+      "isCorrect": false } ],
+  "tags": ["TDD"]
+},
+
+
+{  "id": 35,     "text": "During Sprint planning, who are the positions holders who should agree on the sprint goals?",
+      "difficulty": 2,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Product owner and developer.",
+      "isCorrect": false   },
+    { "text": "Development team. ",
+      "isCorrect": false   },
+    { "text": "Product owner and scrum master.",
+      "isCorrect": false   },
+    { "text": "Product owner and development team.",
+      "isCorrect": true } ],
+  "tags": ["Agile"]
+},
+
+
+
+{  "id": 36,     "text": "Who is not the official in the SCRUM framework?",
+      "difficulty": 0,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Scrum administrator.",
+      "isCorrect": false   },
+    { "text": "Scrum officer.",
+      "isCorrect": false   },
+    { "text": "Scrum master.",
+      "isCorrect": true   },
+    { "text": "Scrum manager.",
+      "isCorrect": false } ],
+  "tags": ["Agile"]
+},
+
+
+
+{  "id": 37,     "text": "The definition of SCRUM is….? ",
+    "difficulty": 0,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Framework of organizing and managing work.",
+      "isCorrect": true   },
+    { "text": "Determination sprints.",
+      "isCorrect": false   },
+    { "text": "Perform what tests have managed to be sufficient compared to the requirements.",
+      "isCorrect": false   },
+    { "text": "A procedure in which daily meetings are required.",
+      "isCorrect": false } ],
+  "tags": ["Agile"]
+},
+
+
+
+{  "id": 38,     "text": "The main advantage of Agile method?",
+    "difficulty": 1,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Business people and developers must work together daily throughout the project.",
+      "isCorrect": false   },
+    { "text": "Welcome changing requirements, even late in development.",
+      "isCorrect": false   },
+    { "text": "Enables fast, customized development.",
+      "isCorrect": true   },
+    { "text": "Use iterations.",
+      "isCorrect": false } ],
+  "tags": ["Agile"]
+},
+
+
+{  "id": 39,     "text": "The ability to serve millions of people using the cloud is ...?",
+     "difficulty": 2,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Non-functional requirement- scalability.",
+      "isCorrect": true   },
+    { "text": "Non-functional requirement- capability.",
+      "isCorrect": false   },
+    { "text": "Functional requirement- scalability.",
+      "isCorrect": false   },
+    { "text": "Functional requirement- capability.",
+      "isCorrect": false } ],
+  "tags": ["Cloud"]
+},
+
+
+{  "id": 40,     "text": "What is virtualization?",
+    "difficulty": 2,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Event Oriented Architecture.",
+      "isCorrect": false   },
+    { "text": "Design Pattern.",
+      "isCorrect": false   },
+    { "text": "Generates different objects according to the resulting input.",
+      "isCorrect": false   },
+    { "text": "Use one program to run many software instances.",
+      "isCorrect": true } ],
+  "tags": ["Cloud"]
+},
+
+
+
+{  "id": 41,     "text": "When will we use the cloud?",
+     "difficulty": 1,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "In case there is little information.",
+      "isCorrect": false   },
+    { "text": "In case there are multiple files.",
+      "isCorrect": false   },
+    { "text": "In cases of sensitive data.",
+      "isCorrect": true   },
+    { "text": "No answer is correct.",
+      "isCorrect": false } ],
+  "tags": ["Cloud"]
+},
+
+
+{  "id": 42,     "text": "What is true about private cloud?",
+    "difficulty": 0,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Support many customers.",
+      "isCorrect": false   },
+    { "text": "Requires more maintenance than public cloud.",
+      "isCorrect": true   },
+    { "text": "Support many customers.",
+      "isCorrect": false   },
+    { "text": "Remote servers.",
+      "isCorrect": false } ],
+  "tags": ["Cloud"]
+},
+
+
+
+{  "id": 43,     "text": "What is true about public cloud?",
+     "difficulty": 0,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Requires more maintenance than private cloud.",
+      "isCorrect": false   },
+    { "text": "Support one customer.",
+      "isCorrect": false   },
+    { "text": "Not remote servers.",
+      "isCorrect": false   },
+    { "text": "Support many customers.",
+      "isCorrect": true } ],
+  "tags": ["Cloud"]
+},
+
+
+
+{  "id": 44,     "text": "What is not true about public cloud?",
+     "difficulty": 0,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Requires less maintenance than private cloud.",
+      "isCorrect": false   },
+    { "text": "Remote servers.",
+      "isCorrect": false   },
+    { "text": "Support many customers.",
+      "isCorrect": false   },
+    { "text": "More expensive than private cloud.",
+      "isCorrect": true } ],
+  "tags": ["Cloud"]
+},
+
+
+
+{  "id": 45,     "text": "What is not true about private cloud?",
+     "difficulty": 0,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Support one customer.",
+      "isCorrect": false   },
+    { "text": "More expensive than public cloud.",
+      "isCorrect": false   },
+    { "text": "Remote servers.",
+      "isCorrect": true   },
+    { "text": "Requires more maintenance.",
+      "isCorrect": false } ],
+  "tags": ["Cloud"]
+},
+
+
+
+{  "id": 46,     "text": "What is black box testing?",
+    "difficulty": 0,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "User testing",
+      "isCorrect": false   },
+    { "text": "Data testing.",
+      "isCorrect": false   },
+    { "text": "Software tests relating to the internal structure of the component or system.",
+      "isCorrect": false   },
+    { "text": "Tests without reference to the internal structure of the component or system.",
+      "isCorrect": true } ],
+  "tags": ["SoftwareTesting"]
+},
+
+
+{  "id": 47,     "text": "What is white box testing?",
+    "difficulty": 0,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Software tests relating to the internal structure of the component or system",
+      "isCorrect": true   },
+    { "text": "User testing ",
+      "isCorrect": false   },
+    { "text": "Tests without reference to the internal structure of the component or system",
+      "isCorrect": false   },
+    { "text": "Data testing.",
+      "isCorrect": false } ],
+  "tags": ["SoftwareTesting"]
+},
+
+
+{  "id": 48,     "text": "48.	Development testing is?",
+    "difficulty": 2,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Unit testing, Component testing, System testing.",
+      "isCorrect": true   },
+    { "text": "Release testing, development testing, user testing.",
+      "isCorrect": false   },
+    { "text": "Interface testing.",
+      "isCorrect": false   },
+    { "text": "Data testing.",
+      "isCorrect": false } ],
+  "tags": ["SoftwareTesting"]
+},
+
+
+{  "id": 49,     "text": "Which of the following answers is not a stages of testing",
+      "difficulty": 0,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Release testing.",
+      "isCorrect": false   },
+    { "text": "Development testing.",
+      "isCorrect": false   },
+    { "text": "Software testing.",
+      "isCorrect": true   },
+    { "text": "User testing.",
+      "isCorrect": false } ],
+  "tags": ["SoftwareTesting"]
+},
+
+{  "id": 50,     "text": "What is not the purpose of program testing",
+     "difficulty": 1,   "isMultipleChoice": false,   "team": "Rabbit",
+  "answers": [
+    { "text": "Testing is intended to show that a program does what it is intended to do and to discover program defects before it is put into use.",
+      "isCorrect": false   },
+    { "text": "You check the results of the test run for errors, anomalies or information about the program’s non-functional attributes.",
+      "isCorrect": false   },
+    { "text": "Can reveal presence of errors .",
+      "isCorrect": false   },
+    { "text": "Can reveal the absence of errors.",
+      "isCorrect": true } ],
+  "tags": ["SoftwareTesting"]
 }
+
+]}
