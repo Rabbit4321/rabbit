@@ -562,7 +562,7 @@ public static boolean AddQuestions() {//בסוף כל יציאה מהמשחק יש לקרוא למתודה הזא
 	public static boolean AddQuestion(Question q) {
 		if(!AllQuestions.contains(q))
 		{
-			AllQuestions.add(q);
+			AllQuestions.a(q);
 			
 			return true;
 		}
