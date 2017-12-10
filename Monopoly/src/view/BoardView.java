@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class BoardView {
 	
-	private ArrayList<SquareView> squares;
+	private static ArrayList<SquareView> squares;
 	
-	private SquareView Start;
+	private static SquareView Start;
 	
 	
 	public BoardView(){
@@ -72,12 +72,22 @@ public class BoardView {
 		this.squares = sq;
 	}
 
-	public SquareView getStart() {
+	public static SquareView getStart() {
 		return Start;
 	}
 
 	public void setStart(SquareView start) {
 		Start = start;
+	}
+	public static SquareView getSquareByNum(int sqNum) {
+		for(SquareView s : squares) {
+		System.out.println(s.getNum());
+		}
+		for(SquareView  sq : squares) {
+			if(sq.getNum() == sqNum)
+				return sq;
+		}
+		return null;
 	}
 
 }

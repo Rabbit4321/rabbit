@@ -453,7 +453,7 @@ public class SysData implements Serializable{
 		return false;
 	}*/
 	
-public static boolean AddQuestions() {
+public static boolean AddQuestions() {//בסוף כל יציאה מהמשחק יש לקרוא למתודה הזאת
 		
 		
 			//write to json
@@ -519,7 +519,7 @@ public static boolean AddQuestions() {
 				file.write(obj.toJSONString());
 				file.flush();
 				
-				System.out.println("\nJSON Object: " + ques);
+			//	System.out.println("\nJSON Object: " + ques);
 				
 				
 				return true;
@@ -551,13 +551,26 @@ public static boolean AddQuestions() {
 		if(AllQuestions.contains(q))
 		{
 			AllQuestions.remove(q);
-			//remove from json 
+			
 			return true;
 		}
 		
 		
 		return false;
 	}
+	
+	public static boolean AddQuestion(Question q) {
+		if(!AllQuestions.contains(q))
+		{
+			AllQuestions.add(q);
+			
+			return true;
+		}
+		
+		
+		return false;
+	}
+	
 	
 	public static boolean AddPlayer(Player p) {
 	

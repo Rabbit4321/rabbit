@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 
 public class Admin implements Actions{
 	
@@ -49,10 +49,10 @@ public class Admin implements Actions{
 	
 	@Override
 	public boolean AddQuestion(Question q) {
-		
+		return false;
+	//	throw new NotImplementedException();
 		//TODO BOM! fix the call to SysData
 		//return SysData.AddQuestion(q);
-		throw new NotImplementedException();
 	}
 
 }

@@ -38,8 +38,13 @@ public class FXMain extends Application{
 		launch(args);
 		
 
+<<<<<<< HEAD
 	}
+=======
+	
+>>>>>>> branch 'Iteration2_EX4_branch' of https://elinorush1234@bitbucket.org/SESQAHAIFAU2018/rabbit-repo.git
  }
+}
 
 
 

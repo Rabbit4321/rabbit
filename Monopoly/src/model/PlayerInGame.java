@@ -1,9 +1,9 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
-import javax.swing.JOptionPane;
+
+
 
 import control.MonopolyGame;
 import javafx.animation.KeyFrame;
@@ -67,12 +67,8 @@ public class PlayerInGame extends Player{
 		if(p.getPropertyOwner()==null)
 		{
 			
-			 int n = JOptionPane.showConfirmDialog(
-			            null,
-			            "Would you like buy this property?",
-			            "An Inane Question",
-			            JOptionPane.YES_NO_OPTION);
-			if(n == JOptionPane.YES_OPTION)
+			// int n = JOptionPane.showConfirmDialog(null,"Would you like buy this property?", "An Inane Question",JOptionPane.YES_NO_OPTION);
+			if(true)
 			{
 				
 				Question q = SysData.getInstance().propertyQuestion(p);
@@ -124,15 +120,10 @@ public class PlayerInGame extends Player{
 		}
 		else //נכס תפוס
 		{
-			int n = JOptionPane.showConfirmDialog(
-		            null,
-		            "pay 15% last price - yes OR buy 150% last price - no",
-		            "An Inane Question",
-		            JOptionPane.YES_NO_OPTION);
-			if(n == JOptionPane.YES_OPTION)
+		//	int n = JOptionPane.showConfirmDialog(null,"pay 15% last price - yes OR buy 150% last price - no","An Inane Question",JOptionPane.YES_NO_OPTION);
+			if(true)
 			{
 				transwerMoneyFromPlayerToPlayer(p.getPropertyOwner(), p.getLastPropertyCost()*0.85);
-			
 			
 			}
 			else
@@ -152,12 +143,8 @@ public class PlayerInGame extends Player{
 		
 		if(this.getNumOfDisqualifications()==3)
 			threeDisq();	
-		int n = JOptionPane.showConfirmDialog(
-	            null,
-	            "pay 100000 - yes OR wait - no",
-	            "An Inane Question",
-	            JOptionPane.YES_NO_OPTION);
-		if(n == JOptionPane.YES_OPTION)
+		//int n = JOptionPane.showConfirmDialog(null,"pay 100000 - yes OR wait - no","An Inane Question",JOptionPane.YES_NO_OPTION);
+		if(true)
 		{
 				setInJail(false);
 				if(Bank.ChargeMoneyFromPlayer(this, 100000))
@@ -220,12 +207,8 @@ public class PlayerInGame extends Player{
 	
 	public boolean exitGame()
 	{
-		int n = JOptionPane.showConfirmDialog(
-	            null,
-	            "Are you sure you want to exit?",
-	            "An Inane Question",
-	            JOptionPane.YES_NO_OPTION);
-		if(n == JOptionPane.YES_OPTION)
+		//int n = JOptionPane.showConfirmDialog(null,"Are you sure you want to exit?","An Inane Question",JOptionPane.YES_NO_OPTION);
+		if(true)
 		{
 			returnProperties();
 				return true;
@@ -242,20 +225,7 @@ public class PlayerInGame extends Player{
 	{
 		currentMoney+=paymant;//הוספת בדיקות
 	}
-/*	public boolean sellProperty(Property p)
-	{
-		if(this.properties.contains(p))
-		{
-			currentMoney+=p.getPropertyCost();
-			this.properties.remove(p);
-		
-			
-			return true;
-		}
-		
-		
-		return false;
-	}*/
+
 	
 	public boolean buyPropertyFromPlayer(Property pro, PlayerInGame pla, double amount)
 	{
@@ -400,44 +370,6 @@ public class PlayerInGame extends Player{
 		this.properties = properties;
 	}
 	
-	public void hundleMovingThePlayer(int numOfSteps){
-		/*
-		 * final Timeline timeline = new Timeline();
-				timeline.setCycleCount(1);		//timeline.setAutoReverse(true);
-				final KeyValue kv = new KeyValue(player.xProperty(), 300);
-				final KeyValue kv2 = new KeyValue(player.yProperty(), player.yProperty().get());
-				final KeyValue kv3 = new KeyValue(player.yProperty(), 500);
-				final KeyFrame kf = new KeyFrame(Duration.millis(1500), kv);// means in how much period of time the rabbit will get to the cordinates i define him
-				final KeyFrame kf2 = new KeyFrame(Duration.millis(1500), kv2);
-			final KeyFrame kf3 = new KeyFrame(Duration.millis(2500), kv3);
-				timeline.getKeyFrames().addAll(kf,kf2,kf3);
-				timeline.play();
-				*/
-				//change in x
-				final Timeline timeline1 = new Timeline();
-				timeline1.setCycleCount(1/*Timeline.INDEFINITE*/);
-				BoardView b = new BoardView();
-				b.RestartBoardView();
-				SquareView  s = new SquareView(40,580,380);
-				BoardGameController.getPlayer();
-				final KeyValue kv = new KeyValue(BoardGameController.getPlayer().xProperty(), s.getX() - b.getStart().getX());//-> don't sure what it means
-				final KeyFrame kf = new KeyFrame(Duration.millis(500), kv);// means in how much period of time the rabbit will get to the cordinates i define him
-				timeline1.getKeyFrames().addAll(kf);
-				
-				
-				//change in y
-				final Timeline timeline2 = new Timeline();
-				timeline2.setCycleCount(1/*Timeline.INDEFINITE*/);
-				
-				final KeyValue kv1 = new KeyValue(BoardGameController.getPlayer().yProperty(), b.getStart().getY() - s.getY());
-				final KeyFrame kf1 = new KeyFrame(Duration.millis(1500), kv1);// means in how much period of time the rabbit will get to the cordinates i define him
 
-				timeline2.getKeyFrames().addAll(kf1);
-				
-				
-				SequentialTransition sequence = new SequentialTransition(timeline1, timeline2);
-				sequence.play();
-	}
-	
 	
 }

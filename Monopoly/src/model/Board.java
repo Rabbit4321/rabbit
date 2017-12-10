@@ -213,11 +213,20 @@ public class Board {
 	 * get type of square on board
 	 * */
 	public String getSquareType(int numSquare) {
+		this.toString();
 		for(Square s : this.AllSquares) {
-			if(s.getNum() == numSquare)
-				return s.getClass().toString();
+			if(s != null) {
+				if(s.getNum() == numSquare) {
+					if(s instanceof Property)
+						return Property.class.getSimpleName();
+					else if(s instanceof LuckyCard)
+						return LuckyCard.class.getSimpleName();
+					else if(s instanceof QuestionCard)
+						return QuestionCard.class.getSimpleName();
+				}
+			}
 		}
-		return null;
+		return Square.class.getSimpleName();
 	}
 	
 	public Square getStart() {
