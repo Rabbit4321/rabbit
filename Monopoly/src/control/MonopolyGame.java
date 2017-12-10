@@ -16,7 +16,7 @@ public class MonopolyGame{
 	
 	private static MonopolyGame instance;
 	
-	
+	private static Board board;
 	private static ArrayList<Game> games = new ArrayList<Game>();
 	private Admin admin;
 
@@ -27,7 +27,12 @@ public class MonopolyGame{
 			instance = new MonopolyGame();
 		return instance;
 	}
+
 	
+	public static String getTypeSquareByNumber(int Num) {
+	//	board =new Board();
+		return board.getSquareType(Num).toString();
+	}
 
 	public static int CreateGame(int num,ArrayList<PlayerInGame> players) {
 		for(PlayerInGame p : players) {
@@ -35,6 +40,7 @@ public class MonopolyGame{
 		}
 		Game g = new Game(num, players);
 		games.add(g);
+		board =new Board();
 		SysData.AddGame(g);
 		return g.getGameNum();
 		
@@ -66,7 +72,7 @@ public class MonopolyGame{
 		return Game.getCounter();
 	}
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//just an example of an existing players for let the game to play
 		PlayerInGame p1 = new PlayerInGame(1,"Elinor",new Square(1,TypeSquares.START));
@@ -78,7 +84,7 @@ public class MonopolyGame{
 		}
 	
 		
-	}
+	}*/
 	
 	
 	

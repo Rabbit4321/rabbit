@@ -2,6 +2,13 @@ package view;
 
 import javax.swing.JOptionPane;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.SequentialTransition;
+import javafx.animation.Timeline;
+import javafx.fxml.FXML;
+import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 import model.Bank;
 import model.LuckyCard;
 import model.Property;
@@ -15,6 +22,17 @@ public class PlayerInGameView {
 	private int playerNum;
 	private SquareView currentSquare;
 	private int game;
+	
+	public PlayerInGameView(int playerNum,SquareView currentSquare,int game) {
+		this.playerNum =playerNum;
+		this.currentSquare= currentSquare;
+		this.game =game;
+		System.out.println(playerNum  + " " + currentSquare.getNum() +" "+ game);
+	}
+	public void ChangeSquareViews(SquareView s) {
+		hundleMovingThePlayer(s);
+		currentSquare = s;
+	}
 	
 	/**
 	 * arriving to property square
@@ -149,6 +167,46 @@ public class PlayerInGameView {
 			Bank.ChargeMoneyFromPlayer(this, knas);
 			plusDisq();
 		}*/
+	}
+
+	public void hundleMovingThePlayer(SquareView sqNew){
+		/*
+		 * final Timeline timeline = new Timeline();
+				timeline.setCycleCount(1);		//timeline.setAutoReverse(true);
+				final KeyValue kv = new KeyValue(player.xProperty(), 300);
+				final KeyValue kv2 = new KeyValue(player.yProperty(), player.yProperty().get());
+				final KeyValue kv3 = new KeyValue(player.yProperty(), 500);
+				final KeyFrame kf = new KeyFrame(Duration.millis(1500), kv);// means in how much period of time the rabbit will get to the cordinates i define him
+				final KeyFrame kf2 = new KeyFrame(Duration.millis(1500), kv2);
+			final KeyFrame kf3 = new KeyFrame(Duration.millis(2500), kv3);
+				timeline.getKeyFrames().addAll(kf,kf2,kf3);
+				timeline.play();
+				*/
+				//change in x
+				final Timeline timeline1 = new Timeline();
+				timeline1.setCycleCount(1/*Timeline.INDEFINITE*/);
+				
+				SquareView  s = sqNew;
+				System.out.println( "Square "+s.getX() +" "+s.getY());
+				System.out.println(currentSquare.getNum() + " " + currentSquare.getX() + " "+currentSquare.getY());
+				System.out.println(BoardGameController.getPlayer().xProperty());
+				final KeyValue kv = new KeyValue(BoardGameController.getPlayer().xProperty(), s.getX() - currentSquare.getX());//-> don't sure what it means
+				final KeyFrame kf = new KeyFrame(Duration.millis(500), kv);// means in how much period of time the rabbit will get to the cordinates i define him
+				timeline1.getKeyFrames().addAll(kf);
+				
+				
+				//change in y
+				final Timeline timeline2 = new Timeline();
+				timeline2.setCycleCount(1/*Timeline.INDEFINITE*/);
+				
+				final KeyValue kv1 = new KeyValue(BoardGameController.getPlayer().yProperty(), currentSquare.getY() - s.getY());
+				final KeyFrame kf1 = new KeyFrame(Duration.millis(1500), kv1);// means in how much period of time the rabbit will get to the cordinates i define him
+
+				timeline2.getKeyFrames().addAll(kf1);
+				
+				
+				SequentialTransition sequence = new SequentialTransition(timeline1, timeline2);
+				sequence.play();
 	}
 	
 	

@@ -9,19 +9,14 @@ import model.PlayerInGame;
 
 public class GameLogic {
 
-	private static Board board = new Board();
+
+	
 	/*
 	 * method bringAllPlayersInGame
 	 * Received number of game
 	 * return PriorityQueue of PlayerInGame
 	 */
-	public static void RestartBoard() {
-		board.RestartBoard();
-	}
-	
-	public static String getTypeSquareByNumber(int Num) {
-		return board.getSquareType(Num);
-	}
+
 	
 	
 	/*

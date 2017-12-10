@@ -72,11 +72,17 @@ public void hundleBtnNewGame(ActionEvent event) throws IOException{
 	    app_stage.setScene(home_page_scene);
 	    app_stage.setTitle("Monopoly game by Rabbit team");
 	    app_stage.show();
+	    //restart the boardView
+	    BoardView b = new BoardView();
+		b.RestartBoardView();
+		
 	    /** transfer to add players to game controller*/
+	    MonopolyGame.getInstance().InitializeData();
 		PlayerInGame p1 = new PlayerInGame(1,"Elinor",new Square(1,TypeSquares.START));
 		PlayerInGame p2 = new PlayerInGame(2,"Einav",new Square(1,TypeSquares.START));
 		ArrayList<PlayerInGame> playersInGame = new ArrayList<>();
 		gamenum=MonopolyGame.CreateGame(2,playersInGame);
+		
 
 
 	}

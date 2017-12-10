@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import control.GameLogic;
 import control.MonopolyGame;
 import control.PlayerInGameControl;
+import control.SquareControl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -63,11 +66,22 @@ public class BoardGameController implements Initializable {
 	@FXML
 	private TextField numRolled;
 	
+	public BoardView board;
+	
+	public PlayerInGameView pinv;
+	
 	
 	/////////////////////////////////////////////getters & setters///////////////////////
-	
+
 	public static ImageView getPlayer(){
+		Image image = new Image("file:img/Bugsbunny2011.png");
+		ImageView p = new ImageView();
+		p.setImage(image);
+		p.setX(600);
+		p.setY(290);
+		player = p;
 		return player;
+		
 	}
 ///////////HandleButtons//////////////Functions/////////////////////
 	
@@ -101,29 +115,70 @@ public class BoardGameController implements Initializable {
 		when a player wants to leave the game, this method will made another method(that belongs to the Game class) to work*/
 
 	}
+	
+	 public static void showPropertyMessage(ActionEvent event){
+
+		    Alert alert = new Alert(AlertType.INFORMATION);
+		    alert.setTitle("Information Dialog");
+		    alert.setHeaderText("You are in  PROPERTY SQUARE");
+		    alert.setContentText("The data was entered to database");
+
+		    alert.showAndWait();
+		      }
+	 
+	 public static void showLuckyCardMessage(ActionEvent event){
+
+		    Alert alert = new Alert(AlertType.INFORMATION);
+		    alert.setTitle("Information Dialog");
+		    alert.setHeaderText("You are in  PROPERTY SQUARE");
+		    alert.setContentText("The data was entered to database");
+
+		    alert.showAndWait();
+		      }
+	 public static void showQuestionMessage(ActionEvent event){
+
+		    Alert alert = new Alert(AlertType.INFORMATION);
+		    alert.setTitle("Information Dialog");
+		    alert.setHeaderText("You are in  PROPERTY SQUARE");
+		    alert.setContentText("The data was entered to database");
+
+		    alert.showAndWait();
+		      }
 	//https://docs.oracle.com/javafx/2/animations/basics.htm
 	//http://www.java2s.com/Tutorials/Java/JavaFX/1010__JavaFX_Timeline_Animation.htm
 	@FXML
-	private void hundleBtnRoll(ActionEvent mouse){
+	private void hundleBtnRoll(MouseEvent mouse){
 		
 	/*this button is appointed to turn on a method that will do is to activate the dices to roll and bring the results*/
 
-		if(playersInGame.add(p1) && playersInGame.add(p2)){
-		//	Game game = new Game(2,playersInGame);
-		//	game.PlayGame();
-		}
-		int result1;
-		int result2;
-		result1 = Dice.Roll();
-		result2 = Dice.Roll();
-	//	Game game =new Game(MonopolyGame.getCurrentGame()); // get the current game is playing right now
-	//	PlayerInGame playerInGame = MonopolyGame.getAllPlayersInGame(game).poll();//get the current player is play right now in the current game
-		int numGame = HomePageController.getInstance().gamenum;
+		int result;
+		
+		result = Dice.Roll() + Dice.Roll();
+       int numGame = HomePageController.getInstance().gamenum;
 		Player pv = MonopolyGame.getAllPlayersInGame(MonopolyGame.getGameFromArray(numGame)).poll();
-		int square = PlayerInGameControl.MovePlayer(pv.getPlayerNum(), result1+result2);
-		if(GameLogic.getTypeSquareByNumber(square).compareTo(""))
+		pinv.ChangeSquareViews(BoardView.getStart());
+		int Numsquare  = 11;
+		SquareView newSquare= BoardView.getSquareByNum(Numsquare) ;
+		if(newSquare != null) {
+			pinv.ChangeSquareViews(newSquare);
+			if(MonopolyGame.getTypeSquareByNumber(Numsquare).compareTo("Property")==0) {
+				SquareControl.propertySquare(Numsquare);
+				//showPropertyMessage(event);
+		
+			}
+			else if(MonopolyGame.getTypeSquareByNumber(Numsquare).compareTo("LuckyCard")==0) {
+				SquareControl.luckyCardSquare(Numsquare);
+			////	showLuckyCardMessage(mouse);
+			}
+			else if(MonopolyGame.getTypeSquareByNumber(Numsquare).compareTo("QuestionCard")==0) {
+				SquareControl.questionCardSquare(Numsquare);
+			//	showQuestionMessage(mouse);
+			}
+		
+		}
 		
 	}
+	
 	
 	@FXML
 	private void hundleTableView(MouseEvent mouse){
@@ -137,6 +192,9 @@ public class BoardGameController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		
+		board = new BoardView();
+		board.RestartBoardView();
+		pinv = new PlayerInGameView(1, board.getStart(),HomePageController.getInstance().gamenum);
 		/////////////////////table//////////////////////
 		/*
         TableColumn nickNameCol = new TableColumn("Nick Name");
