@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 
 
-//
+
 import control.MonopolyGame;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;

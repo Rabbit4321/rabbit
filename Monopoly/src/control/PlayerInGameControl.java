@@ -23,7 +23,7 @@ public class PlayerInGameControl {
 		
 		return currentSquare;
 	}
-	//
+	
 	public  static String Answer(Question q){// still not finished
 		return null;
 	}
