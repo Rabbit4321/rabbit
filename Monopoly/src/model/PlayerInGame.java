@@ -1,9 +1,9 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
-import javax.swing.JOptionPane;
+
+
 
 import control.MonopolyGame;
 import javafx.animation.KeyFrame;
@@ -67,12 +67,8 @@ public class PlayerInGame extends Player{
 		if(p.getPropertyOwner()==null)
 		{
 			
-			 int n = JOptionPane.showConfirmDialog(
-			            null,
-			            "Would you like buy this property?",
-			            "An Inane Question",
-			            JOptionPane.YES_NO_OPTION);
-			if(n == JOptionPane.YES_OPTION)
+			// int n = JOptionPane.showConfirmDialog(null,"Would you like buy this property?", "An Inane Question",JOptionPane.YES_NO_OPTION);
+			if(true)
 			{
 				
 				Question q = SysData.getInstance().propertyQuestion(p);
@@ -124,15 +120,10 @@ public class PlayerInGame extends Player{
 		}
 		else //נכס תפוס
 		{
-			int n = JOptionPane.showConfirmDialog(
-		            null,
-		            "pay 15% last price - yes OR buy 150% last price - no",
-		            "An Inane Question",
-		            JOptionPane.YES_NO_OPTION);
-			if(n == JOptionPane.YES_OPTION)
+		//	int n = JOptionPane.showConfirmDialog(null,"pay 15% last price - yes OR buy 150% last price - no","An Inane Question",JOptionPane.YES_NO_OPTION);
+			if(true)
 			{
 				transwerMoneyFromPlayerToPlayer(p.getPropertyOwner(), p.getLastPropertyCost()*0.85);
-			
 			
 			}
 			else
@@ -152,12 +143,8 @@ public class PlayerInGame extends Player{
 		
 		if(this.getNumOfDisqualifications()==3)
 			threeDisq();	
-		int n = JOptionPane.showConfirmDialog(
-	            null,
-	            "pay 100000 - yes OR wait - no",
-	            "An Inane Question",
-	            JOptionPane.YES_NO_OPTION);
-		if(n == JOptionPane.YES_OPTION)
+		//int n = JOptionPane.showConfirmDialog(null,"pay 100000 - yes OR wait - no","An Inane Question",JOptionPane.YES_NO_OPTION);
+		if(true)
 		{
 				setInJail(false);
 				if(Bank.ChargeMoneyFromPlayer(this, 100000))
@@ -220,12 +207,8 @@ public class PlayerInGame extends Player{
 	
 	public boolean exitGame()
 	{
-		int n = JOptionPane.showConfirmDialog(
-	            null,
-	            "Are you sure you want to exit?",
-	            "An Inane Question",
-	            JOptionPane.YES_NO_OPTION);
-		if(n == JOptionPane.YES_OPTION)
+		//int n = JOptionPane.showConfirmDialog(null,"Are you sure you want to exit?","An Inane Question",JOptionPane.YES_NO_OPTION);
+		if(true)
 		{
 			returnProperties();
 				return true;
@@ -242,20 +225,7 @@ public class PlayerInGame extends Player{
 	{
 		currentMoney+=paymant;//הוספת בדיקות
 	}
-/*	public boolean sellProperty(Property p)
-	{
-		if(this.properties.contains(p))
-		{
-			currentMoney+=p.getPropertyCost();
-			this.properties.remove(p);
-		
-			
-			return true;
-		}
-		
-		
-		return false;
-	}*/
+
 	
 	public boolean buyPropertyFromPlayer(Property pro, PlayerInGame pla, double amount)
 	{
