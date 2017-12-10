@@ -108,7 +108,7 @@ public class BoardGameController implements Initializable {
 		int result2;
 		result1 = Dice.Roll();
 		result2 = Dice.Roll();
-		Game game =new Game(MonopolyGame.getCurrentGame()); // get the current game is playing right now
+		Game game = new Game(MonopolyGame.getCurrentGame()); // get the current game is playing right now
 		PlayerInGame playerInGame = MonopolyGame.getAllPlayersInGame(game).poll();//get the current player is play right now in the current game
 		playerInGame.hundleMovingThePlayer(result1+result2);
 
