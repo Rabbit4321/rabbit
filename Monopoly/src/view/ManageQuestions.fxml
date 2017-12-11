@@ -48,13 +48,13 @@
       </Label>
       <Pane fx:id="AnsPane" layoutX="89.0" layoutY="339.0" prefHeight="133.0" prefWidth="462.0">
          <children>
-            <Label layoutX="107.0" layoutY="73.0" text="3">
+            <Label layoutX="107.0" layoutY="73.0" styleClass="questionsLabels" stylesheets="@boardGame.css" text="3">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Label>
             <TextField fx:id="answer4" layoutX="127.0" layoutY="106.0" prefHeight="0.0" prefWidth="275.0" />
-            <Label layoutX="107.0" layoutY="1.0" text="1">
+            <Label layoutX="107.0" layoutY="1.0" styleClass="questionsLabels" stylesheets="@boardGame.css" text="1">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
@@ -67,12 +67,12 @@
             <TextField fx:id="answer2" layoutX="127.0" layoutY="37.0" prefHeight="25.0" prefWidth="275.0" />
             <TextField fx:id="answer3" layoutX="127.0" layoutY="73.0" prefHeight="25.0" prefWidth="275.0" />
             <TextField fx:id="answer1" layoutX="127.0" layoutY="2.0" prefHeight="25.0" prefWidth="275.0" style="-fx-background-color: blck;" />
-            <Label layoutX="107.0" layoutY="105.0" text="4">
+            <Label layoutX="107.0" layoutY="105.0" styleClass="questionsLabels" stylesheets="@boardGame.css" text="4">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="107.0" layoutY="36.0" text="2">
+            <Label layoutX="107.0" layoutY="36.0" styleClass="questionsLabels" stylesheets="@boardGame.css" text="2">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
