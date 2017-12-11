@@ -39,21 +39,20 @@ public class PlayerInGame extends Player{
 	//	gameNum = MonopolyGame.getCurrentGame();//Dont sure if its ok-Elinor
 	}
 	
-	public int ChangeSqure(int squreNum)
+	
+	/**
+	 * gets the square num the player arrived to, and changes his current square
+	 * @param squreNum
+	 */
+	public void ChangeSqure(int squreNum)
 	{
-		int s;
-		s = squreNum;
 		
-		if(s<0)
+		for(int i=0; i<Board.getAllSquares().size(); i++)
 		{
-			s+=GeneralVariables.getNumSquaresInGame();
+			if(Board.getAllSquares().get(i).getNum() == squreNum)
+				this.currentSquare=Board.getAllSquares().get(i);
 		}
 		
-		if(s>= GeneralVariables.getNumSquaresInGame())
-		{
-			s-=GeneralVariables.getNumSquaresInGame();
-		}
-		 return s;
 	}
 
 	

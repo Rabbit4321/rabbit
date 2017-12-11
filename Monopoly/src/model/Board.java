@@ -9,7 +9,7 @@ import java.util.Properties;
 import java.util.Random;
 
 public class Board {
-	private ArrayList<Square> AllSquares;
+	private static ArrayList<Square> AllSquares;
 	private Square Start = null;
 	private Square Jail = null;
 	
@@ -235,7 +235,7 @@ public class Board {
 		return Start;
 	}
 
-	public ArrayList<Square> getAllSquares() {
+	public static ArrayList<Square> getAllSquares() {
 		return AllSquares;
 	}
 
