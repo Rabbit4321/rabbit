@@ -24,13 +24,13 @@ public class PlayerInGameView {
 	private int game;
 	
 	public PlayerInGameView(int playerNum,SquareView currentSquare,int game) {
-		this.playerNum =playerNum;
+		this.setPlayerNum(playerNum);
 		this.currentSquare= currentSquare;
 		this.game =game;
-		System.out.println(playerNum  + " " + currentSquare.getNum() +" "+ game);
+	//	System.out.println(playerNum  + " " + currentSquare.getNum() +" "+ game);
 	}
 	public void ChangeSquareViews(SquareView s) {
-		hundleMovingThePlayer(s);
+	//	hundleMovingThePlayer(s);
 		currentSquare = s;
 	}
 	
@@ -210,6 +210,12 @@ public class PlayerInGameView {
 				
 				SequentialTransition sequence = new SequentialTransition(timeline1, timeline2);
 				sequence.play();
+	}
+	public int getPlayerNum() {
+		return playerNum;
+	}
+	public void setPlayerNum(int playerNum) {
+		this.playerNum = playerNum;
 	}
 	
 	

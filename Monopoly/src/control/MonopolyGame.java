@@ -17,7 +17,7 @@ public class MonopolyGame{
 	private static MonopolyGame instance;
 	
 	private static Board board;
-	private static ArrayList<Game> games = new ArrayList<Game>();
+	public static ArrayList<Game> games = new ArrayList<Game>();
 	private Admin admin;
 
 	
@@ -35,14 +35,16 @@ public class MonopolyGame{
 	}
 
 	public static int CreateGame(int num,ArrayList<PlayerInGame> players) {
-		for(PlayerInGame p : players) {
-		//	p = new PlayerInGame();
-			SysData.AddPlayer(p);
-		}
 		Game g = new Game(num, players);
+		System.out.println("GAME NUM FROM CONTROL : "+g.getGameNum());
 		games.add(g);
 		board =new Board();
 		SysData.AddGame(g);
+		for(PlayerInGame p : players) {
+		//	p = new PlayerInGame();
+			SysData.AddPlayer(p);
+			p.setGameNum(g.getGameNum());
+		}
 		return g.getGameNum();
 		
 	}
@@ -56,7 +58,11 @@ public class MonopolyGame{
 	}
 	//return a specific game by number of game
 	public static Game getGameFromArray(int num){
-		return games.get(num);
+		for (Game g: games) {
+			if(g.getGameNum() == num)
+				return g;
+		}
+		return null;
 	}
 
 
@@ -69,9 +75,9 @@ public class MonopolyGame{
 		//SysData.getInstance().initProperties();
 	}
 	
-	public static int getCurrentGame(){
-		return Game.getCounter();
-	}
+	//public static int getCurrentGame(){
+		//return Game.getGameNum();
+	//}
 	
 	/*public static void main(String[] args) {
 		// TODO Auto-generated method stub

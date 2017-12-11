@@ -39,7 +39,12 @@ public class Game{
 	 * */
 	
 	public Game(int numPlayers,ArrayList<PlayerInGame> pg){// מספר שחקנים
-		this.setGameNum(getCounter());
+		if(getCounter() == 0) {
+			this.setGameNum(getCounter()+1);
+			AddToCounter();
+		}
+		else
+			this.setGameNum(getCounter());
 		this.board= new Board();
 		this.NumOfPlayersInGame=numPlayers;
 		this.players= new ArrayBlockingQueue<PlayerInGame>(this.NumOfPlayersInGame);

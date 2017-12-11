@@ -16,6 +16,8 @@ public class Board {
     public Board() {
     	super();
     	RestartBoard();
+    //	printAllSquares();
+    	
     }
 
 	/**
