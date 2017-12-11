@@ -3,6 +3,7 @@ package view;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import control.GameLogic;
@@ -13,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,6 +28,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Dice;
@@ -40,6 +44,9 @@ import javafx.animation.KeyValue;
 import javafx.animation.RotateTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
+import javafx.application.Application;
+import javafx.beans.property.DoubleProperty;
 import javafx.collections.ObservableList;
 
 public class BoardGameController implements Initializable {
@@ -69,9 +76,86 @@ public class BoardGameController implements Initializable {
 	public BoardView board;
 	
 	public PlayerInGameView pinv;
+	@FXML
+	 ImageView player1;
+	
+	@FXML
+	 ImageView player2;
+	
+	@FXML
+	 ImageView player3;
+	
+	@FXML
+	 ImageView player4;
+	
+	private static HashMap<PlayerInGameView ,ImageView> playersImages;
+
+	@FXML
+	protected AnchorPane rootPane;
 	
 	
-	/////////////////////////////////////////////getters & setters///////////////////////
+	
+	/**
+	 * Attach players to Images
+	 * */
+	public static void attachPlayersToImages(ArrayList<PlayerInGameView> ping) {
+		playersImages = new HashMap<>();
+		ImageView [] images = new ImageView[4];
+		int i=1;
+		for(PlayerInGameView p : ping) {
+			playersImages.put(p, images[i]);
+			i++;
+		}
+		System.out.println(playersImages.size() + "  "+ playersImages.toString());
+	}
+	
+	/**
+	 * 
+	 * animate player moves
+	 * */
+    public void bounceImage() {
+    	Timeline bouncer1 = new Timeline();
+    	Timeline bouncer2 = new Timeline();
+    	bouncer1.setCycleCount(1/*Timeline.INDEFINITE*/);
+    	bouncer2.setCycleCount(1/*Timeline.INDEFINITE*/);
+    	PlayerInGameView pv = new PlayerInGameView(1, BoardView.getStart(), HomePageController.getInstance().gamenum);
+        DoubleProperty y = player4.yProperty();
+        DoubleProperty x = player4.xProperty();
+        System.out.println("check animataion y : "+ ( pv.getCurrentSquare().getY()- BoardView.getSquareByNum(12).getY()));
+        System.out.println("check animataion x : "+ (BoardView.getSquareByNum(12).getX() - pv.getCurrentSquare().getX()));
+        bouncer1.getKeyFrames().addAll(
+        		new KeyFrame(new Duration(1000), new KeyValue(y, pv.getCurrentSquare().getY()- BoardView.getSquareByNum(12).getY() /*new value*/))  //y value
+        		);
+        bouncer2.getKeyFrames().addAll(
+        		new KeyFrame(new Duration(1000), new KeyValue(x, BoardView.getSquareByNum(12).getX() - pv.getCurrentSquare().getX()/*new value*/)) // x value
+        		);
+        SequentialTransition sequence = new SequentialTransition(bouncer2,bouncer1);
+		sequence.play();
+       
+    }
+	/**
+	 * 
+	 * animate player moves
+	 * */
+    public void MovePlayerInBoardAnimation(PlayerInGameView pv,SquareView SquareToGo) {
+    	Timeline bouncer1 = new Timeline();
+    	Timeline bouncer2 = new Timeline();
+    	bouncer1.setCycleCount(1/*Timeline.INDEFINITE*/);
+    	bouncer2.setCycleCount(1/*Timeline.INDEFINITE*/);
+        DoubleProperty y = player1.yProperty();
+        DoubleProperty x = player1.xProperty();
+        System.out.println("check animataion y : "+ ( pv.getCurrentSquare().getY()- SquareToGo.getY()));
+        System.out.println("check animataion x : "+ (SquareToGo.getX() - pv.getCurrentSquare().getX()));
+        bouncer1.getKeyFrames().addAll(
+        		new KeyFrame(new Duration(1000), new KeyValue(y, pv.getCurrentSquare().getY()- SquareToGo.getY() /*new value*/))  //y value
+        		);
+        bouncer2.getKeyFrames().addAll(
+        		new KeyFrame(new Duration(1000), new KeyValue(x, SquareToGo.getX() - pv.getCurrentSquare().getX()/*new value*/)) // x value
+        		);
+        SequentialTransition sequence = new SequentialTransition(bouncer2,bouncer1);
+		sequence.play();
+       
+    }
 
 	public static ImageView getPlayer(){
 		Image image = new Image("file:img/Bugsbunny2011.png");
@@ -291,6 +375,35 @@ public class BoardGameController implements Initializable {
         tv.setItems((ObservableList) GameLogic.bringAllPlayersInGame(Game.getCounter()));
 //i think we will needed game logic in a singeltone way and his constructor will provide us the table we need*/
 	}
+
+
+/*public void start(Stage primaryStage) {
+    
+	primaryStage.setTitle("Trying");
+	Group root = new Group();
+	Scene scene = new Scene(root);
+	Image image1 = new Image("file:img/Bugsbunny2011.png") ;
+  //  Image image2 = new Image("...")  ;
+    ImageView imageView = new ImageView(image1);
+    
+    imageView.setFitWidth(350);
+    imageView.setPreserveRatio(true);
+    imageView.setSmooth(true);
+    imageView.setLayoutX(600);
+    imageView.setLayoutY(290);
+    
+    Timeline timeline = new Timeline();
+    timeline.setCycleCount(1);
+    KeyFrame movePlane = new KeyFrame(Duration.millis(1500),
+    		new KeyValue(imageView.translateXProperty(),-810),
+    		new KeyValue(imageView.translateYProperty(),0));
+
+    timeline.getKeyFrames().add(movePlane);
+    timeline.play();
+    root.getChildren().add(imageView);
+    primaryStage.setScene(new Scene(root, 800, 600));
+    primaryStage.show();
+}*/
 	
 
 /*public static void main(String[] args) {
