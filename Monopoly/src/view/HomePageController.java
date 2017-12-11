@@ -84,8 +84,12 @@ public void hundleBtnNewGame(ActionEvent event) throws IOException{
 		playersInGame.add(p1);
 		playersInGame.add(p2);
 		gamenum=MonopolyGame.CreateGame(2,playersInGame);
-		
-
+		PlayerInGameView viewP1 = new PlayerInGameView(1, BoardView.getStart(), gamenum);
+		PlayerInGameView viewP2 = new PlayerInGameView(2, BoardView.getStart(), gamenum);
+		ArrayList<PlayerInGameView> p = new ArrayList<>();
+		p.add(viewP2);
+		p.add(viewP2);
+		BoardGameController.attachPlayersToImages(p);
 
 	}
 

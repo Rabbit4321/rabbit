@@ -34,6 +34,9 @@ public class PlayerInGameView {
 		currentSquare = s;
 	}
 	
+	public SquareView getCurrentSquare() {
+		return currentSquare;
+	}
 	/**
 	 * arriving to property square
 	 * @param Property p

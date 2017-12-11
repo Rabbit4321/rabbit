@@ -55,6 +55,7 @@ public class PlayerInGame extends Player{
 		}
 		 return s;
 	}
+
 	
 	/**
 	 * arriving to property square
@@ -369,6 +370,8 @@ public class PlayerInGame extends Player{
 	public void setProperties(ArrayList<Property> properties) {
 		this.properties = properties;
 	}
+
+	
 	
 
 	
