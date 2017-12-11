@@ -233,33 +233,37 @@ public class BoardGameController implements Initializable {
 	private void hundleBtnRoll(MouseEvent mouse){
 		
 	/*this button is appointed to turn on a method that will do is to activate the dices to roll and bring the results*/
-//
-//	int result1;
-//		int result2;
-//		result1 = Dice.Roll();
-//		result2 = Dice.Roll();
-//		Game game = new Game(MonopolyGame.getCurrentGame()); // get the current game is playing right now
-//		PlayerInGame playerInGame = MonopolyGame.getAllPlayersInGame(game).poll();//get the current player is play right now in the current game
-//		playerInGame.hundleMovingThePlayer(result1+result2);
-
+	
 		int result;
 		
 		result = Dice.Roll() + Dice.Roll();
+		System.out.println("The steps that the current player need to do are: " + result + " steps");
+		
         int numGame = HomePageController.getInstance().gamenum;
+        
 		Player pv = MonopolyGame.getAllPlayersInGame(MonopolyGame.getGameFromArray(numGame)).peek();//get next player-> bring the next player in the queue
+		
 		System.out.println("View " +"In board game the number of the player is: " + pv.getPlayerNum());
-		System.out.println(GameLogic.bringAllPlayersInGame(numGame));
+		
+		System.out.println("All players in this game are: " + GameLogic.bringAllPlayersInGame(numGame));
 		
 		for(PlayerInGame g: GameLogic.bringAllPlayersInGame(numGame)){
-			System.out.println("View "+g.getPlayerNum() + " ");
+			System.out.println(" in the package View there is player number:\n " + g.getPlayerNum());
 		}
 
+		/* now we are initialize the current player to start in the start square in the board -> pinv is a PlayerInGameView*/
 		pinv.ChangeSquareViews(BoardView.getStart());
+		
 		int currentSquare = PlayerInGameControl.MovePlayer(pv.getPlayerNum(), numGame,result);
 		
 		MonopolyGame.getAllPlayersInGame(MonopolyGame.getGameFromArray(numGame)).poll();
 		
-		System.out.println( "player number " + pv.getPlayerNum() + " need to go to : " + currentSquare);
+		System.out.println( "player number " + pv.getPlayerNum() + " need to go to: " + currentSquare);
+		
+		//SquareControl.insertPlayerToSquare(p, s)
+		pinv.ChangeSquareViews(new SquareView(currentSquare, BoardView.getSquareByNum(currentSquare).getX(),BoardView.getSquareByNum(currentSquare).getY()));
+	/* now i need to move the player to the specific square he is supposed to move for*/
+		System.out.println("The player now is in: " + pinv.getCurrentSquare());
 		
 		
 //		public void hundleMovingThePlayer(SquareView sqNew){
@@ -337,9 +341,32 @@ public class BoardGameController implements Initializable {
 //		
 //	}
 
-	
+	private void initializeTableView(){
+		 TableColumn nickNameCol = new TableColumn("Nick Name");
+	        nickNameCol.setMinWidth(100);
+	        nickNameCol.setCellValueFactory(
+	        		new PropertyValueFactory<>("nickName"));
 
-	
+	        TableColumn moneyCol = new TableColumn("Money");
+	        moneyCol.setMinWidth(100);
+	        moneyCol.setCellValueFactory(
+	                new PropertyValueFactory<>("money"));
+
+	        TableColumn disquaCol = new TableColumn("Disqualification");
+	        disquaCol.setMinWidth(100);
+	        disquaCol.setCellValueFactory(
+	                new PropertyValueFactory<>("disqualification"));
+	        
+	        TableColumn turnCol = new TableColumn("Turn");
+	        turnCol.setMinWidth(100);
+	        turnCol.setCellValueFactory(
+	                new PropertyValueFactory<>("turn"));
+
+
+	        tv.getColumns().clear();
+	        tv.getColumns().addAll(nickNameCol, moneyCol, disquaCol,turnCol);
+	        tv.setItems((ObservableList) GameLogic.bringAllPlayersInGame(Game.getCounter()));
+	}
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -347,67 +374,13 @@ public class BoardGameController implements Initializable {
 		board = new BoardView();
 		board.RestartBoardView();
 		pinv = new PlayerInGameView(1, board.getStart(),HomePageController.getInstance().gamenum);
-		/////////////////////table//////////////////////
-		/*
-        TableColumn nickNameCol = new TableColumn("Nick Name");
-        nickNameCol.setMinWidth(100);
-        nickNameCol.setCellValueFactory(
-        		new PropertyValueFactory<>("nickName"));
-
-        TableColumn moneyCol = new TableColumn("Money");
-        moneyCol.setMinWidth(100);
-        moneyCol.setCellValueFactory(
-                new PropertyValueFactory<>("money"));
-
-        TableColumn disquaCol = new TableColumn("Disqualification");
-        disquaCol.setMinWidth(100);
-        disquaCol.setCellValueFactory(
-                new PropertyValueFactory<>("disqualification"));
-        
-        TableColumn turnCol = new TableColumn("Turn");
-        turnCol.setMinWidth(100);
-        turnCol.setCellValueFactory(
-                new PropertyValueFactory<>("turn"));
-
-
-        tv.getColumns().clear();
-        tv.getColumns().addAll(nickNameCol, moneyCol, disquaCol,turnCol);
-        tv.setItems((ObservableList) GameLogic.bringAllPlayersInGame(Game.getCounter()));
-//i think we will needed game logic in a singeltone way and his constructor will provide us the table we need*/
+		/*initialize the tableView in the board*/
+		//initializeTableView();
 	}
 
-
-/*public void start(Stage primaryStage) {
-    
-	primaryStage.setTitle("Trying");
-	Group root = new Group();
-	Scene scene = new Scene(root);
-	Image image1 = new Image("file:img/Bugsbunny2011.png") ;
-  //  Image image2 = new Image("...")  ;
-    ImageView imageView = new ImageView(image1);
-    
-    imageView.setFitWidth(350);
-    imageView.setPreserveRatio(true);
-    imageView.setSmooth(true);
-    imageView.setLayoutX(600);
-    imageView.setLayoutY(290);
-    
-    Timeline timeline = new Timeline();
-    timeline.setCycleCount(1);
-    KeyFrame movePlane = new KeyFrame(Duration.millis(1500),
-    		new KeyValue(imageView.translateXProperty(),-810),
-    		new KeyValue(imageView.translateYProperty(),0));
-
-    timeline.getKeyFrames().add(movePlane);
-    timeline.play();
-    root.getChildren().add(imageView);
-    primaryStage.setScene(new Scene(root, 800, 600));
-    primaryStage.show();
-}*/
+public static void main(String[] args) {
 	
 
-/*public static void main(String[] args) {
-	// TODO Auto-generated method stub
 	//just an example of an existing players for let the game to play
 	PlayerInGame p1 = new PlayerInGame(1,"Elinor",new Square(1,TypeSquares.START));
 	PlayerInGame p2 = new PlayerInGame(2,"Einav",new Square(1,TypeSquares.START));
@@ -417,6 +390,8 @@ public class BoardGameController implements Initializable {
 		game.PlayGame();
 	}
 
-	}*/
+	
 }
+}
+
 

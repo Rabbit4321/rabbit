@@ -37,19 +37,17 @@ public class Game{
 	/**
 	 * Constructor 1
 	 * */
-	
-	public Game(int numPlayers,ArrayList<PlayerInGame> pg){// מספר שחקנים
+	public Game(int numPlayers,ArrayList<PlayerInGame> pg){
+		
 		this.setGameNum(getCounter());
-		this.board= new Board();
+		this.board= new Board();/*initialize the board*/
 		this.NumOfPlayersInGame=numPlayers;
 		this.players= new ArrayBlockingQueue<PlayerInGame>(this.NumOfPlayersInGame);
 		Collections.shuffle(pg);//don't remember this method
-		//A try/Elinor wrote/
-//		this.players.add(pg.get(0));
-//		this.players.add(pg.get(1));//-> there is an exception here - don't know why
-		//End of try//
 		this.players.addAll(pg);//ArrayList can't enter to a Queue-> need to convert it to queue somehow
-		System.out.println("Model "+players.toString());
+		
+		System.out.println(" in Model the players object are: "+ players.toString());
+		
 		for(PlayerInGame g: players){
 			System.out.println("Model "+g.getPlayerNum());
 		}
@@ -86,15 +84,18 @@ public class Game{
 	}
 	
  public void OneTurnForPlayer(PlayerInGame p, int DiceResult) {
-//		//int DiceResult = 0;
+//int DiceResult = 0;
 	 PlayerInGame currentPlayer = this.players.poll();// pull the player from queue
 		if(!currentPlayer.isInJail()){
-//			for(int i=0; i<dices.length;i++){
-//		//	DiceResult += dices[i].Roll();
-		//	}
-			System.out.println(DiceResult); //check
+		/*for(int i=0; i<dices.length;i++){
+			DiceResult += dices[i].Roll();
+			}*/
+			System.out.println( " The dice resualt is: " + DiceResult); //check the dice result
+			
 			int NumNewDice = (DiceResult + currentPlayer.getCurrentSquare().getNum()) % GeneralVariables.getNumSquaresInGame(); // number of dice for the player
+			
 			System.out.println(NumNewDice);// check
+			
 			currentPlayer.ChangeSqure(NumNewDice); // update dice to player
 			if(!(currentPlayer.getCurrentSquare().getType().equals(TypeSquares.JAIL)) && 
 					!(currentPlayer.getCurrentSquare().getType().equals(TypeSquares.START))) {

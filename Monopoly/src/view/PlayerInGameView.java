@@ -1,7 +1,5 @@
 package view;
 
-import javax.swing.JOptionPane;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.SequentialTransition;
@@ -27,7 +25,7 @@ public class PlayerInGameView {
 		this.playerNum =playerNum;
 		this.currentSquare= currentSquare;
 		this.game =game;
-		System.out.println(playerNum  + " " + currentSquare.getNum() +" "+ game);
+		System.out.println("player number " + playerNum  + " " + "is in square " + currentSquare.getNum() + " " + "number of the game is: " + game);
 	}
 	public void ChangeSquareViews(SquareView s) {
 		hundleMovingThePlayer(s);
@@ -190,9 +188,11 @@ public class PlayerInGameView {
 				timeline1.setCycleCount(1/*Timeline.INDEFINITE*/);
 				
 				SquareView  s = sqNew;
-				System.out.println( "Square "+s.getX() +" "+s.getY());
-				System.out.println(currentSquare.getNum() + " " + currentSquare.getX() + " "+currentSquare.getY());
-				System.out.println(BoardGameController.getPlayer().xProperty());
+				
+				System.out.println( "Square cordinates: "+ "(" + s.getX() +","+s.getY()+")");
+				System.out.println("The number of the current square the player is at: " + currentSquare.getNum() + " cordinates of this square is: " + "(" + currentSquare.getX() + ","+currentSquare.getY() + ")");
+				System.out.println("The player right now is at X cordinate: " + BoardGameController.getPlayer().xProperty());
+				
 				final KeyValue kv = new KeyValue(BoardGameController.getPlayer().xProperty(), s.getX() - currentSquare.getX());//-> don't sure what it means
 				final KeyFrame kf = new KeyFrame(Duration.millis(500), kv);// means in how much period of time the rabbit will get to the cordinates i define him
 				timeline1.getKeyFrames().addAll(kf);
@@ -212,7 +212,9 @@ public class PlayerInGameView {
 				sequence.play();
 	}
 	
-	
+	public void setCurrentSquare(SquareView numOfSquare){
+		currentSquare = numOfSquare;
+	}
 	 
 	
 
