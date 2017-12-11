@@ -49,8 +49,13 @@ public class Game{
 //		this.players.add(pg.get(1));//-> there is an exception here - don't know why
 		//End of try//
 		this.players.addAll(pg);//ArrayList can't enter to a Queue-> need to convert it to queue somehow
+		System.out.println("Model "+players.toString());
+		for(PlayerInGame g: players){
+			System.out.println("Model "+g.getPlayerNum());
+		}
 		this.playersInJail = new HashMap<PlayerInGame,Integer>(this.NumOfPlayersInGame);
 		this.TurnsLeft = GeneralVariables.getNumOfTurnsInGame();
+		UpdateAllPlayersToStart();
 		AddToCounter();
 	}
 	/**

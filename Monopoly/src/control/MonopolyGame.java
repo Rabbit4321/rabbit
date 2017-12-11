@@ -36,6 +36,7 @@ public class MonopolyGame{
 
 	public static int CreateGame(int num,ArrayList<PlayerInGame> players) {
 		for(PlayerInGame p : players) {
+		//	p = new PlayerInGame();
 			SysData.AddPlayer(p);
 		}
 		Game g = new Game(num, players);
