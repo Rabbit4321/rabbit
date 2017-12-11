@@ -13,70 +13,22 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="710.0" stylesheets="@אוניברסיטה/הנדסת%20תוכנה/לוח%20משחק/boardGame.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ManageQuestionsController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="900.0" stylesheets="@אוניברסיטה/הנדסת%20תוכנה/לוח%20משחק/boardGame.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ManageQuestionsController">
    <children>
-      <ImageView fitHeight="539.0" fitWidth="744.0" layoutX="-5.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="680.0" fitWidth="1538.0" layoutX="-5.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../Desktop/אוניברסיטה/הנדסת%20תוכנה/רקעים%20אפשריים/רקע%20סופי.png" />
+            <Image url="@../../../../../../Desktop/אוניברסיטה/הנדסת%20תוכנה/מסכים%20מוכנים/Add%20Question.png" />
          </image>
       </ImageView>
       <Label layoutX="97.0" layoutY="94.0" />
-      <Label layoutX="48.0" layoutY="206.0" styleClass="questionsLabels" stylesheets="@boardGame.css" text="Id:">
-         <font>
-            <Font name="System Bold" size="19.0" />
-         </font>
-      </Label>
       <Label layoutX="134.0" layoutY="159.0">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-      <Label layoutX="18.0" layoutY="243.0" styleClass="questionsLabels" stylesheets="@boardGame.css" text="Question:">
-         <font>
-            <Font name="System Bold" size="19.0" />
-         </font>
-      </Label>
-      <Label layoutX="322.0" layoutY="203.0" styleClass="questionsLabels" stylesheets="@boardGame.css" text="Level:">
-         <font>
-            <Font name="System Bold" size="19.0" />
-         </font>
-      </Label>
-      <Label layoutX="308.0" layoutY="241.0" styleClass="questionsLabels" stylesheets="@boardGame.css" text="Subjects:">
-         <font>
-            <Font name="System Bold" size="19.0" />
-         </font>
-      </Label>
-      <Pane fx:id="AnsPane" layoutX="89.0" layoutY="339.0" prefHeight="133.0" prefWidth="462.0">
+      <Pane fx:id="AnsPane" layoutX="302.0" layoutY="419.0" prefHeight="232.0" prefWidth="547.0">
          <children>
-            <Label layoutX="107.0" layoutY="73.0" styleClass="questionsLabels" stylesheets="@boardGame.css" text="3">
-               <font>
-                  <Font name="System Bold" size="19.0" />
-               </font>
-            </Label>
-            <TextField fx:id="answer4" layoutX="127.0" layoutY="106.0" prefHeight="0.0" prefWidth="275.0" />
-            <Label layoutX="107.0" layoutY="1.0" styleClass="questionsLabels" stylesheets="@boardGame.css" text="1">
-               <font>
-                  <Font name="System Bold" size="19.0" />
-               </font>
-            </Label>
-            <Label layoutY="3.0" styleClass="questionsLabels" stylesheets="@boardGame.css" text="Answers:">
-               <font>
-                  <Font name="System Bold" size="19.0" />
-               </font>
-            </Label>
-            <TextField fx:id="answer2" layoutX="127.0" layoutY="37.0" prefHeight="25.0" prefWidth="275.0" />
-            <TextField fx:id="answer3" layoutX="127.0" layoutY="73.0" prefHeight="25.0" prefWidth="275.0" />
             <TextField fx:id="answer1" layoutX="127.0" layoutY="2.0" prefHeight="25.0" prefWidth="275.0" style="-fx-background-color: blck;" />
-            <Label layoutX="107.0" layoutY="105.0" styleClass="questionsLabels" stylesheets="@boardGame.css" text="4">
-               <font>
-                  <Font name="System Bold" size="19.0" />
-               </font>
-            </Label>
-            <Label layoutX="107.0" layoutY="36.0" styleClass="questionsLabels" stylesheets="@boardGame.css" text="2">
-               <font>
-                  <Font name="System Bold" size="19.0" />
-               </font>
-            </Label>
             <RadioButton fx:id="ans1" layoutX="416.0" layoutY="7.0" mnemonicParsing="false" visible="false">
                <toggleGroup>
                   <ToggleGroup fx:id="group" />
@@ -85,43 +37,27 @@
             <RadioButton fx:id="ans2" layoutX="416.0" layoutY="42.0" mnemonicParsing="false" visible="false" />
             <RadioButton fx:id="ans3" layoutX="416.0" layoutY="73.0" mnemonicParsing="false" visible="false" />
             <RadioButton fx:id="ans4" layoutX="416.0" layoutY="110.0" mnemonicParsing="false" visible="false" />
-            <TextField fx:id="a1" layoutX="129.0" layoutY="3.0" prefHeight="25.0" prefWidth="272.0" />
          </children>
       </Pane>
-      <ComboBox fx:id="level" layoutX="406.0" layoutY="203.0" prefWidth="150.0" />
-      <ComboBox fx:id="subjects" layoutX="405.0" layoutY="240.0" onAction="#hundleSubjects" prefWidth="150.0" />
-      <CheckBox fx:id="IsMultipleChoice" layoutX="403.0" layoutY="278.0" mnemonicParsing="false" onAction="#hundleMultiple" prefHeight="25.0" prefWidth="196.0" stylesheets="@אוניברסיטה/הנדסת%20תוכנה/לוח%20משחק/boardGame.css" text="Is multiple choice">
+      <ComboBox fx:id="level" layoutX="523.0" layoutY="194.0" opacity="0.0" prefHeight="39.0" prefWidth="199.0" />
+      <ComboBox fx:id="subjects" layoutX="524.0" layoutY="267.0" onAction="#hundleSubjects" opacity="0.0" prefHeight="33.0" prefWidth="198.0" />
+      <CheckBox fx:id="IsMultipleChoice" layoutX="420.0" layoutY="338.0" mnemonicParsing="false" onAction="#hundleMultiple" prefHeight="33.0" prefWidth="327.0" stylesheets="@אוניברסיטה/הנדסת%20תוכנה/לוח%20משחק/boardGame.css" text="Is multiple choice">
          <font>
-            <Font name="Serif Bold" size="16.0" />
+            <Font name="Serif Bold" size="27.0" />
          </font>
       </CheckBox>
-      <TextField fx:id="ID" layoutX="116.0" layoutY="206.0" onAction="#Validate" />
-      <TextField fx:id="Question" layoutX="117.0" layoutY="243.0" />
-      <Button fx:id="Add" layoutX="221.0" layoutY="477.0" mnemonicParsing="false" onAction="#hundleAdd" prefHeight="36.0" prefWidth="109.0" text="Add">
+      <TextField fx:id="ID" layoutX="151.0" layoutY="199.0" onAction="#Validate" opacity="0.0" prefHeight="33.0" prefWidth="200.0" />
+      <TextField fx:id="Question" layoutX="150.0" layoutY="256.0" opacity="0.0" prefHeight="41.0" prefWidth="195.0" />
+      <Button fx:id="Add" layoutX="32.0" layoutY="469.0" mnemonicParsing="false" onAction="#hundleAdd" opacity="0.0" prefHeight="49.0" prefWidth="136.0">
          <font>
             <Font name="Serif Bold" size="19.0" />
          </font>
       </Button>
-      <Pane fx:id="OneAnswer" layoutX="89.0" layoutY="307.0">
-         <children>
-            <Label styleClass="questionsLabels" stylesheets="@boardGame.css" text="Answer:">
-               <font>
-                  <Font name="System Bold" size="19.0" />
-               </font>
-            </Label>
-            <TextField fx:id="OneAns" layoutX="129.0" layoutY="1.0" />
-         </children>
-      </Pane>
-      <ListView fx:id="ListSubjects" layoutX="585.0" layoutY="198.0" prefHeight="99.0" prefWidth="106.0" style="-fx-background-color: #f2f2f2;" />
-      <Label layoutX="596.0" layoutY="133.0" prefHeight="66.0" prefWidth="82.0" styleClass="questionsLabels" stylesheets="@boardGame.css" text="Selected Subjects" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS" wrapText="true">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="226.0" layoutY="100.0" prefHeight="66.0" prefWidth="281.0" styleClass="questionh1" stylesheets="@אוניברסיטה/הנדסת%20תוכנה/לוח%20משחק/boardGame.css" text="Add Question" textAlignment="CENTER">
-         <font>
-            <Font name="David Bold" size="35.0" />
-         </font>
-      </Label>
+      <Pane fx:id="OneAnswer" layoutX="89.0" layoutY="307.0" />
+      <ListView fx:id="ListSubjects" layoutX="761.0" layoutY="264.0" opacity="0.0" prefHeight="115.0" prefWidth="106.0" style="-fx-background-color: #f2f2f2;" />
+      <TextField fx:id="answer4" layoutX="357.0" layoutY="625.0" opacity="0.0" prefHeight="24.0" prefWidth="467.0" />
+      <TextField fx:id="answer3" layoutX="356.0" layoutY="571.0" opacity="0.0" prefHeight="25.0" prefWidth="463.0" />
+      <TextField fx:id="a1" layoutX="361.0" layoutY="475.0" opacity="0.0" prefHeight="25.0" prefWidth="461.0" />
+      <TextField fx:id="OneAns" layoutX="524.0" layoutY="320.0" opacity="0.0" prefHeight="33.0" prefWidth="206.0" />
    </children>
 </Pane>
