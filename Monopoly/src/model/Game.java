@@ -153,7 +153,7 @@ public class Game{
 	
 	public void UpdateAllPlayersToStart() {
 		for(PlayerInGame p : this.players) {
-			p.ChangeSqure(board.getStart().getNum());
+			p.setCurrentSquare(board.getStart());
 		}
 	}
 	

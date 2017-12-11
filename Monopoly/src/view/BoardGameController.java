@@ -88,7 +88,7 @@ public class BoardGameController implements Initializable {
 	@FXML
 	 ImageView player4;
 	
-	private static HashMap<PlayerInGameView ,ImageView> playersImages;
+	private static HashMap<PlayerInGameView ,String> playersImages;
 
 	@FXML
 	protected AnchorPane rootPane;
@@ -100,10 +100,10 @@ public class BoardGameController implements Initializable {
 	 * */
 	public static void attachPlayersToImages(ArrayList<PlayerInGameView> ping) {
 		playersImages = new HashMap<>();
-		ImageView [] images = new ImageView[4];
 		int i=1;
 		for(PlayerInGameView p : ping) {
-			playersImages.put(p, images[i]);
+			playersImages.put(p, "player"+i);
+			System.out.println(p.toString() + "  "+ "player"+i);
 			i++;
 		}
 		System.out.println(playersImages.size() + "  "+ playersImages.toString());
@@ -142,8 +142,28 @@ public class BoardGameController implements Initializable {
     	Timeline bouncer2 = new Timeline();
     	bouncer1.setCycleCount(1/*Timeline.INDEFINITE*/);
     	bouncer2.setCycleCount(1/*Timeline.INDEFINITE*/);
-        DoubleProperty y = player1.yProperty();
-        DoubleProperty x = player1.xProperty();
+    	DoubleProperty y = null;
+        DoubleProperty x = null;
+    	if(playersImages.containsKey(pv)) {
+    		if(playersImages.get(pv).equals("player1")) {
+    			y = player1.yProperty();
+    	        x = player1.xProperty();
+    		}
+    		else if(playersImages.get(pv).equals("player2")) {
+    			y = player2.yProperty();
+    	        x = player2.xProperty();
+    		}
+    		else if(playersImages.get(pv).equals("player3")) {
+    			y = player3.yProperty();
+    	        x = player3.xProperty();
+    		}
+    		else if(playersImages.get(pv).equals("player4")) {
+    			y = player4.yProperty();
+    	        x = player4.xProperty();
+    		}
+    			
+    	}
+        if( x != null && y != null) {
         System.out.println("check animataion y : "+ ( pv.getCurrentSquare().getY()- SquareToGo.getY()));
         System.out.println("check animataion x : "+ (SquareToGo.getX() - pv.getCurrentSquare().getX()));
         bouncer1.getKeyFrames().addAll(
@@ -154,6 +174,10 @@ public class BoardGameController implements Initializable {
         		);
         SequentialTransition sequence = new SequentialTransition(bouncer2,bouncer1);
 		sequence.play();
+        }
+        else {
+        	showErrorMessage(null);
+        }
        
     }
 
@@ -198,6 +222,15 @@ public class BoardGameController implements Initializable {
 		when a player wants to leave the game, this method will made another method(that belongs to the Game class) to work*/
 
 	}
+	public static void showErrorMessage(ActionEvent event){
+
+	    Alert alert = new Alert(AlertType.INFORMATION);
+	    alert.setTitle("Information Dialog");
+	    alert.setHeaderText("No Player Match To the Image");
+	    alert.setContentText("");
+
+	    alert.showAndWait();
+	      }
 	
 	 public static void showPropertyMessage(ActionEvent event){
 
@@ -256,7 +289,7 @@ public class BoardGameController implements Initializable {
 
 		pinv.ChangeSquareViews(BoardView.getStart());
 		int currentSquare = PlayerInGameControl.MovePlayer(pv.getPlayerNum(), numGame,result);
-		
+		MovePlayerInBoardAnimation(pinv,BoardView.getSquareByNum(currentSquare));
 		MonopolyGame.getAllPlayersInGame(MonopolyGame.getGameFromArray(numGame)).poll();
 		
 		System.out.println( "player number " + pv.getPlayerNum() + " need to go to : " + currentSquare);
