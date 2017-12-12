@@ -301,7 +301,8 @@ public class SysData implements Serializable{
 				Iterator<String> iterator2 = tags.iterator();
 				while (iterator2.hasNext()) 
 				{
-					Subjects s=Subjects.valueOf((String)iterator2.next());
+					//MyEnumValue.valueOf("primary".toUpperCase());
+					Subjects s=Subjects.valueOf((String)iterator2.next().toUpperCase());
 					System.out.println(s);
 					t.add(s);
 				

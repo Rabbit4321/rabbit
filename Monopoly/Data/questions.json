@@ -73,7 +73,7 @@
       "isCorrect": false   },
     { "text": "All the answers are correct.",
       "isCorrect": true } ],
-  "tags": ["Cloud"]
+  "tags": ["SOAandCloud"]
 },
 
 {  "id": 6,     "text": "Which of the following is an example of SaaS?",
@@ -87,7 +87,7 @@
       "isCorrect": false   },
     { "text": "There is no correct answer.",
       "isCorrect": true } ],
-  "tags": ["Cloud"]
+  "tags": ["SOAandCloud"]
 },
 
 
@@ -103,7 +103,7 @@
       "isCorrect": false   },
     { "text": "About 57% of the total cost of a product accrues during the maintenance phase.",
       "isCorrect": false } ],
-  "tags": ["Costs and Risks"]
+  "tags": ["CostsandRisks"]
 },
 
 
@@ -118,7 +118,7 @@
       "isCorrect": false   },
     { "text": "Lack of time.",
       "isCorrect": true } ],
-  "tags": ["Costs and Risks"]
+  "tags": ["CostsandRisks"]
 },
 
 
@@ -134,7 +134,7 @@
       "isCorrect": true   },
     { "text": "Lack of Documentation.",
       "isCorrect": false } ],
-  "tags": ["Costs and Risks"]
+  "tags": ["CostsandRisks"]
 },
 
 
@@ -149,7 +149,7 @@
       "isCorrect": true   },
     { "text": "Each day of the sprint, ideally at the same time, the development team members hold a timeboxed.",
       "isCorrect": false } ],
-  "tags": ["Configuration Management"]
+  "tags": ["ConfigurationManagement"]
 },
 
 
@@ -165,7 +165,7 @@
       "isCorrect": false   },
     { "text": "Failure to monitor the status of the software at any given time.",
       "isCorrect": false } ],
-  "tags": ["Configuration Management"]
+  "tags": ["ConfigurationManagement"]
 },
 
 
@@ -181,7 +181,7 @@
       "isCorrect": false   },
     { "text": "Shows the configuration in a more convenient way to readץ",
       "isCorrect": true } ],
-  "tags": ["Configuration Management"]
+  "tags": ["ConfigurationManagement"]
 },
 
 
@@ -244,7 +244,7 @@
       "isCorrect": false   },
     { "text": "3",
       "isCorrect": false } ],
-  "tags": ["SOA"]
+  "tags": ["SOAandCloud"]
 },
 
 
@@ -259,7 +259,7 @@
       "isCorrect": false   },
     { "text": "Helping lower costs of application development.",
       "isCorrect": false } ],
-  "tags": ["SOA"]
+  "tags": ["SOAandCloud"]
 },
 
 
@@ -275,7 +275,7 @@
       "isCorrect": false   },
     { "text": "All information is exposed and found on an external server.",
       "isCorrect": true } ],
-  "tags": ["SOA"]
+  "tags": ["SOAandCloud"]
 },
 
 
@@ -291,7 +291,7 @@
       "isCorrect": true   },
     { "text": "Design architecture.",
       "isCorrect": false } ],
-  "tags": ["Software Architecture"]
+  "tags": ["SoftwareArchitecture"]
 },
 
 
@@ -307,7 +307,7 @@
       "isCorrect": true   },
     { "text": "Pipeline architecture.",
       "isCorrect": false } ],
-  "tags": ["Software Architecture"]
+  "tags": ["SoftwareArchitecture"]
 },
 
 
@@ -323,7 +323,7 @@
       "isCorrect": false   },
     { "text": "Pipeline architecture.",
       "isCorrect": false } ],
-  "tags": ["Software Architecture"]
+  "tags": ["SoftwareArchitecture"]
 },
 
 
@@ -338,7 +338,7 @@
       "isCorrect": false   },
     { "text": "Email.",
       "isCorrect": true } ],
-  "tags": ["Software Architecture"]
+  "tags": ["SoftwareArchitecture"]
 },
 
 
@@ -353,7 +353,7 @@
       "isCorrect": false   },
     { "text": "Email.",
       "isCorrect": false } ],
-  "tags": ["Software Architecture"]
+  "tags": ["SoftwareArchitecture"]
 },
 
 
@@ -368,7 +368,7 @@
       "isCorrect": false   },
     { "text": "MVVM",
       "isCorrect": true } ],
-  "tags": ["Design pattern"]
+  "tags": ["DesignPatterns"]
 },
 
 
@@ -384,7 +384,7 @@
       "isCorrect": false   },
     { "text": "Verification. ",
       "isCorrect": false } ],
-  "tags": ["Design pattern"]
+  "tags": ["DesignPatterns"]
 },
 
 
@@ -400,7 +400,7 @@
       "isCorrect": true   },
     { "text": "Keeps the data in the best and most effective way.",
       "isCorrect": false } ],
-  "tags": ["Design pattern"]
+  "tags": ["DesignPatterns"]
 },
 
 
@@ -416,7 +416,7 @@
       "isCorrect": false   },
     { "text": "MVVM",
       "isCorrect": false } ],
-  "tags": ["Design pattern"]
+  "tags": ["DesignPatterns"]
 },
 
 
@@ -431,7 +431,7 @@
       "isCorrect": false   },
     { "text": "Visibility, Practicality.",
       "isCorrect": false } ],
-  "tags": ["Design pattern"]
+  "tags": ["DesignPatterns"]
 },
 
 
@@ -604,7 +604,7 @@
       "isCorrect": false   },
     { "text": "Functional requirement- capability.",
       "isCorrect": false } ],
-  "tags": ["Cloud"]
+  "tags": ["SOAandCloud"]
 },
 
 
@@ -619,7 +619,7 @@
       "isCorrect": false   },
     { "text": "Use one program to run many software instances.",
       "isCorrect": true } ],
-  "tags": ["Cloud"]
+  "tags": ["SOAandCloud"]
 },
 
 
@@ -635,7 +635,7 @@
       "isCorrect": true   },
     { "text": "No answer is correct.",
       "isCorrect": false } ],
-  "tags": ["Cloud"]
+  "tags": ["SOAandCloud"]
 },
 
 
@@ -650,7 +650,7 @@
       "isCorrect": false   },
     { "text": "Remote servers.",
       "isCorrect": false } ],
-  "tags": ["Cloud"]
+  "tags": ["SOAandCloud"]
 },
 
 
@@ -666,7 +666,7 @@
       "isCorrect": false   },
     { "text": "Support many customers.",
       "isCorrect": true } ],
-  "tags": ["Cloud"]
+  "tags": ["SOAandCloud"]
 },
 
 
@@ -682,7 +682,7 @@
       "isCorrect": false   },
     { "text": "More expensive than private cloud.",
       "isCorrect": true } ],
-  "tags": ["Cloud"]
+  "tags": ["SOAandCloud"]
 },
 
 
@@ -698,7 +698,7 @@
       "isCorrect": true   },
     { "text": "Requires more maintenance.",
       "isCorrect": false } ],
-  "tags": ["Cloud"]
+  "tags": ["SOAandCloud"]
 },
 
 
