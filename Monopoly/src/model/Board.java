@@ -10,12 +10,14 @@ import java.util.Random;
 
 public class Board {
 	private ArrayList<Square> AllSquares;
-	private Square Start = null;
+	private static Square Start = null;
 	private Square Jail = null;
 	
     public Board() {
     	super();
     	RestartBoard();
+    //	printAllSquares();
+    	
     }
 
 	/**
@@ -229,7 +231,7 @@ public class Board {
 		return Square.class.getSimpleName();
 	}
 	
-	public Square getStart() {
+	public static Square getStart() {
 		return Start;
 	}
 
@@ -276,3 +278,4 @@ public class Board {
 	*/
 	
 }
+	

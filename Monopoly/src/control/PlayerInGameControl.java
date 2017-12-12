@@ -32,15 +32,16 @@ public class PlayerInGameControl {
 		if(!(pig == null)){
 			System.out.println(pig.getCurrentSquare().getNum());
 			NumNewDice = (steps+ pig.getCurrentSquare().getNum()) % GeneralVariables.getNumSquaresInGame(); // number of dice for the player
-			System.out.println(NumNewDice);
-			int currentSquare = pig.getCurrentSquare().getNum();
+			System.out.println(" *checking Dice result* : "+NumNewDice);
+			return NumNewDice;
+		/*	int currentSquare = pig.getCurrentSquare().getNum();
 			
 			if((currentSquare + steps) > GeneralVariables.getNumSquaresInGame())
 				currentSquare=(currentSquare + steps) - GeneralVariables.getNumSquaresInGame();
 			else
 				currentSquare+=steps;
 			
-			return currentSquare;//the new square the player is in it
+			return currentSquare;//the new square the player is in it*/
 		}
 		return -1;
 	}

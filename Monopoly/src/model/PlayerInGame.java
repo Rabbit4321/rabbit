@@ -33,10 +33,10 @@ public class PlayerInGame extends Player{
 		
 		this.currentMoney = 0;//לפני שהבנק מביא כסף
 		this.numOfDisqualifications = 0;
-		this.currentSquare = null;//משבצת התחלה
+		this.currentSquare = Board.getStart();//start square
 		this.InJail=false;
 		this.properties = new ArrayList<Property>();
-		gameNum = MonopolyGame.getCurrentGame();//Dont sure if its ok-Elinor
+	//gameNum = MonopolyGame.getCurrentGame();//Dont sure if its ok-Elinor
 	}
 	
 	public int ChangeSqure(int squreNum)
@@ -369,6 +369,14 @@ public class PlayerInGame extends Player{
 
 	public void setProperties(ArrayList<Property> properties) {
 		this.properties = properties;
+	}
+
+	public int getGameNum() {
+		return gameNum;
+	}
+
+	public void setGameNum(int gameNum) {
+		this.gameNum = gameNum;
 	}
 
 	
