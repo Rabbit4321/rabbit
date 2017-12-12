@@ -1,6 +1,10 @@
 package model;
 
 import java.util.ArrayList;
+
+
+
+
 import control.MonopolyGame;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -13,33 +17,28 @@ import view.SquareView;
 
 public class PlayerInGame extends Player{
 	
-	private int gameNum;
 	private double currentMoney;
 	private int numOfDisqualifications;
+	//more field of turn-> true/false
 	private Square currentSquare;
 	public boolean InJail;
 	private ArrayList<Property> properties;
-	
-	/* I need : Find the current square the player is at in the game, and send also the type of the square*/
+	private int gameNum;// Elinor added this -> for knowing the connection between a specific game to a specific player
 	
 	/*
 	 * constructor 1
 	 */
 	public PlayerInGame(int playerNum, String nickname, Square currentSquare) {
-		
 		super(playerNum, nickname);
-		this.currentMoney = 0; /* before the bank is giving the players money*/
+		
+		this.currentMoney = 0;//לפני שהבנק מביא כסף
 		this.numOfDisqualifications = 0;
-		this.currentSquare = new Square(1,TypeSquares.START); /* Start square*/
-		this.InJail=false;/* in the beginning of the game the player is not in jail(he is in the Start square*/
-		this.properties = new ArrayList<Property>();/* now the Array is empty*/
-		gameNum = MonopolyGame.getCurrentGame();/* give the number of last game that created(the newest game)*/
+		this.currentSquare = Board.getStart();//start square
+		this.InJail=false;
+		this.properties = new ArrayList<Property>();
+	//gameNum = MonopolyGame.getCurrentGame();//Dont sure if its ok-Elinor
 	}
 	
-	/**
-	 * This method get a square number(the current number the player is at)
-	 * return @param number of the new square the player is moving for
-	 */
 	public int ChangeSqure(int squreNum)
 	{
 		int s;
@@ -56,9 +55,10 @@ public class PlayerInGame extends Player{
 		}
 		 return s;
 	}
+
 	
 	/**
-	 * arriving to property square -  This method is checking which property i it(cheap,average,expensive)
+	 * arriving to property square
 	 * @param Property p
 	 */
 	public void propertySquare(Property p)
@@ -67,18 +67,18 @@ public class PlayerInGame extends Player{
 		{
 		if(p.getPropertyOwner()==null)
 		{
-			System.out.println("You can buy this property -  do you want?");/* need to do a pop up of this question*/
-			/* need to wait to the response of the player*/
-			if(true) //if the response is positive
+			
+			// int n = JOptionPane.showConfirmDialog(null,"Would you like buy this property?", "An Inane Question",JOptionPane.YES_NO_OPTION);
+			if(true)
 			{
-				Question q = SysData.getInstance().propertyQuestion(p); // poll a Question for the player from the sysdata
 				
-				if(answerResult(q))//means the player answer right the question
-				{	
+				Question q = SysData.getInstance().propertyQuestion(p);
+				
+				if(answerResult(q))
+				{
+				//right
+				
 				double price=0;
-				/*get which property is that property(cheap,average,expensive)->according to the type the system will know
-				 * how much the player need to pay*/
-				 
 				if(p.getType().equals(PropertyTypes.Low_cost))
 				{
 					price=currentMoney * 0.95;
@@ -109,7 +109,7 @@ public class PlayerInGame extends Player{
 				}
 				else
 				{
-				/*means the player answer the Question wrong so he don't have any discount on the property*/
+				//wrong
 				Bank.ChargeMoneyFromPlayer(this, p.getPropertyCost());
 				
 				p.setPropertyOwner(this);
@@ -119,16 +119,15 @@ public class PlayerInGame extends Player{
 				}
 			}
 		}
-		else /* the Property has a owner and the player need to pay him money*/
+		else //נכס תפוס
 		{
 		//	int n = JOptionPane.showConfirmDialog(null,"pay 15% last price - yes OR buy 150% last price - no","An Inane Question",JOptionPane.YES_NO_OPTION);
-			// waiting the player to response the pop up
-			if(true)//response positive
+			if(true)
 			{
 				transwerMoneyFromPlayerToPlayer(p.getPropertyOwner(), p.getLastPropertyCost()*0.85);
 			
 			}
-			else//response not positive
+			else
 			{
 				buyPropertyFromPlayer(p, p.getPropertyOwner(), p.getLastPropertyCost()*1.5);
 			}
@@ -137,7 +136,7 @@ public class PlayerInGame extends Player{
 	}
 	
 	/**
-	 * player comes to goToJail square
+	 * player comes to gotojail square
 	 * @return player goes out from jail - true, player goes to jail and waits - false*/
 	public boolean goToJailSquare()
 	{
@@ -146,11 +145,10 @@ public class PlayerInGame extends Player{
 		if(this.getNumOfDisqualifications()==3)
 			threeDisq();	
 		//int n = JOptionPane.showConfirmDialog(null,"pay 100000 - yes OR wait - no","An Inane Question",JOptionPane.YES_NO_OPTION);
-		/* waiting to player response the pop up if he want to pay a bail to get out from jail*/
-		if(true)//response positive - > means he go out from jail
+		if(true)
 		{
 				setInJail(false);
-				if(Bank.ChargeMoneyFromPlayer(this, 100000)) // the bank charge from player the money for bail
+				if(Bank.ChargeMoneyFromPlayer(this, 100000))
 				{
 					
 					return true;
@@ -165,10 +163,10 @@ public class PlayerInGame extends Player{
 		boolean check1 = false;
 		boolean check2 = false;
 				
-		/*first question*/
+		//first que
 		check1= answerResult(l.getQuestions()[0]); //תוצאת מענה על שאלה בינונית
 		
-		/*second question*/
+		//second que
 		check2= answerResult(l.getQuestions()[1]); //תוצאת מענה על שאלה קשה
 		
 		if(check1 && check2)
@@ -211,23 +209,22 @@ public class PlayerInGame extends Player{
 	public boolean exitGame()
 	{
 		//int n = JOptionPane.showConfirmDialog(null,"Are you sure you want to exit?","An Inane Question",JOptionPane.YES_NO_OPTION);
-		/*waiting the player to response the pop up for exiting the game*/
-		if(true)//answered yes
+		if(true)
 		{
 			returnProperties();
 				return true;
 		}
-		return false;//answered no
+		return false;
 	}
 	
 	public void payToPlayerAndBank(double paymant)
 	{
-		currentMoney-=paymant;// To Marina הוספת בדיקות
+		currentMoney-=paymant;//הוספת בדיקות
 	}
 	
 	public void receivingMoney(double paymant)
 	{
-		currentMoney+=paymant;// To Marina הוספת בדיקות
+		currentMoney+=paymant;//הוספת בדיקות
 	}
 
 	
@@ -316,7 +313,7 @@ public class PlayerInGame extends Player{
 	/**
 	 * 
 	 * @param q
-	 * @return true if player answered correct , false - other
+	 * @return true if player answerd correct , false - other
 	 */
 	public boolean answerResult(Question q)
 	{
@@ -333,8 +330,7 @@ public class PlayerInGame extends Player{
 		}
 		return false;
 	}
-	
-	 /* Getters & Setters*/	
+		
 	public double getCurrentMoney() {
 		return currentMoney;
 	}
@@ -374,6 +370,16 @@ public class PlayerInGame extends Player{
 	public void setProperties(ArrayList<Property> properties) {
 		this.properties = properties;
 	}
+
+	public int getGameNum() {
+		return gameNum;
+	}
+
+	public void setGameNum(int gameNum) {
+		this.gameNum = gameNum;
+	}
+
+	
 	
 
 	

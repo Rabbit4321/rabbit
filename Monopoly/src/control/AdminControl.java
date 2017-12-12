@@ -36,6 +36,14 @@ public class AdminControl {
 	public static boolean removeQuestion(Question q){ //not finished
 		return false;
 	}
+	
+	
+	public static boolean updateQuestion(Question q){ //not finished
+		return false;
+	}
+	
+	
+	
 	/**
 	 * get all subjects for questions 
 	 * */

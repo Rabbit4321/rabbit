@@ -10,12 +10,14 @@ import java.util.Random;
 
 public class Board {
 	private ArrayList<Square> AllSquares;
-	private Square Start = null;
+	private static Square Start = null;
 	private Square Jail = null;
 	
     public Board() {
     	super();
     	RestartBoard();
+    //	printAllSquares();
+    	
     }
 
 	/**
@@ -23,16 +25,16 @@ public class Board {
 	 * @param list of squares*/
 	
 	public void RestartBoard() {
-	
+	/**TODO*/
 		AllSquares = new ArrayList<Square>(GeneralVariables.getNumSquaresInGame());
-		for(Square s : AllSquares) { // creating a squares
+		for(Square s : AllSquares) { // initialize squares
 			s = new Square();
 		}
 		Square[] Squares = new Square[GeneralVariables.getNumSquaresInGame()+1];
 		int [] OptionsForEdgesBoard= {1,11,21,31};
 		ArrayList<Property> properties = SysData.getInstance().getProperties();
 		
-	/*initializing the squares*/	
+		
 		Squares[1] = new Square();
 		Squares[1].setNum(1);
 		Squares[1].setType(TypeSquares.START);
@@ -46,7 +48,9 @@ public class Board {
 		Squares[31].setType(TypeSquares.JAIL);
 		Jail = Squares[31];
 	
+		//initialize board without random for now
 		//organize properties by cities
+		
 		if(!properties.isEmpty()) {
 		for(Property pr: properties) {
 			if(pr.getCity().equals(Cities.Haifa)) {
@@ -191,7 +195,6 @@ public class Board {
 		Squares[39]= new QuestionCard();
 		Squares[39].setNum(39);
 		
-		/*Adding the squares after the initialization to the array squares*/
 		for(int i =1; i< Squares.length ; i++) {
 			AllSquares.add(Squares[i]);
 		}
@@ -228,7 +231,7 @@ public class Board {
 		return Square.class.getSimpleName();
 	}
 	
-	public Square getStart() {
+	public static Square getStart() {
 		return Start;
 	}
 
@@ -240,6 +243,8 @@ public class Board {
 		AllSquares = allSqures;
 	}
 	
+
+
 	@Override
 	public String toString() {
 		return "Board [AllSquares=" + AllSquares.size() + ", Start=" + Start.getNum() + ", Jail=" + Jail.getNum() + "]";
@@ -273,3 +278,4 @@ public class Board {
 	*/
 	
 }
+	

@@ -76,19 +76,7 @@ public void hundleBtnNewGame(ActionEvent event) throws IOException{
 	    BoardView b = new BoardView();
 		b.RestartBoardView();
 		
-	    /** transfer to add players to game controller*/
-	    MonopolyGame.getInstance().InitializeData();
-		PlayerInGame p1 = new PlayerInGame(1,"Elinor",new Square(1,TypeSquares.START));
-		PlayerInGame p2 = new PlayerInGame(2,"Einav",new Square(1,TypeSquares.START));
-		ArrayList<PlayerInGame> playersInGame = new ArrayList<>();
-		playersInGame.add(p1);
-		playersInGame.add(p2);
-		gamenum=MonopolyGame.CreateGame(2,playersInGame);
-		PlayerInGameView viewP1 = new PlayerInGameView(1, BoardView.getStart(), gamenum);
-		PlayerInGameView viewP2 = new PlayerInGameView(2, BoardView.getStart(), gamenum);
-		
-		
-
+	  
 
 	}
 

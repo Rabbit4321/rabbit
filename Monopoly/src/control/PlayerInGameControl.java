@@ -16,15 +16,12 @@ public class PlayerInGameControl {
 	public static  boolean RollDice(){ // still not finished
 	return false;
 	}
-	
-	/*this method needs to return the square number according to the steps for the player*/ 
-	public static int MovePlayer(int player,int gameNum, int steps ){
-		int NumNewSquare  = 0;
+	public static int MovePlayer(int player,int gameNum, int steps ){//to marina - this method needs to return the square num accroding to the steps for the player. 
+		
+		int NumNewDice  = 0;
 		PlayerInGame pig = null;
 		ArrayList<PlayerInGame> playersInGame = new ArrayList<>(MonopolyGame.getGameFromArray(gameNum).getPlayersQueqe());
-		
-		System.out.println("Player in game in package control: size: " + playersInGame.size() + " has "+ playersInGame.toString());
-		
+		System.out.println("PlayerIn game control: size: " + playersInGame.size() + " has "+ playersInGame.toString());
 		for(PlayerInGame p : playersInGame)	{
 			if(p != null){
 				if(p.getPlayerNum() == player){
@@ -34,16 +31,17 @@ public class PlayerInGameControl {
 		}
 		if(!(pig == null)){
 			System.out.println(pig.getCurrentSquare().getNum());
-			NumNewSquare = (steps+ pig.getCurrentSquare().getNum()) % GeneralVariables.getNumSquaresInGame(); 
-			System.out.println(NumNewSquare);
-			int currentSquare = pig.getCurrentSquare().getNum();
+			NumNewDice = (steps+ pig.getCurrentSquare().getNum()) % GeneralVariables.getNumSquaresInGame(); // number of dice for the player
+			System.out.println(" *checking Dice result* : "+NumNewDice);
+			return NumNewDice;
+		/*	int currentSquare = pig.getCurrentSquare().getNum();
 			
 			if((currentSquare + steps) > GeneralVariables.getNumSquaresInGame())
 				currentSquare=(currentSquare + steps) - GeneralVariables.getNumSquaresInGame();
 			else
 				currentSquare+=steps;
 			
-			return currentSquare;//the new square the player is in it
+			return currentSquare;//the new square the player is in it*/
 		}
 		return -1;
 	}
