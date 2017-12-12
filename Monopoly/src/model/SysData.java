@@ -572,6 +572,36 @@ public static boolean AddQuestions() {//בסוף כל יציאה מהמשחק יש לקרוא למתודה הזא
 	}
 	
 	
+	public static boolean UpdateQuestion(Question q, String text, int diff, boolean isMulti, 
+			ArrayList<Answer> answers, ArrayList<Subjects> tags) {
+		
+		if(AllQuestions.contains(q))
+		{
+			
+			for(Question que: AllQuestions)
+			{
+				if(que.getId() == q.getId())
+				{
+					q.setText(text);
+					q.setDifficulty(diff);
+					q.setMultipleChoice(isMulti);
+					q.setAnswers(answers);
+					q.setTags(tags);
+					
+					return true;
+				}
+			}
+			
+			
+			
+		}
+		
+		
+		return false;
+	}
+	
+	
+	
 	public static boolean AddPlayer(Player p) {
 	
 		if(!players.contains(p))

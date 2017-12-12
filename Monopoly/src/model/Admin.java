@@ -27,12 +27,26 @@ public class Admin implements Actions{
 	
 	/**
 	 * Remove Question from database 
-	 * @param id
+	 * @param q
 	 * @return if successful - true, else false*/
 	
 	public boolean RemoveQuestion(Question q) {
 		return SysData.RemoveQuestion(q);
 	}
+	
+	
+	/**
+	 * Update Question
+	 * @param q, new que details
+	 * @return if successful - true, else false*/
+	public boolean UpdateQuestion(Question q, String text, int diff, boolean isMulti, 
+			ArrayList<Answer> answers, ArrayList<Subjects> tags) {
+		return SysData.UpdateQuestion(q, text, diff, isMulti, answers, tags);
+	}
+	
+	
+	
+	
 	
 	public String getID() {
 		return ID;
