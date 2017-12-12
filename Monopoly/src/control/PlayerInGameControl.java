@@ -4,12 +4,12 @@ package control;
 
 import java.util.ArrayList;
 
-import javafx.beans.property.Property;
 import model.Game;
 import model.GeneralVariables;
 import model.PlayerInGame;
 import model.Question;
 import model.Square;
+import model.Property;
 
 public class PlayerInGameControl {
 
@@ -50,8 +50,9 @@ public class PlayerInGameControl {
 		return null;
 	}
 	
-	public static void PurchaseProperty(Property p){// still not finished
-		
+	public static String PropertySquare(Property pr,PlayerInGame p){// still not finished
+		Question q =p.propertySquare(pr);
+		return q.getText();
 	}
 	
 	public static boolean payRent(Property p , PlayerInGame payer){// still not finished

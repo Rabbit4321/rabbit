@@ -29,10 +29,10 @@ public class BoardView {
 		this.squares.add(new SquareView(10,-210,290));
 		this.squares.add(new SquareView(11,-210,370));
 		this.squares.add(new SquareView(12,-210,410));
-		this.squares.add(new SquareView(13,-210,480));
-		this.squares.add(new SquareView(14,-210,540));
-		this.squares.add(new SquareView(15,-210,600));
-		this.squares.add(new SquareView(16,-210,660));
+		this.squares.add(new SquareView(13,-210,470));
+		this.squares.add(new SquareView(14,-210,530));
+		this.squares.add(new SquareView(15,-210,590));
+		this.squares.add(new SquareView(16,-210,650));
 		this.squares.add(new SquareView(17,-210,710));
 		this.squares.add(new SquareView(18,-210,760));
 		this.squares.add(new SquareView(19,-210,810));

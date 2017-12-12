@@ -289,8 +289,8 @@ public class BoardGameController implements Initializable {
 
 		int result;
 		
-		//result = Dice.Roll() + Dice.Roll();
-		result = 13;
+		result = Dice.Roll() + Dice.Roll();
+		//result = 13;
 		showRollResultMessage(null, result);
         System.out.println("Game NUMBER: "+gamenum);
         if(MonopolyGame.getGameFromArray(gamenum) != null) {
@@ -314,14 +314,17 @@ public class BoardGameController implements Initializable {
 							if(MonopolyGame.getTypeSquareByNumber(currentSquare).compareTo("Property")==0) {
 								SquareControl.propertySquare(currentSquare);
 								showPropertyMessage(null);
+								//TODO //supposed to show property card with info - need to use marina's methods  
 							}
 							else if(MonopolyGame.getTypeSquareByNumber(currentSquare).compareTo("LuckyCard")==0) {
 								SquareControl.luckyCardSquare(currentSquare);
 								showLuckyCardMessage(null);
+								//TODO // supposed to show Lucky card actions- need to use marina's methods
 							}
 							else if(MonopolyGame.getTypeSquareByNumber(currentSquare).compareTo("QuestionCard")==0) {
 								SquareControl.questionCardSquare(currentSquare);
 								showQuestionMessage(null);
+								//TODO // supposed to show question card actions- need to use marina's methods
 							}
 
 						}
