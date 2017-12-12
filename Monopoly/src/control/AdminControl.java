@@ -16,7 +16,20 @@ public class AdminControl {
 	
 	private static Admin a= new Admin(); // not supposed to be here - just for trying
 
-	
+	/**
+	 * 
+	 * @param id
+	 * @param team
+	 * @param text
+	 * @param diff
+	 * @param isMulti
+	 * @param ans1
+	 * @param ans2
+	 * @param ans3
+	 * @param ans4
+	 * @param tags
+	 * @return
+	 */
 	public static boolean addQuestion(int id, String team, String text, int diff, boolean isMulti,Answer ans1,Answer ans2,Answer ans3,Answer ans4, ArrayList<String> tags){//not finished
 	 ArrayList<Subjects> sub = new ArrayList<Subjects>();
 	 for(String s : tags) {
@@ -33,8 +46,14 @@ public class AdminControl {
 		
 	}
 	
+	/**
+	 * removing question
+	 * @param q
+	 * @return if successful - true, else false
+	 */
 	public static boolean removeQuestion(Question q){ //not finished
-		return false;
+		
+		return a.RemoveQuestion(q);
 	}
 	
 	
@@ -50,6 +69,15 @@ public class AdminControl {
 	
 	public static Subjects[] getSubjects() {
 		return SysData.getInstance().getSubjects();	
+	}
+	
+	
+	/**
+	 * get all subjects for questions 
+	 * */
+	
+	public static ArrayList<Question> getQuestions() {
+		return SysData.getInstance().getAllQuestions();	
 	}
 	
 	/**

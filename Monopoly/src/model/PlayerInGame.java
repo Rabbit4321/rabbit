@@ -60,142 +60,186 @@ public class PlayerInGame extends Player{
 	/**
 	 * arriving to property square
 	 * @param Property p
+	 * @return question to the player if property Available, other - null
 	 */
-	public void propertySquare(Property p)
+	public Question propertySquare(Property p)
 	{
-		if(currentMoney-p.getPropertyCost()>=0)
-		{
+		Question q=null;
 		if(p.getPropertyOwner()==null)
 		{
+			q = SysData.getInstance().propertyQuestion(p);
 			
-			// int n = JOptionPane.showConfirmDialog(null,"Would you like buy this property?", "An Inane Question",JOptionPane.YES_NO_OPTION);
-			if(true)
-			{
-				
-				Question q = SysData.getInstance().propertyQuestion(p);
-				
-				if(answerResult(q))
-				{
-				//right
-				
-				double price=0;
-				if(p.getType().equals(PropertyTypes.Low_cost))
-				{
-					price=currentMoney * 0.95;
-					Bank.ChargeMoneyFromPlayer(this, price);
 			
-					p.setPropertyOwner(this);
-					p.setLastPropertyCost(price);
-					this.properties.add(p);
-				}
-				if(p.getType().equals(PropertyTypes.Average))
-				{
-					price=currentMoney * 0.85;
-					Bank.ChargeMoneyFromPlayer(this, price);
-				
-					p.setPropertyOwner(this);
-					p.setLastPropertyCost(price);
-					this.properties.add(p);
-				}
-				if(p.getType().equals(PropertyTypes.Expensive))
-				{
-					price=currentMoney * 0.75;
-					Bank.ChargeMoneyFromPlayer(this, price);
-				
-					p.setPropertyOwner(this);
-					p.setLastPropertyCost(price);
-					this.properties.add(p);
-				}
-				}
-				else
-				{
-				//wrong
-				Bank.ChargeMoneyFromPlayer(this, p.getPropertyCost());
-				
-				p.setPropertyOwner(this);
-				p.setLastPropertyCost(p.getPropertyCost());
-				this.properties.add(p);
-				plusDisq();
-				}
-			}
+		
 		}
-		else //נכס תפוס
+	
+			return q;
+		
+	}
+	
+	/**
+	 * Dealing with the player answer (calling this method if property is available)
+	 * @param p
+	 * @param a
+	 */
+	public void propertyAvailable(Property p, boolean a)//להחזיר אם ענה נכון או לא על השאלה
+	{
+		if(a)
 		{
-		//	int n = JOptionPane.showConfirmDialog(null,"pay 15% last price - yes OR buy 150% last price - no","An Inane Question",JOptionPane.YES_NO_OPTION);
-			if(true)
-			{
-				transwerMoneyFromPlayerToPlayer(p.getPropertyOwner(), p.getLastPropertyCost()*0.85);
-			
-			}
-			else
-			{
-				buyPropertyFromPlayer(p, p.getPropertyOwner(), p.getLastPropertyCost()*1.5);
-			}
+		//right
+		
+		double price=0;
+		if(p.getType().equals(PropertyTypes.Low_cost))
+		{
+			price=currentMoney * 0.95;
+			Bank.ChargeMoneyFromPlayer(this, price);
+	
+			p.setPropertyOwner(this);
+			p.setLastPropertyCost(price);
+			this.properties.add(p);
 		}
+		if(p.getType().equals(PropertyTypes.Average))
+		{
+			price=currentMoney * 0.85;
+			Bank.ChargeMoneyFromPlayer(this, price);
+		
+			p.setPropertyOwner(this);
+			p.setLastPropertyCost(price);
+			this.properties.add(p);
+		}
+		if(p.getType().equals(PropertyTypes.Expensive))
+		{
+			price=currentMoney * 0.75;
+			Bank.ChargeMoneyFromPlayer(this, price);
+		
+			p.setPropertyOwner(this);
+			p.setLastPropertyCost(price);
+			this.properties.add(p);
+		}
+		}
+		else
+		{
+		//wrong
+		Bank.ChargeMoneyFromPlayer(this, p.getPropertyCost());
+		
+		p.setPropertyOwner(this);
+		p.setLastPropertyCost(p.getPropertyCost());
+		this.properties.add(p);
+		plusDisq();
 		}
 	}
 	
 	/**
-	 * player comes to gotojail square
-	 * @return player goes out from jail - true, player goes to jail and waits - false*/
-	public boolean goToJailSquare()
+	 * Dealing with the unavailable property (calling this method if property is unavailable)
+	 * @param p
+	 * @param a - pay 15% last price - true OR buy 150% last price - false
+	 */
+	public void propertyUnAvailable(Property p, boolean a)//לשאול את השחקן אם הוא רוצה לשלם קנס או לקנות את הנכס
 	{
-		setInJail(true);
+
+				if(a)
+				{
+					transwerMoneyFromPlayerToPlayer(p.getPropertyOwner(), p.getLastPropertyCost()*0.85);
+				
+				}
+				else
+				{
+					buyPropertyFromPlayer(p, p.getPropertyOwner(), p.getLastPropertyCost()*1.5);
+				}
+	}
+	
+	
+	
+	/**
+	 * player comes to gotojail square
+	 * @param 
+	 * @return player goes out from jail - true, player goes to jail and waits because doesn't have money - false*/
+	public boolean goToJailSquare()// קוראים למתודה הזאת אם רוצה לשלם 1000 ולצאת
+	{
+	//	setInJail(true);
 		
 		if(this.getNumOfDisqualifications()==3)
 			threeDisq();	
-		//int n = JOptionPane.showConfirmDialog(null,"pay 100000 - yes OR wait - no","An Inane Question",JOptionPane.YES_NO_OPTION);
-		if(true)
-		{
-				setInJail(false);
+	
+		
+		//		setInJail(false);
 				if(Bank.ChargeMoneyFromPlayer(this, 100000))
 				{
 					
 					return true;
 				}
-		}
+		
 		
 		return false;
 	}
+	
 
-	public void luckyCardSquare(LuckyCard l)
+	
+	/**
+	 * arriving to luckyCard Square and giving the player questions to answer
+	 * @param l
+	 * return array of two questions for the player
+	 */
+	public Question[] luckyCardSquare(LuckyCard l)
 	{
-		boolean check1 = false;
-		boolean check2 = false;
-				
-		//first que
-		check1= answerResult(l.getQuestions()[0]); //תוצאת מענה על שאלה בינונית
 		
-		//second que
-		check2= answerResult(l.getQuestions()[1]); //תוצאת מענה על שאלה קשה
-		
-		if(check1 && check2)
+		return l.getQuestions();
+	
+	}
+	
+	/**
+	 * Dealing with the player answers
+	 * @param a1
+	 * @param a2
+	 * @param l
+	 */
+	public void luckyCardAnswers(boolean a1, boolean a2, LuckyCard l)//תשתמשו במתודה הזאת ותגידו למשתמש מה הרוויח/הפסיד בהתאם לתשובות שלו
+	{
+		if(a1 && a2)
 		{
 			Bank.GiveMoneyToPlayer(this, l.AmountForTwoQuestions());
 			
 		}
-		if(!check1)
+		if(!a1)
 		{
 			
 			Bank.ChargeMoneyFromPlayer(this, 50000);
 			this.plusDisq();
 		}
-		if(!check2)
+		if(!a2)
 		{
 			Bank.ChargeMoneyFromPlayer(this, 25000);
 		}
+	}
+	
+	/**
+	 * arriving to questionCard Square and giving the player question to answer
+	 * @param q, sub-subject that the player chooses
+	 * return Question for the player
+	 */
+	public Question questionCardSquare(QuestionCard q, Subjects sub)//קוראים למתודה הזאת אחרי ששואלים את המשתמש איזה תחום הוא רוצה
+	{
+		
+	
+		
+		Question que = SysData.getInstance().CardQuestionQuestion(sub); // שאלה לפי התחום הנבחר שמקבלים מהמשתמש
+	
+		return que;
+		
 		
 	}
 	
-	public void questionCardSquare(QuestionCard q)
+	/**
+	 * Dealing with the player answer
+	 * @param a - answer
+	 */
+	public void questionCardAnswer(boolean a)//להחזיר אם ענה נכון או לא על השאלה
 	{
-		Subjects sub = null; //נושא שהשחקן בוחר
+		//סכומי הקנסות והפרסים יטופלו בהמשך
 		double knas = 0;
 		double price = 0;
 		
-		Question que = SysData.getInstance().CardQuestionQuestion(sub); //שאלה לפי התחום הנבחר
-	
-		if(answerResult(que))
+		if(a)
 		{
 			Bank.GiveMoneyToPlayer(this, price);
 		}
@@ -206,25 +250,24 @@ public class PlayerInGame extends Player{
 		}
 	}
 	
-	public boolean exitGame()
+	
+	
+	
+	public void exitGame()//תשאלו בוויו אם הוא בטוח ורק אז תקראו למתודה
 	{
-		//int n = JOptionPane.showConfirmDialog(null,"Are you sure you want to exit?","An Inane Question",JOptionPane.YES_NO_OPTION);
-		if(true)
-		{
+	
 			returnProperties();
-				return true;
-		}
-		return false;
+
 	}
 	
 	public void payToPlayerAndBank(double paymant)
 	{
-		currentMoney-=paymant;//הוספת בדיקות
+		currentMoney-=paymant;
 	}
 	
 	public void receivingMoney(double paymant)
 	{
-		currentMoney+=paymant;//הוספת בדיקות
+		currentMoney+=paymant;
 	}
 
 	
@@ -254,6 +297,9 @@ public class PlayerInGame extends Player{
 		}
 	}
 
+	/**
+	 * dealing with player with 3 Disqualifications
+	 */
 	public void threeDisq()
 	{
 		
