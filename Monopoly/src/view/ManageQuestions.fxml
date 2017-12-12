@@ -39,30 +39,30 @@
             <RadioButton fx:id="ans4" layoutX="416.0" layoutY="110.0" mnemonicParsing="false" visible="false" />
          </children>
       </Pane>
-      <ComboBox fx:id="level" layoutX="523.0" layoutY="194.0" prefHeight="39.0" prefWidth="199.0" style="-fx-background-color: none; -fx-font-familt: serif; -fx-font-size: 200%;" />
-      <ComboBox fx:id="subjects" layoutX="524.0" layoutY="267.0" onAction="#hundleSubjects" prefHeight="33.0" prefWidth="198.0" style="-fx-background-color: none; -fx-font-family: serif; -fx-font-size: 200%;" />
+      <ComboBox fx:id="level" layoutX="525.0" layoutY="195.0" prefHeight="43.0" prefWidth="192.0" style="-fx-background-color: none; -fx-font-familt: serif; -fx-font-size: 200%;" />
+      <ComboBox fx:id="subjects" layoutX="525.0" layoutY="270.0" onAction="#hundleSubjects" prefHeight="36.0" prefWidth="192.0" style="-fx-background-color: none; -fx-font-family: serif; -fx-font-size: 200%;" />
       <CheckBox fx:id="IsMultipleChoice" layoutX="420.0" layoutY="338.0" mnemonicParsing="false" onAction="#hundleMultiple" prefHeight="33.0" prefWidth="327.0" stylesheets="@אוניברסיטה/הנדסת%20תוכנה/לוח%20משחק/boardGame.css" text="Is multiple choice">
          <font>
             <Font name="Serif Bold" size="27.0" />
          </font>
       </CheckBox>
       <TextField fx:id="ID" layoutX="151.0" layoutY="199.0" onAction="#Validate" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: none; -fx-font-family: serif; -fx-font-size: 200%;" />
-      <TextField fx:id="Question" layoutX="150.0" layoutY="258.0" opacity="0.0" prefHeight="41.0" prefWidth="195.0" />
-      <Button fx:id="Add" layoutX="70.0" layoutY="454.0" mnemonicParsing="false" onAction="#hundleAdd" prefHeight="49.0" prefWidth="136.0" style="-fx-background-color: none;">
+      <TextField fx:id="Question" layoutX="154.0" layoutY="270.0" opacity="0.0" prefHeight="41.0" prefWidth="195.0" />
+      <Button fx:id="Add" layoutX="70.0" layoutY="451.0" mnemonicParsing="false" onAction="#hundleAdd" prefHeight="49.0" prefWidth="136.0" style="-fx-background-color: none;">
          <font>
             <Font name="Serif Bold" size="19.0" />
          </font>
       </Button>
       <Pane fx:id="OneAnswer" layoutX="89.0" layoutY="307.0" />
       <ListView fx:id="ListSubjects" disable="true" layoutX="761.0" layoutY="264.0" prefHeight="115.0" prefWidth="106.0" style="-fx-font-family: serif; -fx-font-size: 200%;" />
-      <TextField fx:id="answer4" layoutX="375.0" layoutY="622.0" prefHeight="25.0" prefWidth="462.0" style="-fx-background-color: none; -fx-font-family: serif; -fx-font-size: 200%;" />
+      <TextField fx:id="answer4" layoutX="375.0" layoutY="619.0" prefHeight="25.0" prefWidth="462.0" style="-fx-background-color: none; -fx-font-family: serif; -fx-font-size: 200%;" />
       <TextField fx:id="answer3" layoutX="370.0" layoutY="571.0" prefHeight="25.0" prefWidth="465.0" style="-fx-background-color: none; -fx-font-family: serif; -fx-font-size: 200%;" />
-      <TextField fx:id="a1" layoutX="374.0" layoutY="475.0" prefHeight="25.0" prefWidth="464.0" style="-fx-background-color: none; -fx-font-family: serif; -fx-font-size: 200%;" />
-      <TextField layoutX="162.0" layoutY="348.0" prefHeight="36.0" prefWidth="192.0" style="-fx-font-family: serif; -fx-font-size: 200%; -fx-background-color: none;">
+      <TextField fx:id="a1" layoutX="374.0" layoutY="472.0" prefHeight="25.0" prefWidth="464.0" style="-fx-background-color: none; -fx-font-family: serif; -fx-font-size: 200%;" />
+      <TextField fx:id="OneAns" layoutX="159.0" layoutY="345.0" prefHeight="36.0" prefWidth="192.0" style="-fx-font-family: serif; -fx-font-size: 200%; -fx-background-color: none;">
          <font>
             <Font name="Serif Regular" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="a11" layoutX="371.0" layoutY="524.0" prefHeight="25.0" prefWidth="464.0" style="-fx-background-color: none; -fx-font-family: serif; -fx-font-size: 200%;" />
+      <TextField fx:id="a11" layoutX="371.0" layoutY="518.0" prefHeight="25.0" prefWidth="464.0" style="-fx-background-color: none; -fx-font-family: serif; -fx-font-size: 200%;" />
    </children>
 </Pane>

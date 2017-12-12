@@ -184,32 +184,32 @@ public class PlayerInGameView {
 			final KeyFrame kf3 = new KeyFrame(Duration.millis(2500), kv3);
 				timeline.getKeyFrames().addAll(kf,kf2,kf3);
 				timeline.play();
-				*/
+				
 				//change in x
 				final Timeline timeline1 = new Timeline();
-				timeline1.setCycleCount(1/*Timeline.INDEFINITE*/);
+			//	timeline1.setCycleCount(1);
 				
-				SquareView  s = sqNew;
-				System.out.println( "Square "+s.getX() +" "+s.getY());
-				System.out.println(currentSquare.getNum() + " " + currentSquare.getX() + " "+currentSquare.getY());
-				System.out.println(BoardGameController.getPlayer().xProperty());
-				final KeyValue kv = new KeyValue(BoardGameController.getPlayer().xProperty(), s.getX() - currentSquare.getX());//-> don't sure what it means
-				final KeyFrame kf = new KeyFrame(Duration.millis(500), kv);// means in how much period of time the rabbit will get to the cordinates i define him
-				timeline1.getKeyFrames().addAll(kf);
+			//	SquareView  s = sqNew;
+			//	System.out.println( "Square "+s.getX() +" "+s.getY());
+			//	System.out.println(currentSquare.getNum() + " " + currentSquare.getX() + " "+currentSquare.getY());
+			//	System.out.println(BoardGameController.getPlayer().xProperty());
+			//	final KeyValue kv = new KeyValue(BoardGameController.getPlayer().xProperty(), s.getX() - currentSquare.getX());//-> don't sure what it means
+			//	final KeyFrame kf = new KeyFrame(Duration.millis(500), kv);// means in how much period of time the rabbit will get to the cordinates i define him
+			//	timeline1.getKeyFrames().addAll(kf);
 				
 				
 				//change in y
-				final Timeline timeline2 = new Timeline();
-				timeline2.setCycleCount(1/*Timeline.INDEFINITE*/);
+			//	final Timeline timeline2 = new Timeline();
+			//	timeline2.setCycleCount(1);
 				
-				final KeyValue kv1 = new KeyValue(BoardGameController.getPlayer().yProperty(), currentSquare.getY() - s.getY());
-				final KeyFrame kf1 = new KeyFrame(Duration.millis(1500), kv1);// means in how much period of time the rabbit will get to the cordinates i define him
+			//	final KeyValue kv1 = new KeyValue(BoardGameController.getPlayer().yProperty(), currentSquare.getY() - s.getY());
+			//	final KeyFrame kf1 = new KeyFrame(Duration.millis(1500), kv1);// means in how much period of time the rabbit will get to the cordinates i define him
 
-				timeline2.getKeyFrames().addAll(kf1);
+		//		timeline2.getKeyFrames().addAll(kf1);
 				
 				
-				SequentialTransition sequence = new SequentialTransition(timeline1, timeline2);
-				sequence.play();
+		//		SequentialTransition sequence = new SequentialTransition(timeline1, timeline2);
+		//		sequence.play();*/
 	}
 	public int getPlayerNum() {
 		return playerNum;
