@@ -57,8 +57,9 @@ public class AdminControl {
 	}
 	
 	
-	public static boolean updateQuestion(Question q){ //not finished
-		return false;
+	public static boolean updateQuestion(Question q, String text, int diff, boolean isMulti, 
+			ArrayList<Answer> answers, ArrayList<Subjects> tags){ //not finished
+		return a.UpdateQuestion(q, text, diff, isMulti, answers, tags);
 	}
 	
 	
