@@ -96,7 +96,7 @@ public class Game{
 		if(!currentPlayer.isInJail()){
 //			for(int i=0; i<dices.length;i++){
 //		//	DiceResult += dices[i].Roll();
-		//	}
+		//	} 
 			System.out.println(DiceResult); //check
 			int NumNewDice = (DiceResult + currentPlayer.getCurrentSquare().getNum()) % GeneralVariables.getNumSquaresInGame(); // number of dice for the player
 			System.out.println(NumNewDice);// check

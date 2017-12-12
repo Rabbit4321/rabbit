@@ -30,7 +30,7 @@ public class PlayerInGameControl {
 			}
 		}
 		if(!(pig == null)){
-			System.out.println(pig.getCurrentSquare().getNum());
+			System.out.println("Players current square: "+pig.getCurrentSquare().getNum());
 			NumNewDice = (steps+ pig.getCurrentSquare().getNum()) % GeneralVariables.getNumSquaresInGame(); // number of dice for the player
 			System.out.println(" *checking Dice result* : "+NumNewDice);
 			return NumNewDice;

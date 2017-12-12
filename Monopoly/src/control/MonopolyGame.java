@@ -31,10 +31,14 @@ public class MonopolyGame{
 	
 	public static String getTypeSquareByNumber(int Num) {
 	//	board =new Board();
-		return board.getSquareType(Num).toString();
+		System.out.println(board.getSquareType(Num));
+		//if()
+		return board.getSquareType(Num);
 	}
 
 	public static int CreateGame(int num,ArrayList<PlayerInGame> players) {
+		SysData.getInstance().initProperties();
+		SysData.getInstance().initQuestions();
 		Game g = new Game(num, players);
 		System.out.println("GAME NUM FROM CONTROL : "+g.getGameNum());
 		games.add(g);

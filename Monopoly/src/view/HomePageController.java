@@ -76,8 +76,7 @@ public void hundleBtnNewGame(ActionEvent event) throws IOException{
 	    BoardView b = new BoardView();
 		b.RestartBoardView();
 		
-	  
-
+		
 	}
 
 public void initialize(URL url, ResourceBundle rb) {

@@ -28,7 +28,7 @@ public class BoardView {
 		this.squares.add(new SquareView(9,-130,290));
 		this.squares.add(new SquareView(10,-210,290));
 		this.squares.add(new SquareView(11,-210,370));
-		this.squares.add(new SquareView(12,-210,420));
+		this.squares.add(new SquareView(12,-210,410));
 		this.squares.add(new SquareView(13,-210,480));
 		this.squares.add(new SquareView(14,-210,540));
 		this.squares.add(new SquareView(15,-210,600));

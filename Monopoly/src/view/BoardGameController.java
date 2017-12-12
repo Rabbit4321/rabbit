@@ -219,6 +219,18 @@ public class BoardGameController implements Initializable {
 
 	}
 	/**
+	 * show roll result
+	 * */
+	public static void showRollResultMessage(ActionEvent event, int num){
+
+	    Alert alert = new Alert(AlertType.INFORMATION);
+	    alert.setTitle("Information Dialog");
+	    alert.setHeaderText("Moving "+num+" Steps!");
+	    alert.setContentText("");
+
+	    alert.showAndWait();
+	      }
+	/**
 	 * Show message Error for testing
 	 * */
 	public static void showErrorMessage(ActionEvent event){
@@ -245,7 +257,7 @@ public class BoardGameController implements Initializable {
 
 		    Alert alert = new Alert(AlertType.INFORMATION);
 		    alert.setTitle("Information Dialog");
-		    alert.setHeaderText("You are in  PROPERTY SQUARE");
+		    alert.setHeaderText("You are in  LUCKY CARD SQUARE");
 		    alert.setContentText("");
 
 		    alert.showAndWait();
@@ -254,7 +266,7 @@ public class BoardGameController implements Initializable {
 
 		    Alert alert = new Alert(AlertType.INFORMATION);
 		    alert.setTitle("Information Dialog");
-		    alert.setHeaderText("You are in  PROPERTY SQUARE");
+		    alert.setHeaderText("You are in  QUESTION CARD SQUARE");
 		    alert.setContentText("");
 
 		    alert.showAndWait();
@@ -277,28 +289,28 @@ public class BoardGameController implements Initializable {
 
 		int result;
 		
-		result = Dice.Roll() + Dice.Roll();
-		
-		//hundleTextFieldNumRolled(mouse,String.valueOf(result));
-		System.out.println("RESULT: "+result);
-      //  int numGame = MonopolyGame.getInstance().games.get(0).getGameNum();
+		//result = Dice.Roll() + Dice.Roll();
+		result = 13;
+		showRollResultMessage(null, result);
         System.out.println("Game NUMBER: "+gamenum);
         if(MonopolyGame.getGameFromArray(gamenum) != null) {
 				Player pv = MonopolyGame.getAllPlayersInGame(MonopolyGame.getGameFromArray(gamenum)).peek();//get next player-> bring the next player in the queue
-			//	System.out.println("View " +"In board game the number of the player is: " + pv.getPlayerNum());
 				System.out.println(GameLogic.bringAllPlayersInGame(gamenum));
 				
-				for(PlayerInGame g: GameLogic.bringAllPlayersInGame(gamenum)){
+			/*	for(PlayerInGame g: GameLogic.bringAllPlayersInGame(gamenum)){ //print to check the players in the game
 					System.out.println("View "+g.getPlayerNum() + " ");
-				}
+				}*/
 				//trying on one player - work!
 					PlayerInGameView p = getPlayerByNum(2);
 					if(p != null) {
 					p.ChangeSquareViews(BoardView.getStart());
+				//	if(p.getCurrentSquare().equals(BoardView.getStart())) {
 					int currentSquare = PlayerInGameControl.MovePlayer(p.getPlayerNum(), gamenum,result);
-					MovePlayerInBoardAnimation(p,BoardView.getSquareByNum(currentSquare));
+				//	}
 					SquareView newSquare= BoardView.getSquareByNum(currentSquare) ;
-						if(newSquare != null) {
+					if(newSquare != null) {
+						MovePlayerInBoardAnimation(p,newSquare); //animation
+						if(MonopolyGame.getTypeSquareByNumber(currentSquare)!= null) {
 							if(MonopolyGame.getTypeSquareByNumber(currentSquare).compareTo("Property")==0) {
 								SquareControl.propertySquare(currentSquare);
 								showPropertyMessage(null);
@@ -311,22 +323,24 @@ public class BoardGameController implements Initializable {
 								SquareControl.questionCardSquare(currentSquare);
 								showQuestionMessage(null);
 							}
-						
-						}
-						else {
-							 
+
 						}
 					}
 					else {
 						showErrorMessage(null);
 					}
-				 //END trying
+				 //END trying - needs to add the player back to queue
 					
-				MonopolyGame.getAllPlayersInGame(MonopolyGame.getGameFromArray(gamenum)).poll();
+				//MonopolyGame.getAllPlayersInGame(MonopolyGame.getGameFromArray(gamenum)).poll();
         }
         else {
         	showErrorMessage(null);
+        	}
         }
+        
+	else {
+		 showErrorMessage(null);
+		}
 	}
 
 
@@ -394,33 +408,6 @@ public class BoardGameController implements Initializable {
 	}
 
 
-/*public void start(Stage primaryStage) {
-    
-	primaryStage.setTitle("Trying");
-	Group root = new Group();
-	Scene scene = new Scene(root);
-	Image image1 = new Image("file:img/Bugsbunny2011.png") ;
-  //  Image image2 = new Image("...")  ;
-    ImageView imageView = new ImageView(image1);
-    
-    imageView.setFitWidth(350);
-    imageView.setPreserveRatio(true);
-    imageView.setSmooth(true);
-    imageView.setLayoutX(600);
-    imageView.setLayoutY(290);
-    
-    Timeline timeline = new Timeline();
-    timeline.setCycleCount(1);
-    KeyFrame movePlane = new KeyFrame(Duration.millis(1500),
-    		new KeyValue(imageView.translateXProperty(),-810),
-    		new KeyValue(imageView.translateYProperty(),0));
-
-    timeline.getKeyFrames().add(movePlane);
-    timeline.play();
-    root.getChildren().add(imageView);
-    primaryStage.setScene(new Scene(root, 800, 600));
-    primaryStage.show();
-}*/
 	
 
 /*public static void main(String[] args) {
