@@ -16,6 +16,16 @@ public class AdminControl {
 	
 	private static Admin a= new Admin(); // not supposed to be here - just for trying
 
+	
+	public static void initAdmin()
+	{
+		SysData.getInstance().initProperties();
+		SysData.getInstance().initQuestions();
+	}
+	
+	
+	
+	
 	/**
 	 * 
 	 * @param id
