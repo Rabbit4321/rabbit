@@ -63,7 +63,7 @@ public void hundleBtnAdmin(ActionEvent event) throws IOException{
     app_stage.setTitle("Monopoly game by Rabbit team");
     app_stage.show();
 }
-
+@FXML
 public void hundleBtnNewGame(ActionEvent event) throws IOException{
 
 	  Parent home_page_parent = FXMLLoader.load(getClass().getResource("BoardGame1.fxml"));

@@ -74,6 +74,7 @@ public class BoardGameController implements Initializable {
 	private TextField numRolled;
 	
 	public BoardView board;
+	public int left = 50;
 	
 
 	@FXML
@@ -177,12 +178,13 @@ public class BoardGameController implements Initializable {
     }
 
 ///////////HandleButtons//////////////Functions/////////////////////
-	/* when the screen is ready just to connect it to the TextField(according the name
+	// when the screen is ready just to connect it to the TextField(according the name
     @FXML
-    public void hundleTextFieldTurnLeft(ActionEvent e, String text){
-    	moves_left.appendText(text);
+    public void hundleTextFieldTurnLeft(MouseEvent m){
+    	moves_left.appendText(String.valueOf(left));
+    	
     }
- 
+ /*
    @FXML
     public void hundleTextFieldNumRolled(MouseEvent mouse,String numberRolled){
     	numRolled.appendText(numberRolled);
@@ -191,7 +193,6 @@ public class BoardGameController implements Initializable {
 	@FXML
 	private void handleBtnBack(ActionEvent event) throws IOException{
 		
-   
 	      Parent home_page_parent = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
 	        Scene home_page_scene = new Scene(home_page_parent);
 	        
@@ -212,10 +213,18 @@ public class BoardGameController implements Initializable {
 	}
 	
 	@FXML
-	private void hundleBtnLeave(MouseEvent mouse){
+	private void hundleBtnLeave(ActionEvent event) throws IOException{
 		
-	/*this button is appointed to turn on a method that will do is to handle the players in the game
-		when a player wants to leave the game, this method will made another method(that belongs to the Game class) to work*/
+	   
+			Object home_page_parent = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
+	        Scene home_page_scene = new Scene((Parent) home_page_parent);
+	       
+	        Stage app_stage = (Stage)  ((Node) event.getSource()).getScene().getWindow();
+	        app_stage.hide();
+	        app_stage.setScene(home_page_scene);
+	        app_stage.setTitle("Home Page");
+	        app_stage.show();
+	        app_stage.resizableProperty().setValue(Boolean.FALSE);
 
 	}
 	/**
@@ -288,8 +297,22 @@ public class BoardGameController implements Initializable {
 	@FXML
 	private void hundleBtnRoll(MouseEvent mouse){
 		
+		if(left <= 50){
+			hundleTextFieldTurnLeft(mouse);
+			this.left--;
+		}
+	
 	/*this button is appointed to turn on a method that will do is to activate the dices to roll and bring the results*/
-		OnePlayerTurn(2);// 2 - just to check - should be variable from players in the game
+		//OnePlayerTurn(2);// 2 - just to check - should be variable from players in the game
+		PlayerInGame playerInGame = null;
+
+			int numPlayer = GameLogic.bringAllPlayersInGame(gamenum).peek().getPlayerNum();
+			this.OnePlayerTurn(numPlayer);
+			playerInGame = GameLogic.bringAllPlayersInGame(gamenum).poll();
+			GameLogic.bringAllPlayersInGame(gamenum).add(playerInGame);
+		
+			moves_left.clear();	//clear the TextField
+		
 
 	}
 
@@ -323,6 +346,8 @@ public class BoardGameController implements Initializable {
 							if(MonopolyGame.getTypeSquareByNumber(currentSquare).compareTo("Property")==0) {
 								SquareControl.propertySquare(currentSquare);
 								showPropertyMessage(null);
+								
+								
 								//TODO //supposed to show property card with info - need to use marina's methods  
 							}
 							else if(MonopolyGame.getTypeSquareByNumber(currentSquare).compareTo("LuckyCard")==0) {
@@ -342,7 +367,7 @@ public class BoardGameController implements Initializable {
 						showErrorMessage(null);
 					}
 				 //END trying - needs to add the player back to queue
-				//TODO - when player end his turn needs to go back to queue 	
+				//TODO - when player end his turn needs to go back to queue-> DONE in handleBtnRoll method 	
 				//MonopolyGame.getAllPlayersInGame(MonopolyGame.getGameFromArray(gamenum)).poll();
         }
         else {
@@ -389,7 +414,7 @@ public class BoardGameController implements Initializable {
 	//	board = new BoardView();
 	//	board.RestartBoardView();
 		/////////////////////table//////////////////////
-		/*
+		
         TableColumn nickNameCol = new TableColumn("Nick Name");
         nickNameCol.setMinWidth(100);
         nickNameCol.setCellValueFactory(
@@ -413,8 +438,9 @@ public class BoardGameController implements Initializable {
 
         tv.getColumns().clear();
         tv.getColumns().addAll(nickNameCol, moneyCol, disquaCol,turnCol);
-        tv.setItems((ObservableList) GameLogic.bringAllPlayersInGame(Game.getCounter()));
-//i think we will needed game logic in a singeltone way and his constructor will provide us the table we need*/
+        
+        //tv.setItems( new ObservableList(GameLogic.bringAllPlayersInGame(Game.getCounter())));
+//i think we will needed game logic in a singeltone way and his constructor will provide us the table we need
 	}
 
 

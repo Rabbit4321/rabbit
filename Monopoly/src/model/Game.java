@@ -39,12 +39,10 @@ public class Game{
 	 * */
 	
 	public Game(int numPlayers,ArrayList<PlayerInGame> pg){// מספר שחקנים
-		if(getCounter() == 0) {
-			this.setGameNum(getCounter()+1);
-			AddToCounter();
-		}
-		else
-			this.setGameNum(getCounter());
+	
+		this.setGameNum(getCounter()+1);
+		AddToCounter();
+		
 		this.board= new Board();
 		this.NumOfPlayersInGame=numPlayers;
 		this.players= new ArrayBlockingQueue<PlayerInGame>(this.NumOfPlayersInGame);
@@ -61,7 +59,7 @@ public class Game{
 		this.playersInJail = new HashMap<PlayerInGame,Integer>(this.NumOfPlayersInGame);
 		this.TurnsLeft = GeneralVariables.getNumOfTurnsInGame();
 		UpdateAllPlayersToStart();
-		AddToCounter();
+		
 	}
 	/**
 	 * Constructor 2
@@ -240,6 +238,9 @@ public class Game{
 	}
 	public static void AddToCounter() {
 		Counter++;
+	}
+	public int getTurnsLeft(){
+		return TurnsLeft;
 	}
 
 }

@@ -9,7 +9,7 @@ import java.util.Properties;
 import java.util.Random;
 
 public class Board {
-	private ArrayList<Square> AllSquares;
+	private static ArrayList<Square> AllSquares;
 	private static Square Start = null;
 	private Square Jail = null;
 	
@@ -30,7 +30,7 @@ public class Board {
 		for(Square s : AllSquares) { // initialize squares
 			s = new Square();
 		}
-		Square[] Squares = new Square[GeneralVariables.getNumSquaresInGame()+1];
+		Square[] Squares = new Square[GeneralVariables.getNumSquaresInGame()];
 	//	int [] OptionsForEdgesBoard= {1,11,21,31};
 		ArrayList<Property> properties = SysData.getInstance().getProperties();
 		
@@ -192,10 +192,12 @@ public class Board {
 		Squares[27].setNum(27);
 		Squares[32]= new QuestionCard();
 		Squares[32].setNum(32);
+		Squares[33]= new QuestionCard();
+		Squares[33].setNum(33);
 		Squares[38]= new QuestionCard();
 		Squares[38].setNum(38);
 		
-		for(int i =1; i< Squares.length ; i++) {
+		for(int i =0; i< Squares.length ; i++) {
 			AllSquares.add(Squares[i]);
 		}
 		
@@ -206,11 +208,10 @@ public class Board {
 	 * @param player,steps
 	 * @return if succeed - current square, 
 	 * */
-	
+	/*
 	public Square MovePlayer(PlayerInGame p,int steps) {
 		return null;//empty method - why? maybe there is a similar method in the code
-		
-	}
+		*/
 	/**
 	 * get type of square on board
 	 * */
@@ -276,6 +277,18 @@ public class Board {
 	
 	}
 	*/
+	public static Square getSquareByIndex(int index){
+		
+		for (Square s : AllSquares){
+			if (s.getNum() == index){
+				return s;
+			}
+		}
+		
+		throw new RuntimeException("FATAL ERROR! try to reach not exist square");
+		
+		
+	}
 	
 }
 	

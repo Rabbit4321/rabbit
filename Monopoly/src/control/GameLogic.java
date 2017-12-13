@@ -29,6 +29,12 @@ public class GameLogic {
 		
 		
 	}
+	public static PlayerInGame bringPlayerByNumber(int numPlayer, int numOfGame){
+		Game game = MonopolyGame.getInstance().getGameFromArray(numOfGame);
+		PlayerInGame playerInGame = game.getPlayersQueqe().peek();
+		return playerInGame;
+		
+	}
 	
 	
 	

@@ -4,6 +4,7 @@ package control;
 
 import java.util.ArrayList;
 
+import model.Board;
 import model.Game;
 import model.GeneralVariables;
 import model.PlayerInGame;
@@ -33,6 +34,8 @@ public class PlayerInGameControl {
 			System.out.println("Players current square: "+pig.getCurrentSquare().getNum());
 			NumNewDice = (steps+ pig.getCurrentSquare().getNum()) % GeneralVariables.getNumSquaresInGame(); // number of dice for the player
 			System.out.println(" *checking Dice result* : "+NumNewDice);
+			System.out.println("PlayerInGameControl-MovePlayer: move player " + pig.getPlayerNum() + " to sqaure " + NumNewDice);
+			pig.setCurrentSquare(Board.getSquareByIndex(NumNewDice));
 			return NumNewDice;
 		/*	int currentSquare = pig.getCurrentSquare().getNum();
 			
