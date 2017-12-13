@@ -281,16 +281,26 @@ public class BoardGameController implements Initializable {
 	 
 	 
 	//https://docs.oracle.com/javafx/2/animations/basics.htm
-	//http://www.java2s.com/Tutorials/Java/JavaFX/1010__JavaFX_Timeline_Animation.htm
+	//http://www.java2s.com/Tutorials/Java/JavaFX/1010__JavaFX_Timeline_Animation.html
+	 /**
+	  * when clicked - pulling player from model's queue 
+	  * */
 	@FXML
 	private void hundleBtnRoll(MouseEvent mouse){
 		
 	/*this button is appointed to turn on a method that will do is to activate the dices to roll and bring the results*/
+		OnePlayerTurn(2);// 2 - just to check - should be variable from players in the game
 
+	}
+
+	/**
+	 * One Turn Player 
+	 * @param numPlayer
+	 * */
+	public void OnePlayerTurn(int numPlayer){
 		int result;
 		
 		result = Dice.Roll() + Dice.Roll();
-		//result = 13;
 		showRollResultMessage(null, result);
         System.out.println("Game NUMBER: "+gamenum);
         if(MonopolyGame.getGameFromArray(gamenum) != null) {
@@ -300,13 +310,12 @@ public class BoardGameController implements Initializable {
 			/*	for(PlayerInGame g: GameLogic.bringAllPlayersInGame(gamenum)){ //print to check the players in the game
 					System.out.println("View "+g.getPlayerNum() + " ");
 				}*/
+				
 				//trying on one player - work!
-					PlayerInGameView p = getPlayerByNum(2);
+					PlayerInGameView p = getPlayerByNum(numPlayer); 
 					if(p != null) {
-					p.ChangeSquareViews(BoardView.getStart());
-				//	if(p.getCurrentSquare().equals(BoardView.getStart())) {
-					int currentSquare = PlayerInGameControl.MovePlayer(p.getPlayerNum(), gamenum,result);
-				//	}
+					p.ChangeSquareViews(BoardView.getStart()); // sets the players square
+					int currentSquare = PlayerInGameControl.MovePlayer(p.getPlayerNum(), gamenum,result);// return new square number
 					SquareView newSquare= BoardView.getSquareByNum(currentSquare) ;
 					if(newSquare != null) {
 						MovePlayerInBoardAnimation(p,newSquare); //animation
@@ -333,7 +342,7 @@ public class BoardGameController implements Initializable {
 						showErrorMessage(null);
 					}
 				 //END trying - needs to add the player back to queue
-					
+				//TODO - when player end his turn needs to go back to queue 	
 				//MonopolyGame.getAllPlayersInGame(MonopolyGame.getGameFromArray(gamenum)).poll();
         }
         else {
@@ -345,8 +354,6 @@ public class BoardGameController implements Initializable {
 		 showErrorMessage(null);
 		}
 	}
-
-
 //	
 //	@FXML
 //	private void hundleTableView(MouseEvent mouse){

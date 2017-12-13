@@ -7,10 +7,13 @@ public class BoardView {
 	private static ArrayList<SquareView> squares;
 	
 	private static SquareView Start;
+	// 4 coordinates for start square when needed!
+	private static SquareView[] starts = {new SquareView (0,600,290),new SquareView (0,600,230),new SquareView (0,650,250),new SquareView (0,560,250)};
 	
 	
 	public BoardView(){
 		this.squares= new ArrayList<SquareView>(41);
+
 	}
 	
 	public void RestartBoardView() {
