@@ -291,6 +291,7 @@ public class SysData implements Serializable{
 					System.out.println(isCorrect);
 					
 					Answer ans = new Answer(text1,isCorrect);
+			//		System.out.println(ans.toString());
 					a.add(ans);
 					
 					
@@ -314,7 +315,7 @@ public class SysData implements Serializable{
 				}
 				
 				
-					AllQuestions.add(new Question((int)id, team, text, (int)difficulty, isMultipleChoice, answers, tags));
+					AllQuestions.add(new Question((int)id, team, text, (int)difficulty, isMultipleChoice, (ArrayList<Answer>)a, t));
 				
 				
 			}

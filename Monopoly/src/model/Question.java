@@ -15,6 +15,12 @@ public class Question {
 	private ArrayList<Subjects> tags = new ArrayList<Subjects>();
 
 	
+	@Override
+	public String toString() {
+		return "Question [id=" + id + ", team=" + team + ", text=" + text + ", difficulty=" + difficulty
+				+ ", isMultipleChoice=" + isMultipleChoice + ", answers=" + answers + ", tags=" + tags + "]";
+	}
+
 	Question(int id, String team, String text, int diff, boolean isMulti, 
 			ArrayList<Answer> answers, ArrayList<Subjects> tags){
 		this.id=id;

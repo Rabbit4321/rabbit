@@ -2,6 +2,10 @@ package model;
 
 public class Answer {
 
+	@Override
+	public String toString() {
+		return "Answer [text=" + text + ", isCorrect=" + isCorrect + "]";
+	}
 	private String text;
 	private boolean isCorrect;
 	public Answer(String text, boolean isCorrect) {
