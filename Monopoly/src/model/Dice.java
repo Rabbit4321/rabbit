@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Dice {
 	private static final int[] numbers={1,2,3,4,5,6};
-	private int status; //rolling = 1 or not = 0
+	private static int status;
 	
 	Dice(){
 		this.status=0;
@@ -15,9 +15,9 @@ public class Dice {
 	 *@return number betweeen 1-6
 	 * */
 	
-	public int Roll() {
+	public static int Roll() {
 		setStatus(1);
-		int rnd = new Random().nextInt(numbers.length);
+		int rnd = new Random().nextInt(numbers.length-1);
 		setStatus(0);
 	    return numbers[rnd]; 
 	}
@@ -26,12 +26,12 @@ public class Dice {
 		return numbers;
 	}
 
-	public int getStatus() {
+	public static int getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
+	public static void setStatus(int status) {
+		status = status;
 	}
 
 }

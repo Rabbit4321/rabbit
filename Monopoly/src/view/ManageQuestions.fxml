@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="900.0" stylesheets="@אוניברסיטה/הנדסת%20תוכנה/לוח%20משחק/boardGame.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ManageQuestionsController">
+   <children>
+      <ImageView fitHeight="680.0" fitWidth="1538.0" layoutX="-5.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../img/Add%20Question.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="97.0" layoutY="94.0" />
+      <Label layoutX="134.0" layoutY="159.0">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Pane fx:id="AnsPane" layoutX="302.0" layoutY="419.0" prefHeight="232.0" prefWidth="547.0">
+         <children>
+            <TextField fx:id="answer1" layoutX="127.0" layoutY="2.0" prefHeight="25.0" prefWidth="275.0" style="-fx-background-color: blck;" />
+            <RadioButton fx:id="ans1" layoutX="416.0" layoutY="7.0" mnemonicParsing="false" visible="false">
+               <toggleGroup>
+                  <ToggleGroup fx:id="group" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="ans2" layoutX="416.0" layoutY="42.0" mnemonicParsing="false" visible="false" />
+            <RadioButton fx:id="ans3" layoutX="416.0" layoutY="73.0" mnemonicParsing="false" visible="false" />
+            <RadioButton fx:id="ans4" layoutX="416.0" layoutY="110.0" mnemonicParsing="false" visible="false" />
+         </children>
+      </Pane>
+      <ComboBox fx:id="level" layoutX="525.0" layoutY="195.0" prefHeight="43.0" prefWidth="192.0" style="-fx-background-color: none; -fx-font-familt: serif; -fx-font-size: 200%;" />
+      <ComboBox fx:id="subjects" layoutX="525.0" layoutY="270.0" onAction="#hundleSubjects" prefHeight="36.0" prefWidth="192.0" style="-fx-background-color: none; -fx-font-family: serif; -fx-font-size: 200%;" />
+      <CheckBox fx:id="IsMultipleChoice" layoutX="420.0" layoutY="338.0" mnemonicParsing="false" onAction="#hundleMultiple" prefHeight="33.0" prefWidth="327.0" stylesheets="@אוניברסיטה/הנדסת%20תוכנה/לוח%20משחק/boardGame.css" text="Is multiple choice">
+         <font>
+            <Font name="Serif Bold" size="27.0" />
+         </font>
+      </CheckBox>
+      <TextField fx:id="ID" layoutX="151.0" layoutY="199.0" onAction="#Validate" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: none; -fx-font-family: serif; -fx-font-size: 200%;" />
+      <TextField fx:id="Question" layoutX="154.0" layoutY="270.0" opacity="0.0" prefHeight="41.0" prefWidth="195.0" />
+      <Button fx:id="Add" layoutX="70.0" layoutY="451.0" mnemonicParsing="false" onAction="#hundleAdd" prefHeight="49.0" prefWidth="136.0" style="-fx-background-color: none;">
+         <font>
+            <Font name="Serif Bold" size="19.0" />
+         </font>
+      </Button>
+      <Pane fx:id="OneAnswer" layoutX="89.0" layoutY="307.0" />
+      <ListView fx:id="ListSubjects" disable="true" layoutX="761.0" layoutY="264.0" prefHeight="115.0" prefWidth="106.0" style="-fx-font-family: serif; -fx-font-size: 200%;" />
+      <TextField fx:id="answer4" layoutX="375.0" layoutY="619.0" prefHeight="25.0" prefWidth="462.0" style="-fx-background-color: none; -fx-font-family: serif; -fx-font-size: 200%;" />
+      <TextField fx:id="answer3" layoutX="370.0" layoutY="571.0" prefHeight="25.0" prefWidth="465.0" style="-fx-background-color: none; -fx-font-family: serif; -fx-font-size: 200%;" />
+      <TextField fx:id="a1" layoutX="374.0" layoutY="472.0" prefHeight="25.0" prefWidth="464.0" style="-fx-background-color: none; -fx-font-family: serif; -fx-font-size: 200%;" />
+      <TextField fx:id="OneAns" layoutX="159.0" layoutY="345.0" prefHeight="36.0" prefWidth="192.0" style="-fx-font-family: serif; -fx-font-size: 200%; -fx-background-color: none;">
+         <font>
+            <Font name="Serif Regular" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="a11" layoutX="371.0" layoutY="518.0" prefHeight="25.0" prefWidth="464.0" style="-fx-background-color: none; -fx-font-family: serif; -fx-font-size: 200%;" />
+   </children>
+</Pane>

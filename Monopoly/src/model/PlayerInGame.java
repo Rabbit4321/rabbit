@@ -1,33 +1,42 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
-import javax.swing.JOptionPane;
+
+
+
+import control.MonopolyGame;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.SequentialTransition;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
+import view.BoardGameController;
+import view.BoardView;
+import view.SquareView;
 
 public class PlayerInGame extends Player{
 	
-	
-	
-	
 	private double currentMoney;
 	private int numOfDisqualifications;
-	
+	//more field of turn-> true/false
 	private Square currentSquare;
 	public boolean InJail;
-	
-	
 	private ArrayList<Property> properties;
+	private int gameNum;// Elinor added this -> for knowing the connection between a specific game to a specific player
 	
+	/*
+	 * constructor 1
+	 */
 	public PlayerInGame(int playerNum, String nickname, Square currentSquare) {
 		super(playerNum, nickname);
 		
 		this.currentMoney = 0;//לפני שהבנק מביא כסף
 		this.numOfDisqualifications = 0;
-		this.currentSquare = null;//משבצת התחלה
+		this.currentSquare = Board.getStart();//start square
 		this.InJail=false;
-		
 		this.properties = new ArrayList<Property>();
+	//gameNum = MonopolyGame.getCurrentGame();//Dont sure if its ok-Elinor
 	}
 	
 	public int ChangeSqure(int squreNum)
@@ -44,176 +53,193 @@ public class PlayerInGame extends Player{
 		{
 			s-=GeneralVariables.getNumSquaresInGame();
 		}
-		
 		 return s;
-		
 	}
+
 	
 	/**
 	 * arriving to property square
 	 * @param Property p
+	 * @return question to the player if property Available, other - null
 	 */
-	public void propertySquare(Property p)
+	public Question propertySquare(Property p)
 	{
-		if(currentMoney-p.getPropertyCost()>=0)
-		{
+		Question q=null;
 		if(p.getPropertyOwner()==null)
 		{
+			q = SysData.getInstance().propertyQuestion(p);
 			
-			 int n = JOptionPane.showConfirmDialog(
-			            null,
-			            "Would you like buy this property?",
-			            "An Inane Question",
-			            JOptionPane.YES_NO_OPTION);
-			if(n == JOptionPane.YES_OPTION)
-			{
-				
-				Question q = SysData.getInstance().propertyQuestion(p);
-				
-				if(answerResult(q))
-				{
-				//right
-				
-				double price=0;
-				if(p.getType().equals(PropertyTypes.Low_cost))
-				{
-					price=currentMoney * 0.95;
-					Bank.ChargeMoneyFromPlayer(this, price);
 			
-					p.setPropertyOwner(this);
-					p.setLastPropertyCost(price);
-					this.properties.add(p);
-				}
-				if(p.getType().equals(PropertyTypes.Average))
+		
+		}
+	
+			return q;
+		
+	}
+	
+	/**
+	 * Dealing with the player answer (calling this method if property is available)
+	 * @param p
+	 * @param a
+	 */
+	public void propertyAvailable(Property p, boolean a)//להחזיר אם ענה נכון או לא על השאלה
+	{
+		if(a)
+		{
+		//right
+		
+		double price=0;
+		if(p.getType().equals(PropertyTypes.Low_cost))
+		{
+			price=currentMoney * 0.95;
+			Bank.ChargeMoneyFromPlayer(this, price);
+	
+			p.setPropertyOwner(this);
+			p.setLastPropertyCost(price);
+			this.properties.add(p);
+		}
+		if(p.getType().equals(PropertyTypes.Average))
+		{
+			price=currentMoney * 0.85;
+			Bank.ChargeMoneyFromPlayer(this, price);
+		
+			p.setPropertyOwner(this);
+			p.setLastPropertyCost(price);
+			this.properties.add(p);
+		}
+		if(p.getType().equals(PropertyTypes.Expensive))
+		{
+			price=currentMoney * 0.75;
+			Bank.ChargeMoneyFromPlayer(this, price);
+		
+			p.setPropertyOwner(this);
+			p.setLastPropertyCost(price);
+			this.properties.add(p);
+		}
+		}
+		else
+		{
+		//wrong
+		Bank.ChargeMoneyFromPlayer(this, p.getPropertyCost());
+		
+		p.setPropertyOwner(this);
+		p.setLastPropertyCost(p.getPropertyCost());
+		this.properties.add(p);
+		plusDisq();
+		}
+	}
+	
+	/**
+	 * Dealing with the unavailable property (calling this method if property is unavailable)
+	 * @param p
+	 * @param a - pay 15% last price - true OR buy 150% last price - false
+	 */
+	public void propertyUnAvailable(Property p, boolean a)//לשאול את השחקן אם הוא רוצה לשלם קנס או לקנות את הנכס
+	{
+
+				if(a)
 				{
-					price=currentMoney * 0.85;
-					Bank.ChargeMoneyFromPlayer(this, price);
+					transwerMoneyFromPlayerToPlayer(p.getPropertyOwner(), p.getLastPropertyCost()*0.85);
 				
-					p.setPropertyOwner(this);
-					p.setLastPropertyCost(price);
-					this.properties.add(p);
-				}
-				if(p.getType().equals(PropertyTypes.Expensive))
-				{
-					price=currentMoney * 0.75;
-					Bank.ChargeMoneyFromPlayer(this, price);
-				
-					p.setPropertyOwner(this);
-					p.setLastPropertyCost(price);
-					this.properties.add(p);
-				}
 				}
 				else
 				{
-				//wrong
-				Bank.ChargeMoneyFromPlayer(this, p.getPropertyCost());
-				
-				p.setPropertyOwner(this);
-				p.setLastPropertyCost(p.getPropertyCost());
-				this.properties.add(p);
-				plusDisq();
+					buyPropertyFromPlayer(p, p.getPropertyOwner(), p.getLastPropertyCost()*1.5);
 				}
-			}
-		}
-		else //נכס תפוס
-		{
-			int n = JOptionPane.showConfirmDialog(
-		            null,
-		            "pay 15% last price - yes OR buy 150% last price - no",
-		            "An Inane Question",
-		            JOptionPane.YES_NO_OPTION);
-			if(n == JOptionPane.YES_OPTION)
-			{
-				
-				transwerMoneyFromPlayerToPlayer(p.getPropertyOwner(), p.getLastPropertyCost()*0.85);
-			
-			
-			}
-			else
-			{
-				buyPropertyFromPlayer(p, p.getPropertyOwner(), p.getLastPropertyCost()*1.5);
-			}
-		}
-		}
 	}
+	
 	
 	
 	/**
 	 * player comes to gotojail square
-	 * @return player goes out from jail - true, player goes to jail and waits - false*/
-	public boolean goToJailSquare()
+	 * @param 
+	 * @return player goes out from jail - true, player goes to jail and waits because doesn't have money - false*/
+	public boolean goToJailSquare()// קוראים למתודה הזאת אם רוצה לשלם 1000 ולצאת
 	{
-		setInJail(true);
+	//	setInJail(true);
 		
 		if(this.getNumOfDisqualifications()==3)
-			threeDisq();
+			threeDisq();	
+	
 		
-		
-		int n = JOptionPane.showConfirmDialog(
-	            null,
-	            "pay 100000 - yes OR wait - no",
-	            "An Inane Question",
-	            JOptionPane.YES_NO_OPTION);
-		if(n == JOptionPane.YES_OPTION)
-		{
-				setInJail(false);
+		//		setInJail(false);
 				if(Bank.ChargeMoneyFromPlayer(this, 100000))
 				{
 					
 					return true;
 				}
-		}
+		
 		
 		return false;
 	}
 	
-	
 
 	
-	public void luckyCardSquare(LuckyCard l)
+	/**
+	 * arriving to luckyCard Square and giving the player questions to answer
+	 * @param l
+	 * return array of two questions for the player
+	 */
+	public Question[] luckyCardSquare(LuckyCard l)
 	{
-		boolean check1 = false;
-		boolean check2 = false;
 		
-		
-		
-		//first que
-		check1= answerResult(l.getQuestions()[0]); //תוצאת מענה על שאלה בינונית
-		
-		//second que
-		check2= answerResult(l.getQuestions()[1]); //תוצאת מענה על שאלה קשה
-		
-		
-		
-		if(check1 && check2)
+		return l.getQuestions();
+	
+	}
+	
+	/**
+	 * Dealing with the player answers
+	 * @param a1
+	 * @param a2
+	 * @param l
+	 */
+	public void luckyCardAnswers(boolean a1, boolean a2, LuckyCard l)//תשתמשו במתודה הזאת ותגידו למשתמש מה הרוויח/הפסיד בהתאם לתשובות שלו
+	{
+		if(a1 && a2)
 		{
 			Bank.GiveMoneyToPlayer(this, l.AmountForTwoQuestions());
 			
 		}
-		if(!check1)
+		if(!a1)
 		{
 			
 			Bank.ChargeMoneyFromPlayer(this, 50000);
 			this.plusDisq();
 		}
-		if(!check2)
+		if(!a2)
 		{
 			Bank.ChargeMoneyFromPlayer(this, 25000);
 		}
+	}
+	
+	/**
+	 * arriving to questionCard Square and giving the player question to answer
+	 * @param q, sub-subject that the player chooses
+	 * return Question for the player
+	 */
+	public Question questionCardSquare(QuestionCard q, Subjects sub)//קוראים למתודה הזאת אחרי ששואלים את המשתמש איזה תחום הוא רוצה
+	{
+		
+	
+		
+		Question que = SysData.getInstance().CardQuestionQuestion(sub); // שאלה לפי התחום הנבחר שמקבלים מהמשתמש
+	
+		return que;
 		
 		
 	}
 	
-	
-	public void questionCardSquare(QuestionCard q)
+	/**
+	 * Dealing with the player answer
+	 * @param a - answer
+	 */
+	public void questionCardAnswer(boolean a)//להחזיר אם ענה נכון או לא על השאלה
 	{
-		Subjects sub = null; //נושא שהשחקן בוחר
+		//סכומי הקנסות והפרסים יטופלו בהמשך
 		double knas = 0;
 		double price = 0;
 		
-		Question que = SysData.getInstance().CardQuestionQuestion(sub); //שאלה לפי התחום הנבחר
-	
-		if(answerResult(que))
+		if(a)
 		{
 			Bank.GiveMoneyToPlayer(this, price);
 		}
@@ -222,53 +248,28 @@ public class PlayerInGame extends Player{
 			Bank.ChargeMoneyFromPlayer(this, knas);
 			plusDisq();
 		}
-	
-	
 	}
 	
 	
-	public boolean exitGame()
+	
+	
+	public void exitGame()//תשאלו בוויו אם הוא בטוח ורק אז תקראו למתודה
 	{
-		int n = JOptionPane.showConfirmDialog(
-	            null,
-	            "Are you sure you want to exit?",
-	            "An Inane Question",
-	            JOptionPane.YES_NO_OPTION);
-		if(n == JOptionPane.YES_OPTION)
-		{
+	
 			returnProperties();
-				return true;
-		}
-		return false;
+
 	}
-	
-	
 	
 	public void payToPlayerAndBank(double paymant)
 	{
-		currentMoney-=paymant;//הוספת בדיקות
+		currentMoney-=paymant;
 	}
 	
 	public void receivingMoney(double paymant)
 	{
-		currentMoney+=paymant;//הוספת בדיקות
+		currentMoney+=paymant;
 	}
-	
-	
-/*	public boolean sellProperty(Property p)
-	{
-		if(this.properties.contains(p))
-		{
-			currentMoney+=p.getPropertyCost();
-			this.properties.remove(p);
-		
-			
-			return true;
-		}
-		
-		
-		return false;
-	}*/
+
 	
 	public boolean buyPropertyFromPlayer(Property pro, PlayerInGame pla, double amount)
 	{
@@ -280,15 +281,12 @@ public class PlayerInGame extends Player{
 			
 			return true;
 		}
-		
-		
-		
+			
 		return false;
 	}
 	
-	
 	/**
-	 * cheking if there is 3 Disqualifications
+	 * checking if there is 3 Disqualifications
 	 * @return player need to go to jail - true*/
 	public void plusDisq()
 	{
@@ -298,9 +296,10 @@ public class PlayerInGame extends Player{
 			goToJailSquare();
 		}
 	}
-	
-	
-	
+
+	/**
+	 * dealing with player with 3 Disqualifications
+	 */
 	public void threeDisq()
 	{
 		
@@ -337,8 +336,6 @@ public class PlayerInGame extends Player{
 		return false;
 	}
 	
-	
-	
 	public void returnProperties()
 	{
 		for(int i=0; i<this.properties.size(); i++)
@@ -347,8 +344,6 @@ public class PlayerInGame extends Player{
 		}
 	}
  
-	
-	
 	public double playerValue()
 	{
 		int value = 0;
@@ -381,15 +376,7 @@ public class PlayerInGame extends Player{
 		}
 		return false;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 	public double getCurrentMoney() {
 		return currentMoney;
 	}
@@ -429,8 +416,17 @@ public class PlayerInGame extends Player{
 	public void setProperties(ArrayList<Property> properties) {
 		this.properties = properties;
 	}
+
+	public int getGameNum() {
+		return gameNum;
+	}
+
+	public void setGameNum(int gameNum) {
+		this.gameNum = gameNum;
+	}
+
 	
 	
-	
+
 	
 }

@@ -16,7 +16,7 @@ public class Bank {
 	public static void GiveMoneyToPlayer(PlayerInGame p,double amount) {
 			p.receivingMoney(amount);
 			Money = Money - amount;
-		if (Money <= 0)
+		if (Money <= 0)// don't sure about this check - because we dont know what happend when there is no money in the bank
 			Money = 1000000;
 	}
 	/**
@@ -25,7 +25,7 @@ public class Bank {
 	 * @return if player has money - true, else false*/
 	
 	public static boolean ChargeMoneyFromPlayer(PlayerInGame p,double amount) {
-		if((p.getCurrentMoney()-amount) > -10000) {
+		if((p.getCurrentMoney()-amount) > -100000) {
 			p.payToPlayerAndBank(amount);
 			Money += amount;
 			return true;

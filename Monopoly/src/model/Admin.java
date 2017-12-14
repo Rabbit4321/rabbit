@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+
+
 public class Admin implements Actions{
 	
 	private String ID;
@@ -25,12 +27,26 @@ public class Admin implements Actions{
 	
 	/**
 	 * Remove Question from database 
-	 * @param id
+	 * @param q
 	 * @return if successful - true, else false*/
 	
 	public boolean RemoveQuestion(Question q) {
 		return SysData.RemoveQuestion(q);
 	}
+	
+	
+	/**
+	 * Update Question
+	 * @param q, new que details
+	 * @return if successful - true, else false*/
+	public boolean UpdateQuestion(Question q, String text, int diff, boolean isMulti, 
+			ArrayList<Answer> answers, ArrayList<Subjects> tags) {
+		return SysData.UpdateQuestion(q, text, diff, isMulti, answers, tags);
+	}
+	
+	
+	
+	
 	
 	public String getID() {
 		return ID;
@@ -44,10 +60,15 @@ public class Admin implements Actions{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
 	@Override
 	public boolean AddQuestion(Question q) {
-		return SysData.AddQuestion(q);
+		return false;
+	//	throw new NotImplementedException();
+		//TODO BOM! fix the call to SysData
+		//return SysData.AddQuestion(q);
 	}
 
+
+	
 }

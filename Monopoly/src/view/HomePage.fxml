@@ -23,7 +23,7 @@
             <DropShadow />
          </effect>
       </ImageView>
-    <Button layoutX="205.0" layoutY="221.0" mnemonicParsing="false" onAction="#hundleBtnNewGame" prefHeight="57.0" prefWidth="147.0" text="New Game" textFill="#010e01">
+    <Button layoutX="205.0" layoutY="220.0" mnemonicParsing="false" onAction="#hundleBtnNewGame" prefHeight="57.0" prefWidth="147.0" text="New Game" textFill="#010e01">
       <font>
         <Font name="Arial Narrow" size="24.0" />
       </font>
@@ -39,7 +39,7 @@
             <SepiaTone />
          </effect>
       </Button>
-      <Button layoutX="205.0" layoutY="473.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="147.0" text="Admin" textFill="#010e01">
+      <Button fx:id="Admin" layoutX="205.0" layoutY="473.0" mnemonicParsing="false" onAction="#hundleBtnAdmin" prefHeight="58.0" prefWidth="147.0" text="Admin" textFill="#010e01">
          <font>
             <Font name="Arial Narrow" size="24.0" />
          </font>
