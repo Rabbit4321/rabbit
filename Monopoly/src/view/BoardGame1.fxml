@@ -55,22 +55,22 @@
             <Image url="@../../img/לוח%20המשחק%20קבוצת%20ארנבות.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="player1" fitHeight="81.0" fitWidth="69.0" layoutX="899.0" layoutY="574.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="player1" fitHeight="49.0" fitWidth="46.0" layoutX="857.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../img/playergreen.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="player3" fitHeight="81.0" fitWidth="69.0" layoutX="872.0" layoutY="612.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="player3" fitHeight="49.0" fitWidth="41.0" layoutX="911.0" layoutY="635.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../img/playerred.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="player4" fitHeight="81.0" fitWidth="69.0" layoutX="816.0" layoutY="583.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="player4" fitHeight="49.0" fitWidth="47.0" layoutX="908.0" layoutY="589.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../img/playeryellow.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="player2" fitHeight="81.0" fitWidth="69.0" layoutX="856.0" layoutY="554.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="player2" fitHeight="49.0" fitWidth="51.0" layoutX="856.0" layoutY="579.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../img/nmbj3WX.png" />
          </image>

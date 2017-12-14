@@ -227,6 +227,20 @@ public class BoardGameController implements Initializable {
 	        app_stage.resizableProperty().setValue(Boolean.FALSE);
 
 	}
+	//want to use this method to pop up the question card
+	
+	public void HandleShowQuestionCard(/*ActionEvent event*/) throws IOException{
+		
+		  Parent home_page_parent = FXMLLoader.load(getClass().getResource("QuestionCard.fxml"));
+		    Scene home_page_scene = new Scene(home_page_parent);
+		    
+//		    Stage app_stage = (Stage)  ((Node) event.getSource()).getScene().getWindow();
+//		    app_stage.hide();
+		    Stage app_stage = new Stage();
+		    app_stage.setScene(home_page_scene);
+		    app_stage.setTitle("Monopoly game by Rabbit team");
+		    app_stage.show();
+	}
 	/**
 	 * show roll result
 	 * */
@@ -346,18 +360,36 @@ public class BoardGameController implements Initializable {
 							if(MonopolyGame.getTypeSquareByNumber(currentSquare).compareTo("Property")==0) {
 								SquareControl.propertySquare(currentSquare);
 								showPropertyMessage(null);
+								try {
+									HandleShowQuestionCard();
+								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
 								
-								
+							
 								//TODO //supposed to show property card with info - need to use marina's methods  
 							}
 							else if(MonopolyGame.getTypeSquareByNumber(currentSquare).compareTo("LuckyCard")==0) {
 								SquareControl.luckyCardSquare(currentSquare);
 								showLuckyCardMessage(null);
+								try {
+									HandleShowQuestionCard();
+								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
 								//TODO // supposed to show Lucky card actions- need to use marina's methods
 							}
 							else if(MonopolyGame.getTypeSquareByNumber(currentSquare).compareTo("QuestionCard")==0) {
 								SquareControl.questionCardSquare(currentSquare);
 								showQuestionMessage(null);
+								try {
+									HandleShowQuestionCard();
+								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
 								//TODO // supposed to show question card actions- need to use marina's methods
 							}
 

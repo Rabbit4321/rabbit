@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 public class AdminView implements Initializable{
 
+
 	
 	
 	@FXML
@@ -27,8 +28,6 @@ public class AdminView implements Initializable{
 	    app_stage.setScene(home_page_scene);
 	    app_stage.setTitle("Monopoly game by Rabbit team");
 	    app_stage.show();
-
-
 	}
 	
 	@FXML
@@ -42,8 +41,6 @@ public class AdminView implements Initializable{
 	    app_stage.setScene(home_page_scene);
 	    app_stage.setTitle("Monopoly game by Rabbit team");
 	    app_stage.show();
-
-
 	}
 	
 	@FXML
@@ -66,9 +63,8 @@ public class AdminView implements Initializable{
 	
 	
 	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+	public void initialize(URL url, ResourceBundle rb) {
+
 		
 	}
 	
