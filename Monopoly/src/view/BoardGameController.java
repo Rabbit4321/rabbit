@@ -266,11 +266,11 @@ public class BoardGameController implements Initializable {
 	    alert.showAndWait();
 	      }
 	
-	 public static void showPropertyMessage(ActionEvent event){
+	 public static void showPropertyMessage(ActionEvent event, int squareNum){
 
 		    Alert alert = new Alert(AlertType.INFORMATION);
 		    alert.setTitle("Information Dialog");
-		    alert.setHeaderText("You are in  PROPERTY SQUARE");
+		    alert.setHeaderText("You are in " +  squareNum);
 		    alert.setContentText("");
 
 		    alert.showAndWait();
@@ -359,7 +359,8 @@ public class BoardGameController implements Initializable {
 						if(MonopolyGame.getTypeSquareByNumber(currentSquare)!= null) {
 							if(MonopolyGame.getTypeSquareByNumber(currentSquare).compareTo("Property")==0) {
 								SquareControl.propertySquare(currentSquare);
-								showPropertyMessage(null);
+								System.out.println("nu, of square " + p.getCurrentSquare().getNum());
+								showPropertyMessage(null,newSquare.getNum());
 								try {
 									HandleShowQuestionCard();
 								} catch (IOException e) {

@@ -6,7 +6,7 @@ public class Property extends Square{
 
 	private String propertyName;
 	private double propertyCost;
-	private double lastPropertyCost; // מחיר קניה אחרון
+	private double lastPropertyCost; //last purchase buy
 	private PlayerInGame propertyOwner;
 	private PropertyTypes ProType;
 	private Cities city;
